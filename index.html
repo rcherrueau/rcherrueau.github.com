@@ -7,11 +7,7 @@
     <title>Dr. Ronan-A. Cherrueau's Homepage</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <!-- Fira Sans Font -->
-    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:300,300italic,500italic,500'
-          rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="rsc/bootstrap-4.1.3.min.css">
     <!-- Mine -->
     <link rel="stylesheet" type="text/css" href="rsc/rac.css">
 
@@ -24,67 +20,63 @@
     <![endif]-->
   </head>
   <body>
-    <nav id="navbarblock" class="navbar navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">Ronan-A. Cherrueau</a>
-        </div>
+      <nav class="navbar sticky-top navbar-expand-md navbar-dark shadow-sm">
+          <!-- <div class="container"> -->
 
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="index.html">Ronan-Alexandre Cherrueau</a>
-                </li>
-                <li >
-                    <a href="publications.html">Publications</a>
-                </li>
-                <li >
-                    <a href="projects.html">Projects</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://github.com/rcherrueau">GitHub</a></li>
-            </ul>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
+          <!-- Button when the navbar collapses -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+              <a class="navbar-brand" href="index.html">Ronan-A. Cherrueau</a>
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- navbar content: home, publications, projects, os-coconut, ... -->
+          <div class="collapse navbar-collapse" id="navbar-content">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="index.html">Ronan-Alexandre Cherrueau<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="publications.html">Publications</a>
+                  </li>
+              </ul>
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" href="https://github.com/rcherrueau">GitHub</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- </div> -->
+      </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-          <h1 id="cli">
-              <span id="cli-prompt">~$&nbsp;</span><!--
-           --><span id="cli-cmd" class="hidden">about</span><!--
-           --><span id="cli-cursor">▊</span>
-          </h1>
-          <p id="cli-resp">
-              Research Engineer in the <a
-              href="https://beyondtheclouds.github.io/">Discovery</a> initiative
-              at Inria Bretagne, France. Passionate computer scientist
-              interested in programming, software composition and
-              distributed computing. Free software enthusiast. Also
-              dad & bike traveler.
-          </p>
+      <div class="jumbotron jumbotron-fluid py-3">
+          <div class="container">
+              <h1 class="display-3" id="cli">
+                  <span id="cli-prompt">~$&nbsp;</span><span id="cli-cmd" class="hidden">about</span><span id="cli-cursor">▊</span>
+              </h1>
+              <p id="cli-resp">
+                  Research Engineer in the <a
+                  href="https://beyondtheclouds.github.io/">Discovery</a> initiative
+                  at Inria Bretagne, France. Passionate computer scientist
+                  interested in programming, software composition and
+                  distributed computing. Free software enthusiast. Also
+                  dad & bike traveler.
+              </p>
+          </div>
       </div>
-    </div>
 
     <div class="container">
+        <main>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-12 col-md-7">
     <h1>Dr. Ronan-Alexandre Cherrueau</h1>
     <p>
         I am a research engineer at
         <a href="https://www.inria.fr/centre/rennes">Inria Bretagne</a>
         working on the <a href="https://beyondtheclouds.github.io/">Discovery</a> initiative.
         My work focuses on massively distributed cloud computing
-        infrastructures for fog/edge computing. In particular, revise
-        the OpenStack infrastructure to make it natively distributed.
+        infrastructures for fog/edge computing. In particular, make
+        the OpenStack infrastructure natively distributed.
     </p>
 
     <p>
@@ -102,50 +94,47 @@
         My research interests consider programming language, cloud
         computing and distributed applications. More generally, I like
         to <a href="https://github.com/rcherrueau/APE">experiment</a>
-        with different programming paradigms and languages.
+        with different programming languages and paradigms.
     </p>
-
 </div>
-<div class="col-md-4 col-md-offset-1">
-    <div id="contact">
-    <img src="rsc/me.jpg" class="img-responsive img-rounded">
-    <p>
-        <strong>Email:</strong> (λx.λy.x@y) Ronan-Alexandre.Cherrueau
-        inria.fr<br/>
+
+<div class="col-12 col-md-4 offset-md-1">
+    <address>
+        <img src="assets/me.jpg" class="img-fluid rounded">
+        <strong>Email:</strong> (λx.λy.x@y) Ronan-Alexandre.Cherrueau inria.fr<br/>
         <strong>Address:</strong><br/>
-        École des Mines de Nantes</br>
+        IMT Atlantique</br>
         La Chantrerie,
-        4, rue Alfred Kastler<br/>
-        B.P. 20722 - F-44307 NANTES Cedex 3<br/>
+        4, rue Alfred Kastler, BP 20722<br/>
+        44307 NANTES Cedex 3<br/>
         <strong>Office:</strong> A253<br/>
         <strong>GitHub, irc, twitter:</strong> rcherrueau
-    </p>
-    </div>
-
+    </address>
 </div>
 
         </div>
+        </main>
 
         <hr>
 
         <footer>
             <p>
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
                     <img alt="Creative Commons License" style="border-width:0"
-                         src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" />
+                         src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" />
                 </a>
-                Ronan-Alexandre Cherrueau 2016
+                Ronan-Alexandre Cherrueau 2016-2018
             </p>
         </footer>
     </div> <!-- /container -->
 
 
-    <!-- Bootstrap core JavaScript
+    <!-- JavaScript
     ================================================== -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="rsc/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="rsc/bootstrap-4.1.3.min.js"></script>
     <!-- Mine -->
     <script src="rsc/rac.js"></script>
   </body>

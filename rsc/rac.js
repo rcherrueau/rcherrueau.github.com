@@ -32,18 +32,25 @@ function blinkCursor(id, delay, dfr) {
 
 // Full cli animation
 function cli(cursorId, cmdId) {
+    // CLI string (e.g., "about", "publications", ...)
     var cmd = cmdId.html();
-    var delay = 90;
+    // Delay between two blinks of the caret
+    var blinkDelay = 90;
+    // Full animation should last max 1.25s;
+    var maxTimeAnimation = 1250 - blinkDelay * 3;
+    // Delay between two chars ensure the animation does not last more
+    // than 1.25s;
+    var delay = Math.min(maxTimeAnimation / cmd.length, blinkDelay);
 
     cmdId.empty();
     cmdId.removeClass("hidden");
 
     // Animation
     $.Deferred(function (dfr) {
-        dfr = blinkCursor(cursorId, delay, dfr);
-        dfr = blinkCursor(cursorId, delay, dfr);
+        dfr = blinkCursor(cursorId, blinkDelay, dfr);
+        dfr = blinkCursor(cursorId, blinkDelay, dfr);
         dfr = drawCmd(cmd, delay, cmdId, dfr);
-        blinkCursor(cursorId, delay, dfr);
+        blinkCursor(cursorId, blinkDelay, dfr);
     }).resolve();
 }
 
@@ -59,9 +66,9 @@ function toggleNavFixed(size) {
 // -------------------------------------------- Main
 $(document).ready(function() {
     // Makes the navbar fixed if window size is under 768px
-    var size = 768;
-    toggleNavFixed(size);
-    $(window).resize(function () { toggleNavFixed(size) });
+    // var size = 768;
+    // toggleNavFixed(size);
+    // $(window).resize(function () { toggleNavFixed(size) });
 
     // Animates the cmd prompt
     cli($('#cli-cursor'), $('#cli-cmd'));

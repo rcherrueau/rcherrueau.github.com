@@ -1,22 +1,21 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* GENERAL */
 body {
     font-family: 'Fira Sans', sans-serif;
     background-color: #fdf6e3;
     color: #657b83;
-    font-weight: 300;
-}
-
-nav, .jumbotron {
-    background-color: #073642;
-    background-color: #002b36;
+    font-weight: lighter;
+    font-size: 1rem;
 }
 
 h1, h2, h3, h4 {
     color: #cb4b16;
-    font-weight: 300;
+    font-weight: lighter;
 }
 
 a {
     color: #cb4b16;
+    text-decoration: underline;
 }
 
 a:hover {
@@ -24,69 +23,101 @@ a:hover {
     background-color: #eee8d5;
 }
 
+b, strong {
+    font-weight: normal;
+}
+
+::-moz-selection {
+	  background: #FF5E99;
+	  color: #fff;
+	  text-shadow: none;
+}
+
+::selection {
+	  background: #FF5E99;
+	  color: #fff;
+	  text-shadow: none;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* NAVBAR */
+nav {
+    background-color: #073642;
+    font-size: 0.8rem;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: inherit;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* JUMBOTRON */
+.jumbotron {
+    background-color: #002b36;
+}
+
+.jumbotron a {
+    text-decoration: none;
+}
+
 .jumbotron a:hover {
     color: #cb4b16;
     background-color: #073642;
 }
 
-::-moz-selection {
-	background:#FF5E99;
-	color:#fff;
-	text-shadow:none
+/* CLI COMMAND (e.g. `~$ about▊`) */
+#cli {
+    font-weight: 500;
 }
 
-::selection {
-	background:#FF5E99;
-	color:#fff;
-	text-shadow:none
+#cli-cursor {
+    padding-left: 2px;
 }
 
-.jumbotron p {
-    font-size: 18px;
-}
 
-body > .container {
-    font-size: 18px;
-    font-weight: 300;
-}
-
-body > .container a {
-    text-decoration: underline;
-}
-
-body > .container .articles a {
-    text-decoration: none;
-}
-
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* FOOTER */
 footer {
-    font-size: 12px;
+    font-size: 0.7rem;
 }
 
-body > .container footer a {
+footer a, footer a:hover {
     text-decoration: none;
 }
 
-/* Contact */
-#contact {
-    font-size: 11px;
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* INDEX.HTML */
+
+address {
+    font-size: 0.7rem;
 }
 
-#contact img {
+address img {
     margin-bottom: 10px;
 }
 
-/* Publications */
-ul.articles {
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* PUBLICATIONS.HTML */
+
+.articles > ul {
     list-style-type: none;
     padding-left: 0px;
 }
 
-ul.articles ul {
+.articles > ul ul {
     list-style-type: none;
     padding-left: 30px;
 }
 
-ul.articles ul li {
+.articles > ul ul li {
     border-left-width: thin;
     border-left-style: solid;
     border-left-color: #cb4b16;
@@ -94,53 +125,94 @@ ul.articles ul li {
     padding-left: 10px;
 }
 
-@media screen and (min-width: 768px) {
-    .container {
-        /* width: 970px; */
-    }
 
-    .navbar {
-        border-radius: 0px;
-        background-color: #073642;
-        border: none;
-        margin-bottom: 0;
-    }
-
-    .navbar-header {
-        display: none;
-    }
-
-    .navbar-collapse {
-        padding-left: 0;
-    }
-
-    .navbar-inverse .navbar-nav > .active > a,
-    .navbar-inverse .navbar-nav > .active > a:focus,
-    .navbar-inverse .navbar-nav > .active > a:hover {
-        background-color: transparent;
-    }
-
-    .jumbotron {
-        padding-top: 0;
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* MEDIA */
+@media screen and (max-width: 575.98px) {
+    /* Make display-3 class looks samller */
+    .display-3 {
+        font-size: 2.5rem;
     }
 }
 
-@media screen and (min-width: 992px) {
-    .container {
-        width: 940px;
-    }
+
+/* Literate programming */
+.litp {
+    display: grid;
+    width: 750;
+    grid-template-columns: 360px 360px;
+    /* grid-template-areas: "a a"; */
+    grid-column-gap: 10px;
+    /* grid-auto-columns: minmax(1fr, 100px); */
 }
 
-/* Cli cmd */
-#cli {
-    color: #2aa198;
-    color: #268bd2;
-    color: #cb4b16;
-    color: #dc322f;
-    color: #cb4b16;
-    font-weight: normal;
+.litp pre  {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    color: #dcdccc;
+    background:  #3f3f3f;
 }
 
-#cli-cursor {
-    padding-left: 2px;
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Local webfont support */
+/* See, https://google-webfonts-helper.herokuapp.com */
+
+
+/* fira-sans-300 - latin */
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('fonts/fira-sans-v8-latin-300.eot'); /* IE9 Compat Modes */
+  src: local('Fira Sans Light'), local('FiraSans-Light'),
+       url('fonts/fira-sans-v8-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/fira-sans-v8-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/fira-sans-v8-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('fonts/fira-sans-v8-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/fira-sans-v8-latin-300.svg#FiraSans') format('svg'); /* Legacy iOS */
+}
+
+/* fira-sans-300italic - latin */
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: url('fonts/fira-sans-v8-latin-300italic.eot'); /* IE9 Compat Modes */
+  src: local('Fira Sans Light Italic'), local('FiraSans-LightItalic'),
+       url('fonts/fira-sans-v8-latin-300italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/fira-sans-v8-latin-300italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/fira-sans-v8-latin-300italic.woff') format('woff'), /* Modern Browsers */
+       url('fonts/fira-sans-v8-latin-300italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/fira-sans-v8-latin-300italic.svg#FiraSans') format('svg'); /* Legacy iOS */
+}
+
+/* fira-sans-regular - latin */
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/fira-sans-v8-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Fira Sans Regular'), local('FiraSans-Regular'),
+       url('fonts/fira-sans-v8-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/fira-sans-v8-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/fira-sans-v8-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('fonts/fira-sans-v8-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/fira-sans-v8-latin-regular.svg#FiraSans') format('svg'); /* Legacy iOS */
+}
+
+/* fira-sans-500 - latin */
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/fira-sans-v8-latin-500.eot'); /* IE9 Compat Modes */
+  src: local('Fira Sans Medium'), local('FiraSans-Medium'),
+       url('fonts/fira-sans-v8-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/fira-sans-v8-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/fira-sans-v8-latin-500.woff') format('woff'), /* Modern Browsers */
+       url('fonts/fira-sans-v8-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/fira-sans-v8-latin-500.svg#FiraSans') format('svg'); /* Legacy iOS */
 }
