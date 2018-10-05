@@ -1,7 +1,5 @@
 FROM ubuntu
 
-MAINTAINER foo@bar.fr
-
 # Update apt database and install nginx
 RUN apt-get update
 RUN apt-get install -y nginx

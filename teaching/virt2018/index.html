@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-10-05 Fri 01:40 -->
+<!-- 2018-10-08 Mon 14:03 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compute Virtualization</title>
@@ -230,9 +230,63 @@ for the JavaScript code in this tag.
 <div id="content">
 <header>
 <h1 class="title">Compute Virtualization</h1>
-</header>
-<div id="outline-container-org12eb5ac" class="outline-2">
-<h2 id="org12eb5ac"><span class="section-number-2">1</span> Requirements</h2>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1582a98">1. Requirements</a></li>
+<li><a href="#orgc13eedc">2. What is Virtualization?</a></li>
+<li><a href="#org88d2601">3. Why is Compute Virtualization Cool?</a></li>
+<li><a href="#orga0f0558">4. Compute Virt. Benefits for Application Developers</a></li>
+<li><a href="#org1aeb68f">5. Compute Virt. Benefits for Providers</a></li>
+<li><a href="#orgbf72ecb">6. Technologies for Compute Virtualization</a>
+<ul>
+<li><a href="#org7cd919b">6.1. What about Performances?</a></li>
+</ul>
+</li>
+<li><a href="#sec:start-operate-virt">7. Exercise: Start &amp; Operate Virtualized Env.</a>
+<ul>
+<li><a href="#org6b4328a">7.1. Setup with Vagrant Tool</a></li>
+<li><a href="#orge2e37c3">7.2. Physical Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
+<li><a href="#orgba740fc">7.3. Ubuntu/Bionic64 VirtualBox VM&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a>
+<ul>
+<li><a href="#org858f1e4">7.3.1. Start the Ubuntu/Bionic VM with Vagrant</a></li>
+<li><a href="#org0c9f69f">7.3.2. Commands Execution</a></li>
+<li><a href="#org0399e96">7.3.3. Start the Ubuntu/Bionic VM manually (not recommended)</a></li>
+</ul>
+</li>
+<li><a href="#org22f200e">7.4. Debian/Wheezy LXC Container&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a>
+<ul>
+<li><a href="#org7419c80">7.4.1. Vagrant File for Debian/Wheezy</a></li>
+<li><a href="#orge9857d7">7.4.2. Commands Execution</a></li>
+<li><a href="#org39b702b">7.4.3. Start the LXC container manually (not recommended)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgabb037d">8. VM and Container Suitable for Microservices?</a></li>
+<li><a href="#org6a02e6d">9. Compute Virtualization with Docker Container</a></li>
+<li><a href="#org9e910bc">10. Exercise: Start &amp; Operate Docker Container</a>
+<ul>
+<li><a href="#org22219a1">10.1. Getting Started</a></li>
+<li><a href="#orgf9de496">10.2. Your first container (Image &#x2013; the blueprint)</a></li>
+<li><a href="#org38d580e">10.3. Your first container (Deploy)</a></li>
+<li><a href="#org9402efe">10.4. DO: Define your Image (nginx server)</a>
+<ul>
+<li><a href="#org0b56edc">10.4.1. <code>~$ cat ./Dockerfile</code>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org91041e9">10.5. Build and Run your Image</a></li>
+<li><a href="#org8d41d9a">10.6. Put a database into your container (and make containers collaborate)</a></li>
+</ul>
+</li>
+<li><a href="#orgb617943">11. Exercise: Make a CockroachDB cluster</a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-org1582a98" class="outline-2">
+<h2 id="org1582a98"><span class="section-number-2">1</span> Requirements</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>VirtualBox 5.2 or upper
@@ -245,7 +299,7 @@ for the JavaScript code in this tag.
 <li>Download link: <a href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a></li>
 </ul></li>
 
-<li>Optional &#x2013; I will provide a virtualbox vm with the following
+<li>Optional &#x2013; I provide a VirtualBox VM with the following
 <ul class="org-ul">
 <li>LXC 2.1 or upper, see <a href="https://linuxcontainers.org/lxc/getting-started/">https://linuxcontainers.org/lxc/getting-started/</a></li>
 <li>Docker, see <a href="https://store.docker.com/search?type=edition&amp;offering=community">https://store.docker.com/search?type=edition&amp;offering=community</a></li>
@@ -254,8 +308,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org0ff47bd" class="outline-2">
-<h2 id="org0ff47bd"><span class="section-number-2">2</span> What is Virtualization?</h2>
+<div id="outline-container-orgc13eedc" class="outline-2">
+<h2 id="orgc13eedc"><span class="section-number-2">2</span> What is Virtualization?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Idea: <i>Emulate resources with software</i>.
@@ -268,7 +322,7 @@ Idea: <i>Emulate resources with software</i>.
 <li>Emulate only some functionality to run an OS</li>
 </ul></li>
 
-<li>Network virutalization
+<li>Network virtualization
 <ul class="org-ul">
 <li>Emulate network functionality (switch, router, &#x2026;)</li>
 </ul></li>
@@ -282,28 +336,29 @@ Idea: <i>Emulate resources with software</i>.
 </div>
 </div>
 
-<div id="outline-container-org572bae4" class="outline-2">
-<h2 id="org572bae4"><span class="section-number-2">3</span> Why Compute Virtualization is Cool?</h2>
+<div id="outline-container-org88d2601" class="outline-2">
+<h2 id="org88d2601"><span class="section-number-2">3</span> Why is Compute Virtualization Cool?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Hides and manages physical characteristics. It offers:
 </p>
 <ul class="org-ul">
-<li>Isolation for file system, network, Root privilege</li>
+<li>Isolation for the file system, network, Root privilege</li>
 <li>Disk/CPU quotas, IO rate/Memory limits</li>
 <li>Live migration</li>
 <li>&#x2026;</li>
 </ul>
 
 <p>
-And in the end, the virtualized env. <i>look, feel and operate like a
-real physical machine</i>.
+<i>The virtualized env. look, feel and operate like a real physical
+machine.</i>
 </p>
 </div>
+</div>
 
-<div id="outline-container-org0978820" class="outline-3">
-<h3 id="org0978820"><span class="section-number-3">3.1</span> Benefits for App. Developer</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orga0f0558" class="outline-2">
+<h2 id="orga0f0558"><span class="section-number-2">4</span> Compute Virt. Benefits for Application Developers</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Write your App once and run it on any physical machines, e.g.:
 </p>
@@ -321,22 +376,22 @@ i.e., put your app in the Cloud!</li>
 </div>
 </div>
 
-<div id="outline-container-org561f389" class="outline-3">
-<h3 id="org561f389"><span class="section-number-3">3.2</span> Benefits for Provider</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org1aeb68f" class="outline-2">
+<h2 id="org1aeb68f"><span class="section-number-2">5</span> Compute Virt. Benefits for Providers</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Manages a Data-Center with compute nodes that all run the same OS
 </p>
 <ul class="org-ul">
 <li>Provides virtualized environments on top of compute nodes
 <ul class="org-ul">
-<li>Developer run her App on the OS of her choice</li>
+<li>Developer runs her App on the OS of her choice</li>
 </ul></li>
 
 <li>Virtualized env. comes with different configurations
 <ul class="org-ul">
 <li>Use virtualization to limit CPU/Memory/Disk capacity</li>
-<li>Developer choose the best env. for the best price</li>
+<li>Developer chooses the best env. for the best price</li>
 </ul></li>
 
 <li>Helps developer handle load spikes by duplicating virtualized env
@@ -344,19 +399,18 @@ Manages a Data-Center with compute nodes that all run the same OS
 <li>Horizontal scaling</li>
 </ul></li>
 
-<li>Co-localize on the same compute node virtualized env. that don't use
-a lot of energy
+<li>Co-localize on the same compute node virtualized envs. that don't
+use much energy
 <ul class="org-ul">
 <li>Load balancing, consolidation</li>
 </ul></li>
 </ul>
 </div>
 </div>
-</div>
 
-<div id="outline-container-org367abd6" class="outline-2">
-<h2 id="org367abd6"><span class="section-number-2">4</span> Technologies for Compute Virtualization</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgbf72ecb" class="outline-2">
+<h2 id="orgbf72ecb"><span class="section-number-2">6</span> Technologies for Compute Virtualization</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Virtual Machine &#x2013; VM: <a href="https://www.linux-kvm.org/">KVM</a>, <a href="https://www.qemu.org/">QEMU</a>, <a href="https://www.virtualbox.org/">VirtualBox</a>, &#x2026;
 <ul class="org-ul">
@@ -370,16 +424,16 @@ a lot of energy
 <li>Same as VM, but no hardware emulation</li>
 <li>Shares the kernel with the host machine</li>
 <li>✓ Runs at the bare metal speed</li>
-<li>✘ Container can go from one Linux OS to another but not from
+<li>✘ Can go from one Linux OS to another but not from
 Windows to Linux</li>
 <li>✘ Isolation is not as good as in VM (security)</li>
 </ul></li>
 </ul>
 </div>
 
-<div id="outline-container-orgc89a16c" class="outline-3">
-<h3 id="orgc89a16c"><span class="section-number-3">4.1</span> What about Performances? cite:SCJS16</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org7cd919b" class="outline-3">
+<h3 id="org7cd919b"><span class="section-number-3">6.1</span> What about Performances<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>?</h3>
+<div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li><p>
 Performance overhead for KVM is <i>negligible</i> for CPU/Memory/Network
@@ -396,7 +450,7 @@ Performances of container and bare metal are <i>equivalent</i> (2%)
 </p>
 
 <figure>
-<img src="perf2.png" alt="perf2.png">
+<img src="perf2.png" alt="perf2.png" width="400px">
 
 </figure></li>
 </ul>
@@ -404,13 +458,13 @@ Performances of container and bare metal are <i>equivalent</i> (2%)
 </div>
 </div>
 
-<div id="outline-container-org55e1aac" class="outline-2">
-<h2 id="sec:start-operate-virt"><a id="org55e1aac"></a><span class="section-number-2">5</span> Exercise: Start &amp; Operate Virtualized Env.</h2>
+<div id="outline-container-orgfd2f2d2" class="outline-2">
+<h2 id="sec:start-operate-virt"><a id="orgfd2f2d2"></a><span class="section-number-2">7</span> Exercise: Start &amp; Operate Virtualized Env.</h2>
 <div class="outline-text-2" id="text-sec:start-operate-virt">
 <p>
-Experiment the <i>VM and Container look, feel and operate like a real
-physical machine</i>. Run the following commands into a VirtualBox VMs
-(optionally KVM), and a LXC container (optionally chroot) &#x2013; refer to
+Experiment the <i>VM and Container look, feel and operate like real
+physical machines</i>. Run the following commands into a VirtualBox VMs
+(optionally KVM), and an LXC container (optionally chroot) &#x2013; refer to
 the next section for the setup.
 </p>
 
@@ -428,16 +482,16 @@ the next section for the setup.
 While running the commands, compare to your physical machine.
 </p>
 <ul class="org-ul">
-<li>Does <i>VM and Container look, feel and operate like a real physical
-machine</i>?</li>
-<li>What we could say about resources management and isolation on VMs?
+<li>Does <i>VM and Container look, feel and operate like real physical
+machines</i>?</li>
+<li>What could you say about resources management and isolation on VMs?
 on containers?</li>
 </ul>
 </div>
 
-<div id="outline-container-orge605bb3" class="outline-3">
-<h3 id="orge605bb3"><span class="section-number-3">5.1</span> Setup with <a href="https://www.vagrantup.com/docs/index.html">Vagrant</a> Tool</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-org6b4328a" class="outline-3">
+<h3 id="org6b4328a"><span class="section-number-3">7.1</span> Setup with <a href="https://www.vagrantup.com/docs/index.html">Vagrant</a> Tool</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 <i>Vagrant Tool ease the configuration of Virtualized env.</i>
 </p>
@@ -446,7 +500,7 @@ on containers?</li>
 <li>Take 10 minutes to read the <a href="https://www.vagrantup.com/intro/getting-started/index.html">getting started</a>, <a href="https://www.vagrantup.com/intro/getting-started/up.html">up and ssh</a> and
 <a href="https://www.vagrantup.com/docs/vagrantfile/vagrant_settings.html">Vagrantfile</a></li>
 
-<li>Setup a <a href="https://app.vagrantup.com/ubuntu/boxes/bionic64">Ubuntu/Bionic64</a> VirtualBox VM with 4 Go of Memory and 2 CPUs
+<li>Setup an <a href="https://app.vagrantup.com/ubuntu/boxes/bionic64">Ubuntu/Bionic64</a> VirtualBox VM with 4 Go of Memory and 2 CPUs
 <ul class="org-ul">
 <li><p>
 You should start like this
@@ -460,7 +514,31 @@ You should start like this
 <li>Refer to <a href="https://www.vagrantup.com/docs/virtualbox/configuration.html">VirtualBox customization</a> for Memory and CPU customization</li>
 </ul></li>
 
-<li>Wait my intervention to move to LXC container&#x2026;</li>
+<li>Do not setup once again an Ubuntu/Bionice64, but instead setup, for
+instance, a <a href="https://app.vagrantup.com/fgrehm/boxes/wheezy64-lxc">Debian/Wheezy64</a> LXC container with 1 Go of Memory and 1
+CPU &#x2013; This is the joy of virtualization: try new OS!
+<ol class="org-ol">
+<li><p>
+Provision Ubuntu VM to run LXC from there
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">     vbox:~$ exit <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Go back to the physical machine</span>
+     physical:~/vbox$ curl -O https://rcherrueau.github.io/teaching/virt2018/vbox/Vagrantfile <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Get my Vagrantfile</span>
+     physical:~/vbox$ vagrant reload --provision <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Reload your VM w/ my Vagrantfile</span>
+     physical:~/vbox$ vagrant ssh <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">SSH on it</span>
+</pre>
+</div></li>
+<li><p>
+You should then start LXC container like this
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">     vbox:~$ mkdir lxc; <span style="color: #DCDCCC; font-weight: bold;">cd</span> lxc
+     vbox:~/lxc$ vagrant init <span style="color: #CC9393;">"fgrehm/wheezy64-lxc"</span>
+     vbox:~/lxc$ vim Vagrantfile
+</pre>
+</div></li>
+<li>Refer to <a href="https://github.com/fgrehm/vagrant-lxc">vagrant-lxc</a> plugin for Memory and CPU customization</li>
+</ol></li>
 </ul>
 
 <div class="note">
@@ -474,13 +552,329 @@ plugins: <a href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://gi
 </div>
 </div>
 </div>
+
+<div id="outline-container-orge2e37c3" class="outline-3">
+<h3 id="orge2e37c3"><span class="section-number-3">7.2</span> Physical Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div class="outline-text-3" id="text-7-2">
+<ul class="org-ul">
+<li><p>
+Last change of /etc/hosts
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  physical:~$ stat -c %y /etc/hosts
+</pre>
+</div>
+<p>
+2018-10-03 10:30:08.251248873 +0200
+</p></li>
+
+<li><p>
+Network is 10.44.192.0/20
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  physical:~$ ip address show scope global up
+</pre>
+</div></li>
+
+<li><p>
+4 CPU, 16 Go Memory on my vbox VM
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  physical:~$ top
+</pre>
+</div></li>
+
+<li><p>
+PID of <code>dhclient</code>, still running
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  physical:~$ ps -C dhclient
+</pre>
+</div></li>
+
+<li><p>
+Debian Wheezy, kernel 4.14.71
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  vbox:~$ uname -a
+</pre>
+</div>
+<p>
+Linux hp 4.14.71 #1-NixOS SMP Wed Sep 19 20:43:49 UTC 2018 x86_64
+GNU/Linux
+</p></li>
+</ul>
+</div>
 </div>
 
-<div id="outline-container-org3444c1b" class="outline-2">
-<h2 id="org3444c1b"><span class="section-number-2">6</span> VM and Container Suitable for Microservices? cite:SCJS16</h2>
-<div class="outline-text-2" id="text-6">
-<table id="orgc7457b7">
-<caption class="t-above"><span class="table-number">Table 1:</span> Virtual Machines and Container Comparison For Microservice-Based Architectures</caption>
+<div id="outline-container-orgba740fc" class="outline-3">
+<h3 id="orgba740fc"><span class="section-number-3">7.3</span> Ubuntu/Bionic64 VirtualBox VM&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div class="outline-text-3" id="text-7-3">
+</div>
+<div id="outline-container-org858f1e4" class="outline-4">
+<h4 id="org858f1e4"><span class="section-number-4">7.3.1</span> Start the <a href="https://app.vagrantup.com/ubuntu/boxes/bionic64">Ubuntu/Bionic</a> VM with Vagrant</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<p>
+Download the following <a href="vbox/Vagrantfile">Vagrantfile</a>.
+</p>
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #7CB8BB;">Vagrant</span>.configure<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"2"</span><span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">do</span> |config|
+  config.vm.box = <span style="color: #CC9393;">"ubuntu/bionic64"</span>
+  config.vm.network <span style="color: #BFEBBF;">:forwarded_port</span>, <span style="color: #BFEBBF;">guest:</span> <span style="color: #BFEBBF;">8080</span>, <span style="color: #BFEBBF;">host:</span> <span style="color: #BFEBBF;">8080</span>
+  config.vm.provision <span style="color: #BFEBBF;">:shell</span>, <span style="color: #BFEBBF;">privileged:</span> <span style="color: #BFEBBF;">false</span>, <span style="color: #BFEBBF;">inline:</span> <span style="color: #CC9393;">&lt;&lt;-SCRIPT</span>
+<span style="color: #CC9393;">  sudo apt update</span>
+<span style="color: #CC9393;">  # Install some utils</span>
+<span style="color: #CC9393;">  sudo apt install libltdl7 curl lxc lynx -y</span>
+<span style="color: #CC9393;">  # Install vagrant</span>
+<span style="color: #CC9393;">  curl --silent --remote-name 'https://releases.hashicorp.com/vagrant/2.1.5/vagrant_2.1.5_x86_64.deb'</span>
+<span style="color: #CC9393;">  sudo dpkg -i vagrant_2.1.5_x86_64.deb</span>
+<span style="color: #CC9393;">  # Install Docker</span>
+<span style="color: #CC9393;">  curl --silent --remote-name 'https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb'</span>
+<span style="color: #CC9393;">  sudo dpkg -i docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb</span>
+<span style="color: #CC9393;">  SCRIPT</span>
+  config.vm.provider <span style="color: #BFEBBF;">:virtualbox</span> <span style="color: #F0DFAF; font-weight: bold;">do</span> |vb|
+    vb.gui = <span style="color: #BFEBBF;">false</span>
+    vb.memory = <span style="color: #CC9393;">"4096"</span>
+    vb.cpus = <span style="color: #BFEBBF;">3</span>
+  <span style="color: #F0DFAF; font-weight: bold;">end</span>
+<span style="color: #F0DFAF; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+Finally, launch VM with <code>vagrant up</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0c9f69f" class="outline-4">
+<h4 id="org0c9f69f"><span class="section-number-4">7.3.2</span> Commands Execution</h4>
+<div class="outline-text-4" id="text-7-3-2">
+<p>
+SSH on VM with <code>vagrant ssh</code> or with traditional <code>ssh</code> (get info with
+<code>vagrant ssh-config</code>)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">ssh -i .vagrant/machines/default/virtualbox/private_key<span style="color: #CC9393;">\</span>
+    -l vagrant -p <span style="color: #BFEBBF;">2222</span> <span style="color: #BFEBBF;">127.0.0.1</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+Last change of /etc/hosts &#x2013; File isolation (the physical machine is
+2018-10-03 10:30:08.251248873 +0200).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  vbox:~$ sudo touch -c /etc/hosts; stat -c %y /etc/hosts
+</pre>
+</div>
+<p>
+2018-10-03 15:38:36.413702441 +0000
+</p></li>
+
+<li><p>
+Network is 10.0.2.0/24 &#x2013; Network isolation (the physical machine is
+10.44.192.0/20).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  vbox:~$ ip address show scope global up
+</pre>
+</div></li>
+
+<li><p>
+2 CPU, 4 Go Memory &#x2013; CPU and Memory limitation (the physical
+machine is 4 CPU and 16 Go Memory).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  vbox:~$ top
+</pre>
+</div></li>
+
+<li><p>
+Kill of <code>dhclient</code> &#x2013; Root privilege isolation (<code>dhclient</code> still
+running on the physical machine).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  vbox:~$ sudo pkill dhclient -e
+</pre>
+</div></li>
+
+<li><p>
+Ubuntu Bionic, kernel 4.15.0-34 &#x2013; Doesn't share the kernel
+(the physical machine is 4.14.71).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  vbox:~$ uname -a
+</pre>
+</div>
+<p>
+Linux ubuntu-bionic 4.15.0-34-generic #37-Ubuntu SMP Mon Aug 27
+15:21:48 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0399e96" class="outline-4">
+<h4 id="org0399e96"><span class="section-number-4">7.3.3</span> Start the <a href="https://app.vagrantup.com/ubuntu/boxes/bionic64">Ubuntu/Bionic</a> VM manually (not recommended)</h4>
+<div class="outline-text-4" id="text-7-3-3">
+<ol class="org-ol">
+<li><p>
+Download the VirtualBox image.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">   curl -L -O https://app.vagrantup.com/ubuntu/boxes/bionic64/versions/20181003.0.0/providers/virtualbox.box
+   tar xf virtualbox.box
+</pre>
+</div></li>
+<li>Open VirtualBox GUI and import <code>box.ovf</code>.</li>
+<li>Change Memory and CPU in the machine details</li>
+<li>Start the new virtual machine</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org22f200e" class="outline-3">
+<h3 id="org22f200e"><span class="section-number-3">7.4</span> Debian/Wheezy LXC Container&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div class="outline-text-3" id="text-7-4">
+</div>
+<div id="outline-container-org7419c80" class="outline-4">
+<h4 id="org7419c80"><span class="section-number-4">7.4.1</span> Vagrant File for <a href="https://app.vagrantup.com/fgrehm/boxes/wheezy64-lxc">Debian/Wheezy</a></h4>
+<div class="outline-text-4" id="text-7-4-1">
+<p>
+Download the following <a href="lxc/Vagrantfile">Vagrantfile</a>.
+</p>
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #7CB8BB;">Vagrant</span>.configure<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"2"</span><span style="color: #DCDCCC;">)</span> <span style="color: #F0DFAF; font-weight: bold;">do</span> |config|
+  config.vm.box = <span style="color: #CC9393;">"fgrehm/wheezy64-lxc"</span>
+  config.vagrant.plugins = <span style="color: #DCDCCC;">[</span> <span style="color: #CC9393;">"vagrant-lxc"</span> <span style="color: #DCDCCC;">]</span>
+  config.vm.provision <span style="color: #BFEBBF;">:shell</span>, <span style="color: #BFEBBF;">inline:</span> <span style="color: #CC9393;">&lt;&lt;-SCRIPT</span>
+<span style="color: #CC9393;">  apt-get update</span>
+<span style="color: #CC9393;">  apt-get install stress -y</span>
+<span style="color: #CC9393;">  SCRIPT</span>
+  config.vm.provider <span style="color: #BFEBBF;">:lxc</span> <span style="color: #F0DFAF; font-weight: bold;">do</span> |lxc|
+    lxc.customize <span style="color: #CC9393;">'cgroup.memory.limit_in_bytes'</span>, <span style="color: #CC9393;">'1024M'</span>
+    lxc.customize <span style="color: #CC9393;">'cgroup.cpuset.cpus'</span>, <span style="color: #CC9393;">'1'</span>
+  <span style="color: #F0DFAF; font-weight: bold;">end</span>
+<span style="color: #F0DFAF; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+Finally, launch LXC container with <code>vagrant up</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge9857d7" class="outline-4">
+<h4 id="orge9857d7"><span class="section-number-4">7.4.2</span> Commands Execution</h4>
+<div class="outline-text-4" id="text-7-4-2">
+<p>
+SSH on VM with <code>vagrant ssh</code> or with traditional <code>ssh</code> (get info with
+<code>vagrant ssh-config</code>)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">ssh -i .vagrant/machines/default/lxc/private_key<span style="color: #CC9393;">\</span>
+    -l vagrant -p <span style="color: #BFEBBF;">22</span> <span style="color: #BFEBBF;">10.0.3.7</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+Last change of /etc/hosts &#x2013; File isolation (VM is
+2018-10-03 15:38:36.413702441 +0000).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  lxc:~$ sudo touch -c /etc/hosts; stat -c %y /etc/hosts
+</pre>
+</div>
+<p>
+2018-10-03 19:24:52.156815860 -0300
+</p></li>
+
+<li><p>
+Network is 10.0.3.0/24 &#x2013; Network isolation (VM is
+10.0.2.0/24).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  lxc:~$ ip address show scope global up
+</pre>
+</div></li>
+
+<li><p>
+2 CPU, 4 Go Memory
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  lxc:~$ top
+</pre>
+</div>
+
+<p>
+Nani?! 2 CPU and 4 Go Memory? I asked for 1 CPU and 1Go Memory.
+Let's stress that loony container.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  lxc:~$ stress --cpu <span style="color: #BFEBBF;">2</span> --timeout <span style="color: #BFEBBF;">1m</span> &amp; top
+</pre>
+</div>
+
+<p>
+OK, <code>stress</code> is only using 1 CPU. Reason: <a href="https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt">Cgroups</a> allow you to
+allocate resources—such as CPU time, system memory, network
+bandwidth, or combinations of these resources—among user-defined
+groups of tasks (processes) running on a system. <code>cpuset</code> assign
+CPUs to a cgroup. Here, we assign CPU to <code>Cpu1</code>. Change the
+Vagrantfile and set <code>cpuset</code> to <code>0</code> and you will see that stress
+uses <code>Cpu0</code>.
+</p></li>
+
+<li><p>
+Kill of <code>dhclient</code> &#x2013; Root privilege isolation (<code>dhclient</code> already
+killed on VM).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  lxc:~$ sudo pkill dhclient -e
+</pre>
+</div></li>
+
+<li><p>
+Debian Wheezy, kernel 4.15.0-34 &#x2013; Shares the kernel (VM is 4.15.0-34).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">  lxc:~$ uname -a
+</pre>
+</div>
+<p>
+Linux vagrant-base-wheezy-amd64 4.15.0-34-generic #37-Ubuntu SMP Mon
+Aug 27 15:21:48 UTC 2018 x86_64 GNU/Linux
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org39b702b" class="outline-4">
+<h4 id="org39b702b"><span class="section-number-4">7.4.3</span> Start the LXC container manually (not recommended)</h4>
+<div class="outline-text-4" id="text-7-4-3">
+<div class="org-src-container">
+<pre class="src src-sh">sudo su
+lxd init --auto
+lxc launch ubuntu:16.01 u1
+lxc info u1
+lxc exec u1 -- /bin/bash
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgabb037d" class="outline-2">
+<h2 id="orgabb037d"><span class="section-number-2">8</span> VM and Container Suitable for Microservices?</h2>
+<div class="outline-text-2" id="text-8">
+<table id="orge85ef83">
+<caption class="t-above"><span class="table-number">Table 1:</span> Virtual Machines and Container Comparison For Microservice-Based Architectures[fn:SCJS16].</caption>
 
 <colgroup>
 <col  class="org-left">
@@ -500,7 +894,7 @@ plugins: <a href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://gi
 <tr>
 <td class="org-left">Boot Time (sec)</td>
 <td class="org-left">From 10 to Doz*</td>
-<td class="org-left">&gt;1.0</td>
+<td class="org-left">~1.0</td>
 </tr>
 
 <tr>
@@ -517,28 +911,26 @@ plugins: <a href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://gi
 </tbody>
 </table>
 
-<p>
-*Can be mitigated with <a href="https://en.wikipedia.org/wiki/Copy-on-write">Copy-on-Write</a>, but VM boot time may increase up
- to 1 minute under:
-</p>
+<ul class="org-ul">
+<li>*Can be mitigated with <a href="https://en.wikipedia.org/wiki/Copy-on-write">Copy-on-Write</a>, but VM boot time may increase
+up to 1 minute under:
 <ul class="org-ul">
 <li>CPU contention</li>
 <li>Network contention (CEPH backend)</li>
 <li>IO contention</li>
-</ul>
+</ul></li>
 
-<p>
-†A VM or LXC container may be multi-purpose:
-</p>
+<li>†A VM or LXC container may be multi-purpose:
 <ul class="org-ul">
 <li>Contains many services &rArr; Hard to manage automatically</li>
+</ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org174c094" class="outline-2">
-<h2 id="org174c094"><span class="section-number-2">7</span> Compute Virtualization with <a href="https://www.docker.com/">Docker</a> Container</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org6a02e6d" class="outline-2">
+<h2 id="org6a02e6d"><span class="section-number-2">9</span> Compute Virtualization with <a href="https://www.docker.com/">Docker</a> Container</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>Shrink envelop of a container down to just a single process</li>
 
@@ -546,22 +938,23 @@ plugins: <a href="https://github.com/vagrant-libvirt/vagrant-libvirt">https://gi
 
 <li>✓ Good for microservice-based architecture
 <ul class="org-ul">
-<li>Removes all OS processes that are not used</li>
-<li>A container is dedicated to one task</li>
+<li>Removes all unused OS processes</li>
+<li>One Container &equiv; One Task</li>
 <li>Idea: <i>Automated Monitoring and Management</i></li>
 </ul></li>
-<li>✘ App has to be operated differently</li>
+
+<li>✘ The application has to be operated differently</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org936e5d4" class="outline-2">
-<h2 id="org936e5d4"><span class="section-number-2">8</span> Exercise: Start &amp; Operate Docker Container</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org9e910bc" class="outline-2">
+<h2 id="org9e910bc"><span class="section-number-2">10</span> Exercise: Start &amp; Operate Docker Container</h2>
+<div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orga1fd0e2" class="outline-3">
-<h3 id="orga1fd0e2"><span class="section-number-3">8.1</span> Getting Started</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-org22219a1" class="outline-3">
+<h3 id="org22219a1"><span class="section-number-3">10.1</span> Getting Started</h3>
+<div class="outline-text-3" id="text-10-1">
 <p>
 Docker is already installed in the Ubuntu VM
 </p>
@@ -574,23 +967,24 @@ vbox:~$ systemctl status docker --state=ACTIVE <span style="color: #5F7F5F;"># <
 </div>
 </div>
 
-<div id="outline-container-orgc2fc4e8" class="outline-3">
-<h3 id="orgc2fc4e8"><span class="section-number-3">8.2</span> Your first container (Image &#x2013; the blueprint)</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-orgf9de496" class="outline-3">
+<h3 id="orgf9de496"><span class="section-number-3">10.2</span> Your first container (Image &#x2013; the blueprint)</h3>
+<div class="outline-text-3" id="text-10-2">
 <p>
 Image is a blueprint for container run-time
 </p>
 <ul class="org-ul">
-<li>Tells container which software you wanna run</li>
-<li>Image is comprised of multiple layer</li>
-<li>A layer is just another image</li>
+<li>Tells container which software you want to run</li>
+<li>Multiple layers comprise the image</li>
+<li>A new layer is just another image</li>
 <li>Every image contains a base layer (the os)</li>
+<li>Different containers can share layers</li>
 <li>Layers can be shared by different containers</li>
 </ul>
 
 <p>
 Let's get the base layer. You can choose Ubuntu, but I recommend
-<a href="https://alpinelinux.org/about/">Alpine Linux</a>. Yeah virtualization &#x2013; Discover new OS!
+<a href="https://alpinelinux.org/about/">Alpine Linux</a>. Yeah, virtualization &#x2013; Discover new OS!
 </p>
 <div class="org-src-container">
 <pre class="src src-shell">~$ docker search alpine
@@ -601,12 +995,12 @@ Let's get the base layer. You can choose Ubuntu, but I recommend
 </div>
 </div>
 
-<div id="outline-container-org4bf2bc9" class="outline-3">
-<h3 id="org4bf2bc9"><span class="section-number-3">8.3</span> Your first container (Deploy)</h3>
-<div class="outline-text-3" id="text-8-3">
+<div id="outline-container-org38d580e" class="outline-3">
+<h3 id="org38d580e"><span class="section-number-3">10.3</span> Your first container (Deploy)</h3>
+<div class="outline-text-3" id="text-10-3">
 <p>
 Run a container based on the Alpine layer. The following runs an
-<code>echo</code> command into a container.
+<code>echo</code> command into the container.
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">~$ docker run alpine echo <span style="color: #CC9393;">"Hello World"</span>
@@ -633,7 +1027,7 @@ What is the purpose of <code>-d</code>?
 
 <p>
 You can run any command of the Operating System in the container. So,
-you can run a <code>sh</code> program that will drop you into your container.
+you can run an <code>sh</code> program that drops you into the container.
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">~$ docker run -ti alpine /bin/sh
@@ -647,7 +1041,7 @@ Inside the container redo the command of the first <a href="#sec:start-operate-v
 </p>
 <ul class="org-ul">
 <li>What are you noticing about the top output?</li>
-<li>Is it possible to establish a SSH connection with your container?</li>
+<li>Is it possible to establish an SSH connection with your container?</li>
 <li>How are you supposed to operate your container?</li>
 </ul>
 
@@ -658,23 +1052,22 @@ Do a <code>docker inspect</code> to find information on you running container.
 <div class="note">
 <p>
 Note that the container finished as soon as its process finished. Here
-we start a <code>bash</code> process. So your container will finished as soon as
-you will hit <code>Ctrl+d</code> to quit <code>bash</code>, except if you start it in the
-background.
+you start a <code>sh</code> process, therefore, your container finishes as
+soon as you will hit <code>Ctrl+d</code> to quit <code>sh</code>.
 </p>
 
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga2acf6a" class="outline-3">
-<h3 id="orga2acf6a"><span class="section-number-3">8.4</span> DO: Define your own Image (nginx server)</h3>
-<div class="outline-text-3" id="text-8-4">
+<div id="outline-container-org9402efe" class="outline-3">
+<h3 id="org9402efe"><span class="section-number-3">10.4</span> DO: Define your Image (nginx server)</h3>
+<div class="outline-text-3" id="text-10-4">
 <p>
-Build your own Image that runs a <a href="https://nginx.org/">Nginx</a> HTTP server
+Build your own Image that runs a <a href="https://nginx.org/">nginx</a> HTTP server
 </p>
 <ul class="org-ul">
-<li>Image is defined by a <code>Dockerfile</code></li>
+<li>A <code>Dockerfile</code> defines a new image.</li>
 
 <li>See the <a href="https://docs.docker.com/engine/reference/builder/#format">Dockerfile reference</a></li>
 <li>Look at Dockerfile examples
@@ -684,13 +1077,37 @@ Build your own Image that runs a <a href="https://nginx.org/">Nginx</a> HTTP ser
 </ul></li>
 </ul>
 </div>
+
+<div id="outline-container-org0b56edc" class="outline-4">
+<h4 id="org0b56edc"><span class="section-number-4">10.4.1</span> <code>~$ cat ./Dockerfile</code>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h4>
+<div class="outline-text-4" id="text-10-4-1">
+<div class="org-src-container">
+<pre class="src src-conf">FROM ubuntu
+
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Update apt database and install nginx</span>
+RUN apt-get update
+RUN apt-get install -y nginx
+
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Expose ports</span>
+EXPOSE 80
+
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Define default command</span>
+CMD [<span style="color: #CC9393;">"nginx"</span>, <span style="color: #CC9393;">"-g"</span>, <span style="color: #CC9393;">"daemon off;"</span>]
+</pre>
 </div>
 
-<div id="outline-container-orgbadfb90" class="outline-3">
-<h3 id="orgbadfb90"><span class="section-number-3">8.5</span> Build and Run your Image</h3>
-<div class="outline-text-3" id="text-8-5">
 <p>
-Docker build your custom image with <code>docker build</code> command.
+Explain what that <code>Dockerfile</code> do, especially instructions in <code>CMD</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91041e9" class="outline-3">
+<h3 id="org91041e9"><span class="section-number-3">10.5</span> Build and Run your Image</h3>
+<div class="outline-text-3" id="text-10-5">
+<p>
+Docker builds your custom image with <code>docker build</code> command.
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">~$ docker build -t img-nginx .
@@ -698,7 +1115,7 @@ Docker build your custom image with <code>docker build</code> command.
 </div>
 
 <p>
-At the end, you can check that your image is effectively here.
+In the end, you can check that your image is effectively here.
 </p>
 <div class="org-src-container">
 <pre class="src src-sh">~$ docker images|fgrep img-nginx
@@ -714,9 +1131,9 @@ Now run your containerized Nginx server.
 </div>
 
 <p>
-Then check that you can access it at <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>. Explains
-the <code>-p</code> parameter used in the previous command? What you have to do
-if you wanna start a second Nginx container?
+Then check that you can access it at <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> (use
+<code>lynx</code>). Explains the <code>-p</code> parameter used in the previous command?
+What you have to do if you want to start a second Nginx container?
 </p>
 
 <p>
@@ -728,22 +1145,41 @@ default one.
 </p>
 
 <pre class="example">
-cat ./index.html
+~$ cat ./index.html
 
 </pre>
-<pre class="example">
-Index on the host file system
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #CC9393;">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color: #93E0E3;">html</span>&gt;
+  &lt;<span style="color: #93E0E3;">head</span>&gt;
+    &lt;<span style="color: #93E0E3;">meta</span> <span style="color: #DFAF8F;">charset</span>=<span style="color: #CC9393;">"utf-8"</span> /&gt;
+    &lt;<span style="color: #93E0E3;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">&#10087; Compute Virtualization &#10087;</span>&lt;/<span style="color: #93E0E3;">title</span>&gt;
+    &lt;<span style="color: #93E0E3;">style</span>&gt;
+      .blink {animation: blink-animation 1s steps(5, start) infinite;
+      -webkit-animation: blink-animation 1s steps(5, start) infinite;}
+      @keyframes blink-animation {to {visibility: hidden;}}
+      @-webkit-keyframes blink-animation {to {visibility: hidden;}}
+    &lt;/<span style="color: #93E0E3;">style</span>&gt;
+  &lt;/<span style="color: #93E0E3;">head</span>&gt;
+  &lt;<span style="color: #93E0E3;">body</span>&gt;&lt;<span style="color: #93E0E3;">h1</span> <span style="color: #DFAF8F;">class</span>=<span style="color: #CC9393;">"blink"</span>&gt;<span style="font-weight: bold; text-decoration: underline;">&#128421; Compute Virtualization &#128421;</span>&lt;/<span style="color: #93E0E3;">h1</span>&gt;&lt;/<span style="color: #93E0E3;">body</span>&gt;
+&lt;/<span style="color: #93E0E3;">html</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">~$ docker run -p <span style="color: #BFEBBF;">80:80</span> -v .:/var/www/html/ -d nginx
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-orgdc68927" class="outline-3">
-<h3 id="orgdc68927"><span class="section-number-3">8.6</span> Put a database into your container (and make containers collaborate)</h3>
-<div class="outline-text-3" id="text-8-6">
+<div id="outline-container-org8d41d9a" class="outline-3">
+<h3 id="org8d41d9a"><span class="section-number-3">10.6</span> Put a database into your container (and make containers collaborate)</h3>
+<div class="outline-text-3" id="text-10-6">
 <p>
-In this part we will run a <a href="https://www.cockroachlabs.com/">CockroachDB</a> database in a container and then
-connect to it in a second container. First, as usual, <code>search</code> and
-<code>pull</code> the CockroachDB image.
+In this section, we are going to run a <a href="https://www.cockroachlabs.com/">CockroachDB</a> database in a
+container and then connect to it in a second container. First, as
+usual, <code>search</code> and <code>pull</code> the CockroachDB image.
 </p>
 
 <div class="org-src-container">
@@ -770,7 +1206,7 @@ And start a client (<code>sql</code> command).
 </p>
 
 <pre class="example">
-docker run --link roach -ti cockroachdb/cockroach sql --host roach --insecure
+~$ docker run --link roach -ti cockroachdb/cockroach sql --host roach --insecure
 </pre>
 
 <p>
@@ -778,15 +1214,16 @@ What happens if you remove the <code>--link</code>? Explain the purpose of this 
 </p>
 
 <p>
-Finally you may wanna have fun and add entries in the CockroachDB. You
-could follow the <a href="https://www.cockroachlabs.com/docs/stable/learn-cockroachdb-sql.html">CockroachDB basis</a> to get the commands.
+Finally, you may want to have fun and add entries in the CockroachDB.
+You could follow the <a href="https://www.cockroachlabs.com/docs/stable/learn-cockroachdb-sql.html">CockroachDB basis</a> to get the commands.
 </p>
 </div>
 </div>
+</div>
 
-<div id="outline-container-orgf778d2f" class="outline-3">
-<h3 id="orgf778d2f"><span class="section-number-3">8.7</span> DO: Make a cluster of CockroachDB</h3>
-<div class="outline-text-3" id="text-8-7">
+<div id="outline-container-orgb617943" class="outline-2">
+<h2 id="orgb617943"><span class="section-number-2">11</span> Exercise: Make a CockroachDB cluster</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 Go ahead and build a cluster of CockroachDB :)
 </p>
@@ -794,7 +1231,7 @@ Go ahead and build a cluster of CockroachDB :)
 <ul class="org-ul">
 <li>Reuse the Ubuntu Vagrantfile to setup 3 VMs in the same network</li>
 <li>On each, expose port 26257 and 8080</li>
-<li>Start the first CockroachDB as in previous section</li>
+<li>Start the first CockroachDB as in the previous section</li>
 <li><p>
 On others, add CockroachDB node like this
 </p>
@@ -810,11 +1247,36 @@ On others, add CockroachDB node like this
 </ul>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Containers and Virtual Machines at Scale: A Comparative
+Study &#x2013; SCJS16
+</p>
+<div class="org-src-container">
+<pre class="src src-bibtex"><span style="color: #93E0E3;">@InProceedings</span>{<span style="color: #BFEBBF;">SCJS16</span>,
+  <span style="color: #DFAF8F;">author</span>    = {Prateek Sharma and
+               Lucas Chaufournier and
+               Prashant J. Shenoy and
+               Y. C. Tay},
+  <span style="color: #DFAF8F;">title</span>     = {Containers and Virtual Machines at Scale: {A} Comparative Study},
+  <span style="color: #DFAF8F;">booktitle</span> = {Proceedings of the 17th International Middleware Conference, Trento,
+               Italy, December 12 - 16, 2016},
+  <span style="color: #DFAF8F;">pages</span>     = {1},
+  <span style="color: #DFAF8F;">year</span>      = {2016},
+  <span style="color: #DFAF8F;">url</span>       = {<span style="text-decoration: underline;">http://dl.acm.org/citation.cfm?id=2988337</span>}
+}
+</pre>
+</div></div></div>
+
+
 </div>
-</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Ronan-Alexandre Cherrueau</p>
-<p class="date">Created: 2018-10-05 Fri 01:40</p>
+<p class="date">Created: 2018-10-08 Mon 14:03</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
