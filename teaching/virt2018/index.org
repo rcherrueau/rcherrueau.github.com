@@ -1,0 +1,716 @@
+# -*- org-bibtex-file: "biblio.bib"; org-confirm-babel-evaluate: nil -*-
+#+TITLE: Compute Virtualization
+#+AUTHOR: Ronan-Alexandre Cherrueau
+#+EMAIL:  (λx.λy.x@y) Ronan-Alexandre.Cherrueau inria.fr
+#+STARTUP: entitiespretty
+#+OPTIONS: ^:{}
+#+EXCLUDE_TAGS: solution
+
+#+latex_compiler: lualatex
+#+latex_header: \usepackage[utf8]{inputenc}
+
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="timeline.css" />
+#+EPRESENT_FRAME_LEVEL: 3
+#+PROPERTY: header-args :mkdirp yes
+
+
+#+BEGIN_COMMENT
+For future release, I should put Docker at the same level as LXC, and
+let students play with it in the [[#sec:start-operate-virt][Exercise: Start & Operate Virtualized
+Env.]]. So they can better understand the difference between LXC and
+docker.
+#+END_COMMENT
+
+* Requirements
+
+- VirtualBox 5.2 or upper
+  - Download link: [[https://www.virtualbox.org/wiki/Downloads]]
+
+- Vagrant 2.1 or upper
+  - Download link: [[https://www.vagrantup.com/downloads.html]]
+
+- Optional -- I provide a VirtualBox VM with the following
+  - LXC 2.1 or upper, see https://linuxcontainers.org/lxc/getting-started/
+  - Docker, see https://store.docker.com/search?type=edition&offering=community
+
+* What is Virtualization?
+
+Idea: /Emulate resources with software/.
+
+- Compute virtualization
+  - Emulate complete hardware platform
+  - Emulate only some functionality to run an OS
+
+- Network virtualization
+  - Emulate network functionality (switch, router, ...)
+
+- Storage virtualization
+  - Emulate physical disk storage
+  - Emulate object storage
+
+* Why is Compute Virtualization Cool?
+
+Hides and manages physical characteristics. It offers:
+- Isolation for the file system, network, Root privilege
+- Disk/CPU quotas, IO rate/Memory limits
+- Live migration
+- ...
+
+/The virtualized env. look, feel and operate like a real physical
+machine./
+
+* Compute Virt. Benefits for Application Developers
+
+Write your App once and run it on any physical machines, e.g.:
+- Choose [[https://en.wikipedia.org/wiki/Ubuntu_%2528operating_system%2529][Ubuntu]] as your App environment
+- Write your provision script (Database, Web server, ...) with =apt=
+- Develop your App on Ubuntu
+- Make your App runs everywhere thanks to the virtualization
+  - On top of your physical [[https://en.wikipedia.org/wiki/CentOS][CentOS]]
+  - On top of any Provider's computes (Amazon EC2, GCE, OVH ...),
+    i.e., put your app in the Cloud!
+
+* Compute Virt. Benefits for Providers
+
+Manages a Data-Center with compute nodes that all run the same OS
+- Provides virtualized environments on top of compute nodes
+  - Developer runs her App on the OS of her choice
+
+- Virtualized env. comes with different configurations
+  - Use virtualization to limit CPU/Memory/Disk capacity
+  - Developer chooses the best env. for the best price
+
+- Helps developer handle load spikes by duplicating virtualized env
+  - Horizontal scaling
+
+- Co-localize on the same compute node virtualized envs. that don't
+  use much energy
+  - Load balancing, consolidation
+
+* Technologies for Compute Virtualization
+
+- Virtual Machine -- VM: [[https://www.linux-kvm.org/][KVM]], [[https://www.qemu.org/][QEMU]], [[https://www.virtualbox.org/][VirtualBox]], ...
+  - Acts as a real machine
+  - Developer operates it like a real one (no code adaptation)
+  - ✘ Has to emulate hardware (overhead)
+
+- Container: [[http://manpages.ubuntu.com/manpages/bionic/en/man2/chroot.2.html][chroot]], [[https://linuxcontainers.org/][LXC]], [[https://openvz.org/][OpenVZ]], ...
+  - Same as VM, but no hardware emulation
+  - Shares the kernel with the host machine
+  - ✓ Runs at the bare metal speed
+  - ✘ Can go from one Linux OS to another but not from
+    Windows to Linux
+  - ✘ Isolation is not as good as in VM (security)
+
+** What about Performances[fn:SCJS16]?
+
+- Performance overhead for KVM is /negligible/ for CPU/Memory/Network
+  workloads, but /high/ in case of IO intensive App.
+  #+ATTR_ORG: :width 800
+  [[file:perf1.png]]
+
+- Performances of container and bare metal are /equivalent/ (2%)
+  #+ATTR_ORG: :width 400
+  #+ATTR_HTML: :width 400px
+  [[file:perf2.png]]
+
+* Exercise: Start & Operate Virtualized Env.
+:PROPERTIES:
+:CUSTOM_ID: sec:start-operate-virt
+:END:
+
+Experiment the /VM and Container look, feel and operate like real
+physical machines/. Run the following commands into a VirtualBox VMs
+(optionally KVM), and an LXC container (optionally chroot) -- refer to
+the next section for the setup.
+
+#+BEGIN_SRC sh
+~$ sudo touch -c /etc/hosts        # Set timestamp to now (Virtualized env. only)
+~$ stat -c %y /etc/hosts           # Print timestamp
+~$ ip address show scope global up # Get the IP adrdress
+~$ top                             # List proc., CPU (press 1), Memory (Mem)
+~$ sudo pkill dhclient -e          # Kill dhclient (Virtualized env. only)
+~$ uname -a                        # Display linux kernel info
+#+END_SRC
+
+While running the commands, compare to your physical machine.
+- Does /VM and Container look, feel and operate like real physical
+  machines/?
+- What could you say about resources management and isolation on VMs?
+  on containers?
+
+** Setup with [[https://www.vagrantup.com/docs/index.html][Vagrant]] Tool
+
+/Vagrant Tool ease the configuration of Virtualized env./
+
+- Take 10 minutes to read the [[https://www.vagrantup.com/intro/getting-started/index.html][getting started]], [[https://www.vagrantup.com/intro/getting-started/up.html][up and ssh]] and
+  [[https://www.vagrantup.com/docs/vagrantfile/vagrant_settings.html][Vagrantfile]]
+
+- Setup an [[https://app.vagrantup.com/ubuntu/boxes/bionic64][Ubuntu/Bionic64]] VirtualBox VM with 4 Go of Memory and 2 CPUs
+  - You should start like this
+    #+BEGIN_SRC sh
+    physical:~$ mkdir vbox; cd vbox
+    physical:~/vbox$ vagrant init "ubuntu/bionic64"
+    physical:~/vbox$ vim Vagrantfile
+    #+END_SRC
+  - Refer to [[https://www.vagrantup.com/docs/virtualbox/configuration.html][VirtualBox customization]] for Memory and CPU customization
+
+- Do not setup once again an Ubuntu/Bionice64, but instead setup, for
+  instance, a [[https://app.vagrantup.com/fgrehm/boxes/wheezy64-lxc][Debian/Wheezy64]] LXC container with 1 Go of Memory and 1
+  CPU -- This is the joy of virtualization: try new OS!
+  1. Provision Ubuntu VM to run LXC from there
+     #+BEGIN_SRC sh
+     vbox:~$ exit # Go back to the physical machine
+     physical:~/vbox$ curl -O https://rcherrueau.github.io/teaching/virt2018/vbox/Vagrantfile # Get my Vagrantfile
+     physical:~/vbox$ vagrant reload --provision # Reload your VM w/ my Vagrantfile
+     physical:~/vbox$ vagrant ssh # SSH on it
+     #+END_SRC
+  2. You should then start LXC container like this
+     #+BEGIN_SRC sh
+     vbox:~$ mkdir lxc; cd lxc
+     vbox:~/lxc$ vagrant init "fgrehm/wheezy64-lxc"
+     vbox:~/lxc$ vim Vagrantfile
+     #+END_SRC
+  3. Refer to [[https://github.com/fgrehm/vagrant-lxc][vagrant-lxc]] plugin for Memory and CPU customization
+
+#+BEGIN_note
+- Find the list of officially supported virtualization technologies in
+  the [[https://www.vagrantup.com/docs/providers/][Vagrant doc]].
+- You can also setup a KVM virtual machine with the following Vagrant
+  plugins: https://github.com/vagrant-libvirt/vagrant-libvirt.
+#+END_note
+
+** Physical Machine                                              :solution:
+- Last change of /etc/hosts
+  #+BEGIN_SRC sh :results raw
+  physical:~$ stat -c %y /etc/hosts
+  #+END_SRC
+
+  #+RESULTS:
+  2018-10-03 10:30:08.251248873 +0200
+
+- Network is 10.44.192.0/20
+  #+BEGIN_SRC sh :results code
+  physical:~$ ip address show scope global up
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+  2: enp0s31f6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+      inet 10.44.192.209/20 brd 10.44.207.255 scope global dynamic noprefixroute enp0s31f6
+  #+END_EXAMPLE
+
+- 4 CPU, 16 Go Memory on my vbox VM
+  #+BEGIN_SRC sh :results code
+  physical:~$ top
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+  top - 16:18:56 up  5:49,  0 users,  load average: 0.10, 0.29, 0.34
+  Tasks: 141 total,   1 running, 140 sleeping,   0 stopped,   0 zombie
+  %Cpu0  :  2.0 us,  0.7 sy,  0.0 ni, 97.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+  %Cpu1  :  2.7 us,  0.3 sy,  0.0 ni, 96.7 id,  0.3 wa,  0.0 hi,  0.0 si,  0.0 st
+  %Cpu2  :  2.0 us,  0.7 sy,  0.0 ni, 97.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+  %Cpu3  :  5.6 us,  0.7 sy,  0.0 ni, 93.4 id,  0.0 wa,  0.0 hi,  0.3 si,  0.0 st
+  MiB Mem :  15929.1 total,   8344.0 free,   3605.2 used,   3980.0 buff/cache
+  #+END_EXAMPLE
+
+- PID of ~dhclient~, still running
+  #+BEGIN_SRC sh :results code
+  physical:~$ ps -C dhclient
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+    PID TTY          TIME CMD
+   9970 ?        00:00:00 dhclient
+  #+END_EXAMPLE
+
+- Debian Wheezy, kernel 4.14.71
+  #+BEGIN_SRC sh :results raw
+  vbox:~$ uname -a
+  #+END_SRC
+
+  #+RESULTS:
+  Linux hp 4.14.71 #1-NixOS SMP Wed Sep 19 20:43:49 UTC 2018 x86_64
+  GNU/Linux
+
+** Ubuntu/Bionic64 VirtualBox VM                                 :solution:
+*** Start the [[https://app.vagrantup.com/ubuntu/boxes/bionic64][Ubuntu/Bionic]] VM with Vagrant
+Download the following [[file:vbox/Vagrantfile][Vagrantfile]].
+#+BEGIN_SRC ruby :tangle vbox/Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.network :forwarded_port, guest: 8080, host: 8080
+  config.vm.provision :shell, privileged: false, inline: <<-SCRIPT
+  sudo apt update
+  # Install some utils
+  sudo apt install libltdl7 curl lxc lynx -y
+  # Install vagrant
+  curl --silent --remote-name 'https://releases.hashicorp.com/vagrant/2.1.5/vagrant_2.1.5_x86_64.deb'
+  sudo dpkg -i vagrant_2.1.5_x86_64.deb
+  # Install Docker
+  curl --silent --remote-name 'https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb'
+  sudo dpkg -i docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb
+  SCRIPT
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = false
+    vb.memory = "4096"
+    vb.cpus = 3
+  end
+end
+#+END_SRC
+
+Finally, launch VM with ~vagrant up~.
+
+*** Commands Execution
+SSH on VM with ~vagrant ssh~ or with traditional ~ssh~ (get info with
+~vagrant ssh-config~)
+#+BEGIN_SRC sh
+ssh -i .vagrant/machines/default/virtualbox/private_key\
+    -l vagrant -p 2222 127.0.0.1
+#+END_SRC
+
+- Last change of /etc/hosts -- File isolation (the physical machine is
+  2018-10-03 10:30:08.251248873 +0200).
+  #+BEGIN_SRC sh :results raw
+  vbox:~$ sudo touch -c /etc/hosts; stat -c %y /etc/hosts
+  #+END_SRC
+
+  #+RESULTS:
+  2018-10-03 15:38:36.413702441 +0000
+
+- Network is 10.0.2.0/24 -- Network isolation (the physical machine is
+  10.44.192.0/20).
+  #+BEGIN_SRC sh :results code
+  vbox:~$ ip address show scope global up
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+  2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+      link/ether 02:4d:82:c4:d5:87 brd ff:ff:ff:ff:ff:ff
+      inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic enp0s3
+         valid_lft 86345sec preferred_lft 86345sec
+  #+END_EXAMPLE
+
+- 2 CPU, 4 Go Memory -- CPU and Memory limitation (the physical
+  machine is 4 CPU and 16 Go Memory).
+  #+BEGIN_SRC sh :results code
+  vbox:~$ top
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+  top - 15:39:21 up 1 min,  1 user,  load average: 0.32, 0.20, 0.08
+  Tasks:  98 total,   1 running,  51 sleeping,   0 stopped,   0 zombie
+  %Cpu0  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+  %Cpu1  :  0.0 us,  0.3 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+  KiB Mem :  4039544 total,  3735152 free,    94720 used,   209672 buff/cache
+  #+END_EXAMPLE
+
+- Kill of ~dhclient~ -- Root privilege isolation (~dhclient~ still
+  running on the physical machine).
+  #+BEGIN_SRC sh :results code
+  vbox:~$ sudo pkill dhclient -e
+  #+END_SRC
+
+  #+RESULTS:
+  : dhclient killed (pid 3248)
+
+- Ubuntu Bionic, kernel 4.15.0-34 -- Doesn't share the kernel
+  (the physical machine is 4.14.71).
+  #+BEGIN_SRC sh :results raw
+  vbox:~$ uname -a
+  #+END_SRC
+
+  #+RESULTS:
+  Linux ubuntu-bionic 4.15.0-34-generic #37-Ubuntu SMP Mon Aug 27
+  15:21:48 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+
+*** Start the [[https://app.vagrantup.com/ubuntu/boxes/bionic64][Ubuntu/Bionic]] VM manually (not recommended)
+1. Download the VirtualBox image.
+   #+BEGIN_SRC sh
+   curl -L -O https://app.vagrantup.com/ubuntu/boxes/bionic64/versions/20181003.0.0/providers/virtualbox.box
+   tar xf virtualbox.box
+   #+END_SRC
+2. Open VirtualBox GUI and import ~box.ovf~.
+3. Change Memory and CPU in the machine details
+4. Start the new virtual machine
+
+** Debian/Wheezy LXC Container                                   :solution:
+*** Vagrant File for [[https://app.vagrantup.com/fgrehm/boxes/wheezy64-lxc][Debian/Wheezy]]
+Download the following [[file:lxc/Vagrantfile][Vagrantfile]].
+#+BEGIN_SRC ruby :tangle lxc/Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.box = "fgrehm/wheezy64-lxc"
+  config.vagrant.plugins = [ "vagrant-lxc" ]
+  config.vm.provision :shell, inline: <<-SCRIPT
+  apt-get update
+  apt-get install stress -y
+  SCRIPT
+  config.vm.provider :lxc do |lxc|
+    lxc.customize 'cgroup.memory.limit_in_bytes', '1024M'
+    lxc.customize 'cgroup.cpuset.cpus', '1'
+  end
+end
+#+END_SRC
+
+Finally, launch LXC container with ~vagrant up~.
+
+*** Commands Execution
+SSH on VM with ~vagrant ssh~ or with traditional ~ssh~ (get info with
+~vagrant ssh-config~)
+#+BEGIN_SRC sh
+ssh -i .vagrant/machines/default/lxc/private_key\
+    -l vagrant -p 22 10.0.3.7
+#+END_SRC
+
+- Last change of /etc/hosts -- File isolation (VM is
+  2018-10-03 15:38:36.413702441 +0000).
+  #+BEGIN_SRC sh :results raw
+  lxc:~$ sudo touch -c /etc/hosts; stat -c %y /etc/hosts
+  #+END_SRC
+
+  #+RESULTS:
+  2018-10-03 19:24:52.156815860 -0300
+
+- Network is 10.0.3.0/24 -- Network isolation (VM is
+  10.0.2.0/24).
+  #+BEGIN_SRC sh :results code
+  lxc:~$ ip address show scope global up
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+  22: eth0@if23: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
+      link/ether 00:16:3e:6c:56:22 brd ff:ff:ff:ff:ff:ff
+      inet 10.0.3.7/24 brd 10.0.3.255 scope global eth0
+         valid_lft forever preferred_lft forever
+  #+END_EXAMPLE
+
+- 2 CPU, 4 Go Memory
+  #+BEGIN_SRC sh :results code
+  lxc:~$ top
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+  top - 19:26:25 up  2:37,  1 user,  load average: 0.01, 0.00, 0.00
+  Tasks:  14 total,   1 running,  13 sleeping,   0 stopped,   0 zombie
+  %Cpu0  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+  %Cpu1  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+  KiB Mem:   4039544 total,  2815436 used,  1224108 free,    71720 buffers
+  #+END_EXAMPLE
+
+  Nani?! 2 CPU and 4 Go Memory? I asked for 1 CPU and 1Go Memory.
+  Let's stress that loony container.
+  #+BEGIN_SRC sh :results code
+  lxc:~$ stress --cpu 2 --timeout 1m & top
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_EXAMPLE
+  top - 19:29:47 up  2:40,  1 user,  load average: 0.32, 0.07, 0.02
+  Tasks:  17 total,   3 running,  14 sleeping,   0 stopped,   0 zombie
+  %Cpu0  :  0.0 us,  0.0 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.3 si,  0.0 st
+  %Cpu1  :100.0 us,  0.0 sy,  0.0 ni,  0.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+  KiB Mem:   4039544 total,  2858892 used,  1180652 free,    72048 buffers
+  #+END_EXAMPLE
+
+  OK, ~stress~ is only using 1 CPU. Reason: [[https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt][Cgroups]] allow you to
+  allocate resources—such as CPU time, system memory, network
+  bandwidth, or combinations of these resources—among user-defined
+  groups of tasks (processes) running on a system. ~cpuset~ assign
+  CPUs to a cgroup. Here, we assign CPU to ~Cpu1~. Change the
+  Vagrantfile and set ~cpuset~ to ~0~ and you will see that stress
+  uses ~Cpu0~.
+
+- Kill of ~dhclient~ -- Root privilege isolation (~dhclient~ already
+  killed on VM).
+  #+BEGIN_SRC sh :results code
+  lxc:~$ sudo pkill dhclient -e
+  #+END_SRC
+
+  #+RESULTS:
+  : dhclient killed (pid 4359)
+
+- Debian Wheezy, kernel 4.15.0-34 -- Shares the kernel (VM is 4.15.0-34).
+  #+BEGIN_SRC sh :results raw
+  lxc:~$ uname -a
+  #+END_SRC
+
+  #+RESULTS:
+  Linux vagrant-base-wheezy-amd64 4.15.0-34-generic #37-Ubuntu SMP Mon
+  Aug 27 15:21:48 UTC 2018 x86_64 GNU/Linux
+
+*** Start the LXC container manually (not recommended)
+# 1. Download the image
+#    #+BEGIN_SRC sh
+#    curl -L -O https://app.vagrantup.com/fgrehm/boxes/wheezy64-lxc/versions/1.2.0/providers/lxc.box
+#    tar xf lxc.box
+#    #+END_SRC
+#+BEGIN_SRC sh
+sudo su
+lxd init --auto
+lxc launch ubuntu:16.01 u1
+lxc info u1
+lxc exec u1 -- /bin/bash
+#+END_SRC
+
+* VM and Container Suitable for Microservices?
+
+#+NAME: tbl:vm-container-specificity
+#+CAPTION: Virtual Machines and Container Comparison
+#+CAPTION: For Microservice-Based Architectures[fn:SCJS16].
+|                 | VirtualBox VM   | LXC Container |
+|-----------------+-----------------+---------------|
+| Boot Time (sec) | From 10 to Doz* | ~1.0          |
+| Image Size      | Go              | Mo            |
+| Cohesion†       | Low             | Low           |
+
+- *Can be mitigated with [[https://en.wikipedia.org/wiki/Copy-on-write][Copy-on-Write]], but VM boot time may increase
+  up to 1 minute under:
+  - CPU contention
+  - Network contention (CEPH backend)
+  - IO contention
+
+- †A VM or LXC container may be multi-purpose:
+  - Contains many services \Rightarrow{} Hard to manage automatically
+
+* Compute Virtualization with [[https://www.docker.com/][Docker]] Container
+
+- Shrink envelop of a container down to just a single process
+
+- No syslog, no sshd, no cron, no ... OS processes
+
+- ✓ Good for microservice-based architecture
+  - Removes all unused OS processes
+  - One Container \equiv{} One Task
+  - Idea: /Automated Monitoring and Management/
+
+- ✘ The application has to be operated differently
+
+* Exercise: Start & Operate Docker Container
+
+** Getting Started
+
+Docker is already installed in the Ubuntu VM
+#+BEGIN_SRC sh
+physical:~$ cd vbox
+physical:~/vbox$  vagrant ssh
+vbox:~$ systemctl status docker --state=ACTIVE # should output something
+#+END_SRC
+
+** Your first container (Image)
+
+Image is a blueprint for container run-time
+- Tells container which software you want to run
+- Multiple layers comprise the image
+- A new layer is just another image
+- Every image contains a base layer (the os)
+- Different containers can share layers
+- Layers can be shared by different containers
+
+# Every time I deployed a container that share a layer, then I do not
+# have to redeploy that layer.
+
+Let's get the base layer. You can choose Ubuntu, but I recommend
+[[https://alpinelinux.org/about/][Alpine Linux]]. Yeah, virtualization -- Discover new OS!
+#+BEGIN_SRC shell
+~$ docker search alpine
+~$ docker pull alpine
+~$ docker images|fgrep alpine
+#+END_SRC
+
+** Your first container (Deploy)
+
+Run a container based on the Alpine layer. The following runs an
+=echo= command into the container.
+#+BEGIN_SRC sh
+~$ docker run alpine echo "Hello World"
+#+END_SRC
+
+The =docker ps= command displays all running container. What is the
+output of this command and why?
+
+Then, compare its output with the following.
+#+BEGIN_SRC sh
+~$ docker run --name my-container -d alpine sleep 3600
+~$ docker ps
+#+END_SRC
+
+What is the purpose of =-d=?
+
+You can run any command of the Operating System in the container. So,
+you can run an =sh= program that drops you into the container.
+#+BEGIN_SRC sh
+~$ docker run -ti alpine /bin/sh
+~$ docker exec -ti my-container /bin/bash # to connect on an already
+                                          # running container
+#+END_SRC
+
+Inside the container redo the command of the first [[#sec:start-operate-virt][exercise]].
+- What are you noticing about the top output?
+- Is it possible to establish an SSH connection with your container?
+- How are you supposed to operate your container?
+
+Do a =docker inspect= to find information on you running container.
+
+# You will notice only the =bash= and the =top= programs. Meaning,
+# docker shrinks the envelop of our container and removes all Operating
+# System processes.
+
+#+BEGIN_note
+Note that the container finished as soon as its process finished. Here
+you start a =sh= process, therefore, your container finishes as
+soon as you will hit =Ctrl+d= to quit =sh=.
+#+END_note
+
+** DO: Define your Image (nginx server)
+
+Build your own Image that runs a [[https://nginx.org/][nginx]] HTTP server
+- A ~Dockerfile~ defines a new image.
+
+- See the [[https://docs.docker.com/engine/reference/builder/#format][Dockerfile reference]]
+- Look at Dockerfile examples
+  - https://docs.docker.com/engine/reference/builder/#dockerfile-examples
+  - https://github.com/docker-library
+
+*** =~$ cat ./Dockerfile=                                          :solution:
+
+#+BEGIN_SRC conf :tangle docker/Dockerfile
+FROM ubuntu
+
+# Update apt database and install nginx
+RUN apt-get update
+RUN apt-get install -y nginx
+
+# Expose ports
+EXPOSE 80
+
+# Define default command
+CMD ["nginx", "-g", "daemon off;"]
+#+END_SRC
+
+Explain what that =Dockerfile= do, especially instructions in =CMD=.
+
+** Build and Run your Image
+
+Docker builds your custom image with =docker build= command.
+#+BEGIN_SRC sh
+~$ docker build -t img-nginx .
+#+END_SRC
+
+In the end, you can check that your image is effectively here.
+#+BEGIN_SRC sh
+~$ docker images|fgrep img-nginx
+#+END_SRC
+
+Now run your containerized Nginx server.
+#+BEGIN_SRC sh
+~$ docker run --name my-nginx -p 8080:80 -d img-nginx
+#+END_SRC
+
+Then check that you can access it at http://127.0.0.1:8080 (use
+=lynx=). Explains the =-p= parameter used in the previous command?
+What you have to do if you want to start a second Nginx container?
+
+When you connect on http://127.0.0.1:8080, Nginx serves the
+=index.html= file located at =/var/www/html/= in your container. Write
+a new =index.html= on the host machine a try to figure out which
+command should be used in =docker run= to use your file instead of the
+default one.
+
+: ~$ cat ./index.html
+#+BEGIN_SRC html :tangle docker/index.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>❧ Compute Virtualization ❧</title>
+    <style>
+      .blink {animation: blink-animation 1s steps(5, start) infinite;
+      -webkit-animation: blink-animation 1s steps(5, start) infinite;}
+      @keyframes blink-animation {to {visibility: hidden;}}
+      @-webkit-keyframes blink-animation {to {visibility: hidden;}}
+    </style>
+  </head>
+  <body><h1 class="blink">🖥 Compute Virtualization 🖥</h1></body>
+</html>
+#+END_SRC
+
+#+BEGIN_SRC sh
+~$ docker run -p 80:80 -v .:/var/www/html/ -d nginx
+#+END_SRC
+
+** Put a database into your container (and make containers collaborate)
+
+In this section, we are going to run a [[https://www.cockroachlabs.com/][CockroachDB]] database in a
+container and then connect to it in a second container. First, as
+usual, =search= and =pull= the CockroachDB image.
+
+#+BEGIN_SRC sh
+~$ docker search cockroachdb
+~$ docker pull cockroachdb/cockroach
+~$ docker images|fgrep mongo
+#+END_SRC
+
+Then run your CockroachDB server (~start~ command).
+
+#+BEGIN_SRC sh
+~$ docker run -d\
+          --name roach\
+          -p 26257:26257\
+          cockroachdb/cockroach start --insecure
+#+END_SRC
+
+And start a client (~sql~ command).
+
+#+BEGIN_SRC
+~$ docker run --link roach -ti cockroachdb/cockroach sql --host roach --insecure
+#+END_SRC
+
+What happens if you remove the ~--link~? Explain the purpose of this argument.
+
+# --link <name or id>:alias # the alias in the container
+
+Finally, you may want to have fun and add entries in the CockroachDB.
+You could follow the [[https://www.cockroachlabs.com/docs/stable/learn-cockroachdb-sql.html][CockroachDB basis]] to get the commands.
+
+* Exercise: Make a CockroachDB cluster
+
+Go ahead and build a cluster of CockroachDB :)
+
+- Reuse the Ubuntu Vagrantfile to setup 3 VMs in the same network
+- On each, expose port 26257 and 8080
+- Start the first CockroachDB as in the previous section
+- On others, add CockroachDB node like this
+  #+BEGIN_SRC sh
+  ~$ docker run -d\
+            --name roach\
+            -p 26257:26257\
+            cockroachdb/cockroach start --insecure --join=<<roach1>>
+  #+END_SRC
+
+- Even better: put many CockroachDB nodes on one VM
+
+* Footnotes
+
+[fn:SCJS16] Containers and Virtual Machines at Scale: A Comparative
+Study -- SCJS16
+# #+BEGIN_SRC bibtex
+# @InProceedings{SCJS16,
+#   author    = {Prateek Sharma and
+#                Lucas Chaufournier and
+#                Prashant J. Shenoy and
+#                Y. C. Tay},
+#   title     = {Containers and Virtual Machines at Scale: {A} Comparative Study},
+#   booktitle = {Proceedings of the 17th International Middleware Conference, Trento,
+#                Italy, December 12 - 16, 2016},
+#   pages     = {1},
+#   year      = {2016},
+#   url       = {http://dl.acm.org/citation.cfm?id=2988337}
+# }
+# #+END_SRC
