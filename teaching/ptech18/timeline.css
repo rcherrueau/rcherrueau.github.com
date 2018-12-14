@@ -1006,7 +1006,7 @@ pre.src-makefile:before {
 }
 
 .do:before {
-    content: "Do";
+    content: "?";
     background: #cb4b16;
 }
 
