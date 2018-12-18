@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-12-14 Fri 16:58 -->
+<!-- 2018-12-18 Tue 16:13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -178,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="timeline.css" />
+<link rel="stylesheet" type="text/css" href="org.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -244,7 +244,7 @@ setup a private Network).</li>
 </ul>
 
 <p>
-Find the slides of the lecture <a href="http://enos.irisa.fr/tp-polytech/openstack-slides.pdf">there</a>.
+Find the slides of the lecture <a href="docs/CloudFogEdgeIntro.pdf">here</a> and <a href="docs/openstack-slides.pdf">there</a>.
 </p>
 
 </div>
@@ -253,48 +253,48 @@ Find the slides of the lecture <a href="http://enos.irisa.fr/tp-polytech/opensta
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgeba425c">1. Requirements and Setup</a>
+<li><a href="#org86ba2e8">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org347d4af">1.1. Resources of the Lab</a></li>
-<li><a href="#org38ae789">1.2. Environment</a></li>
-<li><a href="#orgcf86307">1.3. Setup OpenStack</a></li>
+<li><a href="#org5d9730b">1.1. Resources of the Lab</a></li>
+<li><a href="#orge23ea97">1.2. Environment</a></li>
+<li><a href="#org7fef566">1.3. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack</a>
 <ul>
-<li><a href="#orgfe184e4">2.1. OpenStack Horizon Dashboard</a></li>
-<li><a href="#orgc185365">2.2. Unleash the Operator in You</a></li>
-<li><a href="#org3819c75">2.3. In Encryption We Trust</a></li>
-<li><a href="#org1e34eb7">2.4. The Art of Provisioning a VM</a>
+<li><a href="#org6129804">2.1. OpenStack Horizon Dashboard</a></li>
+<li><a href="#org2059cd3">2.2. Unleash the Operator in You</a></li>
+<li><a href="#orgcb7887a">2.3. In Encryption We Trust</a></li>
+<li><a href="#org04e314c">2.4. The Art of Provisioning a VM</a>
 <ul>
 <li><a href="#sec:debian9-ftw">2.4.1. Debian 9 FTW</a></li>
-<li><a href="#org8c8ae9f">2.4.2. Cloudinit in Action</a></li>
+<li><a href="#org439b007">2.4.2. Cloudinit in Action</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6d066e8">3. Deploy a Wordpress as a Service</a>
+<li><a href="#org5d77174">3. Deploy a Wordpress as a Service</a>
 <ul>
-<li><a href="#org1899024">3.1. Wordpress MySQL Database&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
-<li><a href="#orgcebb86f">3.2. Wordpress Application&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
+<li><a href="#org1be2c26">3.1. Wordpress MySQL Database&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
+<li><a href="#org8dde14a">3.2. Wordpress Application&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org3077325">4. Appendix</a>
+<li><a href="#orgebd66af">4. Appendix</a>
 <ul>
-<li><a href="#orge177ae5">4.1. Installs MariaDB on Debian 9</a></li>
-<li><a href="#org52bc7d9">4.2. Installs Wordpress on Debian 9</a></li>
+<li><a href="#org4371939">4.1. Installs MariaDB on Debian 9</a></li>
+<li><a href="#orge44b08c">4.2. Installs Wordpress on Debian 9</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgeba425c" class="outline-2">
-<h2 id="orgeba425c"><span class="section-number-2">1</span> Requirements and Setup</h2>
+<div id="outline-container-org86ba2e8" class="outline-2">
+<h2 id="org86ba2e8"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org347d4af" class="outline-3">
-<h3 id="org347d4af"><span class="section-number-3">1.1</span> Resources of the Lab</h3>
+<div id="outline-container-org5d9730b" class="outline-3">
+<h3 id="org5d9730b"><span class="section-number-3">1.1</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Get the resources of the lab at <a href="https://rcherrueau.github.io/teaching/ptech18/tp.tar.gz">https://rcherrueau.github.io/teaching/ptech18/tp.tar.gz</a>.
@@ -315,12 +315,13 @@ The archive contains:
 <dt>setup.sh</dt><dd>Script that sets up the lab.</dd>
 <dt>teardown.sh</dt><dd>Script that uninstalls the lab.</dd>
 <dt>rsc</dt><dd>Resource directory with bash scripts useful for the lab.</dd>
+<dt>docs</dt><dd>Slides of the lectures.</dd>
 </dl>
 </div>
 </div>
 
-<div id="outline-container-org38ae789" class="outline-3">
-<h3 id="org38ae789"><span class="section-number-3">1.2</span> Environment</h3>
+<div id="outline-container-orge23ea97" class="outline-3">
+<h3 id="orge23ea97"><span class="section-number-3">1.2</span> Environment</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 To follow the lab you&rsquo;ll need a Linux (prefer Ubuntu 18.04) with 6 Go
@@ -356,8 +357,8 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-orgcf86307" class="outline-3">
-<h3 id="orgcf86307"><span class="section-number-3">1.3</span> Setup OpenStack</h3>
+<div id="outline-container-org7fef566" class="outline-3">
+<h3 id="org7fef566"><span class="section-number-3">1.3</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Install snap.
@@ -418,12 +419,12 @@ And finally, execute the <code>setup.sh</code> file (require sudo).
 </div>
 </div>
 
-<div id="outline-container-org4125150" class="outline-2">
-<h2 id="sec:play-with-os"><a id="org4125150"></a><span class="section-number-2">2</span> Play with OpenStack</h2>
+<div id="outline-container-org18f6fb2" class="outline-2">
+<h2 id="sec:play-with-os"><a id="org18f6fb2"></a><span class="section-number-2">2</span> Play with OpenStack</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-orgfe184e4" class="outline-3">
-<h3 id="orgfe184e4"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
+<div id="outline-container-org6129804" class="outline-3">
+<h3 id="org6129804"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your
@@ -473,8 +474,8 @@ interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-orgc185365" class="outline-3">
-<h3 id="orgc185365"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
+<div id="outline-container-org2059cd3" class="outline-3">
+<h3 id="org2059cd3"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 While Horizon is helpful to discover OpenStack features, this is not
@@ -756,8 +757,8 @@ openstack server delete cli-vm-clone
 </div>
 </div>
 
-<div id="outline-container-org3819c75" class="outline-3">
-<h3 id="org3819c75"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
+<div id="outline-container-orgcb7887a" class="outline-3">
+<h3 id="orgcb7887a"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Any cirros VMs share the same credentials (i.e., <code>cirros</code>, <code>cubswin</code>)
@@ -834,8 +835,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-org1e34eb7" class="outline-3">
-<h3 id="org1e34eb7"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
+<div id="outline-container-org04e314c" class="outline-3">
+<h3 id="org04e314c"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Provisioning is the process that automatically installs software,
@@ -859,8 +860,8 @@ during the boot process.
 </p>
 </div>
 
-<div id="outline-container-orgfab6ae9" class="outline-4">
-<h4 id="sec:debian9-ftw"><a id="orgfab6ae9"></a><span class="section-number-4">2.4.1</span> Debian 9 FTW</h4>
+<div id="outline-container-orgf332c14" class="outline-4">
+<h4 id="sec:debian9-ftw"><a id="orgf332c14"></a><span class="section-number-4">2.4.1</span> Debian 9 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian9-ftw">
 <p>
 When it comes the time to deal with real applications, we cannot use
@@ -879,7 +880,7 @@ have to release all your resources before going further.
 Delete currently running VMs.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash" id="orgfc1caea"><span style="color: #F0DFAF; font-weight: bold;">for</span> vm<span style="color: #F0DFAF; font-weight: bold;"> in</span> $<span style="color: #DCDCCC;">(</span>openstack server list -c Name -f value<span style="color: #DCDCCC;">)</span>; <span style="color: #F0DFAF; font-weight: bold;">do</span> <span style="color: #CC9393;">\</span>
+<pre class="src src-bash" id="orgd37a15d"><span style="color: #F0DFAF; font-weight: bold;">for</span> vm<span style="color: #F0DFAF; font-weight: bold;"> in</span> $<span style="color: #DCDCCC;">(</span>openstack server list -c Name -f value<span style="color: #DCDCCC;">)</span>; <span style="color: #F0DFAF; font-weight: bold;">do</span> <span style="color: #CC9393;">\</span>
   <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"Deleting ${vm}..."</span>; <span style="color: #CC9393;">\</span>
   openstack server delete <span style="color: #CC9393;">"${vm}"</span>; <span style="color: #CC9393;">\</span>
 <span style="color: #F0DFAF; font-weight: bold;">done</span>
@@ -890,7 +891,7 @@ Delete currently running VMs.
 In the same manner, delete floating IPs.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash" id="org4b00d6e"><span style="color: #F0DFAF; font-weight: bold;">for</span> ip<span style="color: #F0DFAF; font-weight: bold;"> in</span> $<span style="color: #DCDCCC;">(</span>openstack floating ip list -c <span style="color: #CC9393;">"Floating IP Address"</span> -f value<span style="color: #DCDCCC;">)</span>; <span style="color: #F0DFAF; font-weight: bold;">do</span> <span style="color: #CC9393;">\</span>
+<pre class="src src-bash" id="org6e56f08"><span style="color: #F0DFAF; font-weight: bold;">for</span> ip<span style="color: #F0DFAF; font-weight: bold;"> in</span> $<span style="color: #DCDCCC;">(</span>openstack floating ip list -c <span style="color: #CC9393;">"Floating IP Address"</span> -f value<span style="color: #DCDCCC;">)</span>; <span style="color: #F0DFAF; font-weight: bold;">do</span> <span style="color: #CC9393;">\</span>
   <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"Deleting ${ip}..."</span>; <span style="color: #CC9393;">\</span>
   openstack floating ip delete <span style="color: #CC9393;">"${ip}"</span>; <span style="color: #CC9393;">\</span>
 <span style="color: #F0DFAF; font-weight: bold;">done</span>
@@ -929,8 +930,8 @@ And import it into Glance.
 </div>
 </div>
 
-<div id="outline-container-org8c8ae9f" class="outline-4">
-<h4 id="org8c8ae9f"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
+<div id="outline-container-org439b007" class="outline-4">
+<h4 id="org439b007"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 To tell Cloudinit to load and execute a specific script at boot time,
@@ -942,13 +943,13 @@ command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-9</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org434c8e1">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org13414fe">1</a>
 &#x2013; available under <a href="rsc/art.sh">rsc/art.sh</a> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <a href="rsc/art.sh">rsc/art.sh</a></label><pre class="src src-bash" id="org434c8e1"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Fix DNS resolution</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <a href="rsc/art.sh">rsc/art.sh</a></label><pre class="src src-bash" id="org13414fe"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Fix DNS resolution</span>
 <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">""</span> &gt;&gt; /etc/resolv.conf
 <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
 
@@ -1010,8 +1011,8 @@ debian@art-vm:~$ figlet "The Art of Provisionning a VM" | lolcat
 </div>
 </div>
 
-<div id="outline-container-org6d066e8" class="outline-2">
-<h2 id="org6d066e8"><span class="section-number-2">3</span> Deploy a Wordpress as a Service</h2>
+<div id="outline-container-org5d77174" class="outline-2">
+<h2 id="org5d77174"><span class="section-number-2">3</span> Deploy a Wordpress as a Service</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://wordpress.org/">Wordpress</a> is the most popular content management system (CMS) in use
@@ -1033,7 +1034,7 @@ the Wordpress CMS.</dd>
 The directory <code>rsc</code> provides bash scripts to deploy the MySQL database
 and the web server. As the DevOps of OPH &#x2013; Online Polytech Hosting &#x2013;
 your job is to automatize the deployment of a Wordpress on your
-OpenStack. See the bash scripts in <a href="#org3077325">appendix</a> for more information.
+OpenStack. See the bash scripts in <a href="#orgebd66af">appendix</a> for more information.
 Also, <a href="#sec:debian9-ftw">clean your environment</a> before going further.
 </p>
 
@@ -1046,8 +1047,8 @@ Make a bash script that automatically starts the <code>wordpress-db</code> and
 </div>
 </div>
 
-<div id="outline-container-org1899024" class="outline-3">
-<h3 id="org1899024"><span class="section-number-3">3.1</span> Wordpress MySQL Database&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div id="outline-container-org1be2c26" class="outline-3">
+<h3 id="org1be2c26"><span class="section-number-3">3.1</span> Wordpress MySQL Database&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Start a VM with <code>wordpress-db</code> name, <code>debian-9</code> image, <code>m1.mini</code>
@@ -1067,8 +1068,8 @@ with the <a href="rsc/install-mariadb.sh">rsc/install-mariadb.sh</a> script than
 </div>
 </div>
 
-<div id="outline-container-orgcebb86f" class="outline-3">
-<h3 id="orgcebb86f"><span class="section-number-3">3.2</span> Wordpress Application&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div id="outline-container-org8dde14a" class="outline-3">
+<h3 id="org8dde14a"><span class="section-number-3">3.2</span> Wordpress Application&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Start a VM with <code>wordpress-app</code> name, <code>debian-9</code> image, <code>m1.mini</code>
@@ -1115,12 +1116,12 @@ Finally, you can reach WordPress on <code>http://&lt;floating-ip&gt;/wp</code>.
 </div>
 </div>
 
-<div id="outline-container-org3077325" class="outline-2">
-<h2 id="org3077325"><span class="section-number-2">4</span> Appendix</h2>
+<div id="outline-container-orgebd66af" class="outline-2">
+<h2 id="orgebd66af"><span class="section-number-2">4</span> Appendix</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orge177ae5" class="outline-3">
-<h3 id="orge177ae5"><span class="section-number-3">4.1</span> Installs MariaDB on Debian 9</h3>
+<div id="outline-container-org4371939" class="outline-3">
+<h3 id="org4371939"><span class="section-number-3">4.1</span> Installs MariaDB on Debian 9</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/usr/bin/</span><span style="color: #F0DFAF; font-weight: bold;">env</span><span style="color: #7F9F7F;"> bash</span>
@@ -1165,8 +1166,8 @@ cat &lt;&lt; EOSQL | mysql -u root --password=$<span style="color: #DCDCCC;">{</
 </div>
 </div>
 
-<div id="outline-container-org52bc7d9" class="outline-3">
-<h3 id="org52bc7d9"><span class="section-number-3">4.2</span> Installs Wordpress on Debian 9</h3>
+<div id="outline-container-orge44b08c" class="outline-3">
+<h3 id="orge44b08c"><span class="section-number-3">4.2</span> Installs Wordpress on Debian 9</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/usr/bin/</span><span style="color: #F0DFAF; font-weight: bold;">env</span><span style="color: #7F9F7F;"> bash</span>
@@ -1225,7 +1226,7 @@ cat &lt;&lt; EOF &gt; /etc/wordpress/config-default.php
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[ptech18]">open an issue</a></p>
-<p class="date">Last modification: 2018-12-14 Fri 16:58</p>
+<p class="date">Last modification: 2018-12-18 Tue 16:13</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.1.13) – theme by
  <a href="http://gongzhitaao.org/orgcss">http://gongzhitaao.org/orgcss</a></p>

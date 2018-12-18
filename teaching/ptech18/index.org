@@ -14,7 +14,7 @@
 #+EXCLUDE_TAGS: noexport
 # #+EXCLUDE_TAGS: solution
 
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="timeline.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="org.css" />
 
 #+BEGIN_abstract
 OpenStack has become the de-facto solution to operate compute, network
@@ -27,7 +27,7 @@ are going to:
 # - Automatize all the stuff with the Heat template engine (i.e., manage
 #   your cloud from your sofa!).
 
-Find the slides of the lecture [[http://enos.irisa.fr/tp-polytech/openstack-slides.pdf][there]].
+Find the slides of the lecture [[file:docs/CloudFogEdgeIntro.pdf][here]] and [[file:docs/openstack-slides.pdf][there]].
 #+END_abstract
 
 #+TOC: headlines 3
@@ -68,6 +68,7 @@ And restart ~nova-compute~
 : sudo systemctl restart snap.microstack.nova-compute.service
 
 ** Export
+Do ~C-c C-c~ on the following
 #+BEGIN_SRC elisp :results none
 (org-babel-tangle)
 (org-ascii-export-to-ascii)
@@ -89,6 +90,7 @@ The archive contains:
 - setup.sh :: Script that sets up the lab.
 - teardown.sh :: Script that uninstalls the lab.
 - rsc :: Resource directory with bash scripts useful for the lab.
+- docs :: Slides of the lectures.
 
 ** Environment
 To follow the lab you'll need a Linux (prefer Ubuntu 18.04) with 6 Go
