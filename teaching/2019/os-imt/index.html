@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-02-25 Mon 03:09 -->
+<!-- 2019-02-25 Mon 04:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -268,23 +268,23 @@ Find the slides of the lecture <a href="https://raw.githubusercontent.com/Beyond
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga0f6c05">1. Requirements and Setup</a>
+<li><a href="#org9afb5bd">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org1c8f8c5">1.1. Environment</a></li>
-<li><a href="#orga5981c0">1.2. Access the Lab machine</a></li>
-<li><a href="#org8f8e220">1.3. Resources of the Lab</a></li>
-<li><a href="#org162793f">1.4. Setup OpenStack</a></li>
+<li><a href="#orgb504266">1.1. Environment</a></li>
+<li><a href="#orgcac1ccd">1.2. Access the Lab machine</a></li>
+<li><a href="#org0843312">1.3. Resources of the Lab</a></li>
+<li><a href="#org352450c">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack</a>
 <ul>
-<li><a href="#orgebaeba2">2.1. OpenStack Horizon Dashboard</a></li>
-<li><a href="#org96f94d3">2.2. Unleash the Operator in You</a></li>
-<li><a href="#org3142e10">2.3. In Encryption We Trust</a></li>
-<li><a href="#orge1b0b89">2.4. The Art of Provisioning a VM</a>
+<li><a href="#org1c72f9a">2.1. OpenStack Horizon Dashboard</a></li>
+<li><a href="#org5ad68f6">2.2. Unleash the Operator in You</a></li>
+<li><a href="#orgf5e8a4f">2.3. In Encryption We Trust</a></li>
+<li><a href="#org0797d67">2.4. The Art of Provisioning a VM</a>
 <ul>
 <li><a href="#sec:debian9-ftw">2.4.1. Debian 9 FTW</a></li>
-<li><a href="#orga565495">2.4.2. Cloudinit in Action</a></li>
+<li><a href="#orgf5092d8">2.4.2. Cloudinit in Action</a></li>
 </ul>
 </li>
 </ul>
@@ -293,19 +293,19 @@ Find the slides of the lecture <a href="https://raw.githubusercontent.com/Beyond
 </div>
 </nav>
 
-<div id="outline-container-orga0f6c05" class="outline-2">
-<h2 id="orga0f6c05"><span class="section-number-2">1</span> Requirements and Setup</h2>
+<div id="outline-container-org9afb5bd" class="outline-2">
+<h2 id="org9afb5bd"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1c8f8c5" class="outline-3">
-<h3 id="org1c8f8c5"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-orgb504266" class="outline-3">
+<h3 id="orgb504266"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
 start VMs on it. Therefore, this lab relies on <a href="https://www.grid5000.fr/">Grid&rsquo;5000</a>, a testbed
-for experimental research, to acquire a <i>lab machine</i> larger than your
+for experimental research, to acquire a <i>Lab machine</i> larger than your
 personal one (started on <i>ecotype</i> the cluster hosted in B200). The
-lab machine is a Ubuntu18.04 with 126Go of RAM and 20 CPU cores. This
+Lab machine is a Ubuntu18.04 with 126Go of RAM and 20 CPU cores. This
 should be enough resources for this lab!
 </p>
 
@@ -338,31 +338,31 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-orga5981c0" class="outline-3">
-<h3 id="orga5981c0"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
+<div id="outline-container-orgcac1ccd" class="outline-3">
+<h3 id="orgcac1ccd"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-Here is the assignation list of lab machine per team:
+Here is the assignation list of Lab machine per team:
 </p>
 <ul class="org-ul">
 <li>TODO</li>
 </ul>
 
 <p>
-First thing first, you have to connect to the lab machine.
-Unfortunately, the lab machine isn&rsquo;t available publicly, but hides
+First thing first, you have to connect to the Lab machine.
+Unfortunately, the Lab machine isn&rsquo;t available publicly, but hides
 behind the Grid&rsquo;5000 private network. One solution, as explained in
 the <a href="https://www.grid5000.fr/mediawiki/index.php/Getting_Started#Connecting_for_the_first_time">official tutorial</a>, consists in opening an SSH connection to the
 publicly available <code>access.grid5000.fr</code> machine, and from there, doing
-a second SSH connection to the lab machine. But this solution is
+a second SSH connection to the Lab machine. But this solution is
 fairly limited since it doesn&rsquo;t give an access to services from your
 own machine<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
 </p>
 
 <p>
-To ease the interaction between your own machine and the lab one, you
+To ease the interaction between your own machine and the Lab one, you
 should setup the Grid&rsquo;5000 <a href="https://en.wikipedia.org/wiki/Virtual_private_network">VPN</a>. The Grid&rsquo;5000 VPN gives you access to
-the Grid&rsquo;5000 private network and thus, lab machines wherever your are
+the Grid&rsquo;5000 private network and thus, Lab machines wherever your are
 on the globe.
 </p>
 
@@ -377,7 +377,7 @@ your own in case of troubles.
 Install the <a href="https://openvpn.net/">OpenVPN</a> client
 </p>
 <pre class="example">
-apt update -y &amp;&amp; apt install -y openvpn
+sudo apt update -y &amp;&amp; apt install -y openvpn
 </pre></li>
 <li>Go on <a href="https://api.grid5000.fr/stable/users/">UMS</a> &gt; My Account &gt; VPN.</li>
 <li>Create new certificate &gt; Generate from passphrase, and fill the
@@ -417,22 +417,22 @@ if your shell hang and see the following route in your routing table.
 </div>
 
 <p>
-You can finally connect to your lab machine in another shell with the
+You can finally connect to your Lab machine in another shell with the
 following SSH command. Use <code>os-imt</code> as password.
 </p>
 <pre class="example">
-ssh -l root &lt;ip-of-your-lab-machine&gt;
+ssh -l root &lt;ip-of-your-Lab-machine&gt;
 </pre>
 
 
 <p>
-The rest of this lab proceeds on the lab machine.
+The rest of this lab proceeds on the Lab machine.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8f8e220" class="outline-3">
-<h3 id="org8f8e220"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
+<div id="outline-container-org0843312" class="outline-3">
+<h3 id="org0843312"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Get the resources of the lab at <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz">https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz</a>.
@@ -458,8 +458,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-org162793f" class="outline-3">
-<h3 id="org162793f"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-org352450c" class="outline-3">
+<h3 id="org352450c"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -499,12 +499,12 @@ And finally, execute the <code>setup.sh</code> file.
 </div>
 </div>
 
-<div id="outline-container-orgf95fc92" class="outline-2">
+<div id="outline-container-orgefad304" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-orgebaeba2" class="outline-3">
-<h3 id="orgebaeba2"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
+<div id="outline-container-org1c72f9a" class="outline-3">
+<h3 id="org1c72f9a"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -554,8 +554,8 @@ interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org96f94d3" class="outline-3">
-<h3 id="org96f94d3"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
+<div id="outline-container-org5ad68f6" class="outline-3">
+<h3 id="org5ad68f6"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 While Horizon is helpful to discover OpenStack features, this is not
@@ -585,20 +585,21 @@ source ./admin-openrc.sh
 <p>
 You can then check that your environment is correctly set.
 </p>
-<pre class="example">
-$ env|fgrep OS_|sort
+<div class="org-src-container">
+<pre class="src src-bash">$ env|fgrep OS_|sort
 
-OS_AUTH_URL=http://localhost:5000/v3/
-OS_IDENTITY_API_VERSION=3
-OS_INTERFACE=public
-OS_PASSWORD=keystone
-OS_PROJECT_DOMAIN_ID=default
-OS_PROJECT_ID=76c02713292e4d3cba0625c9995a96aa
-OS_PROJECT_NAME=admin
-OS_REGION_NAME=microstack
-OS_USER_DOMAIN_NAME=Default
-OS_USERNAME=admin
+<span style="color: #83a598;">OS_AUTH_URL</span>=http://localhost:5000/v3/
+<span style="color: #83a598;">OS_IDENTITY_API_VERSION</span>=<span style="color: #d3869b;">3</span>
+<span style="color: #83a598;">OS_INTERFACE</span>=public
+<span style="color: #83a598;">OS_PASSWORD</span>=keystone
+<span style="color: #83a598;">OS_PROJECT_DOMAIN_ID</span>=default
+<span style="color: #83a598;">OS_PROJECT_ID</span>=<span style="color: #d3869b;">76c02713292e4d3cba0625c9995a96aa</span>
+<span style="color: #83a598;">OS_PROJECT_NAME</span>=admin
+<span style="color: #83a598;">OS_REGION_NAME</span>=microstack
+<span style="color: #83a598;">OS_USER_DOMAIN_NAME</span>=Default
+<span style="color: #83a598;">OS_USERNAME</span>=admin
 </pre>
+</div>
 
 <p>
 All operations to manage OpenStack are done through one single command
@@ -755,8 +756,8 @@ figure out how to:
 </div>
 </div>
 
-<div id="outline-container-org3142e10" class="outline-3">
-<h3 id="org3142e10"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
+<div id="outline-container-orgf5e8a4f" class="outline-3">
+<h3 id="orgf5e8a4f"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Any cirros VMs share the same credentials (i.e., <code>cirros</code>, <code>cubswin</code>)
@@ -832,8 +833,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-orge1b0b89" class="outline-3">
-<h3 id="orge1b0b89"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
+<div id="outline-container-org0797d67" class="outline-3">
+<h3 id="org0797d67"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Provisioning is the process that automatically installs software,
@@ -857,7 +858,7 @@ during the boot process.
 </p>
 </div>
 
-<div id="outline-container-org363d4db" class="outline-4">
+<div id="outline-container-org59926d1" class="outline-4">
 <h4 id="sec:debian9-ftw"><span class="section-number-4">2.4.1</span> Debian 9 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian9-ftw">
 <p>
@@ -909,8 +910,8 @@ And import it into Glance. Use <code>openstack image --help</code>
 </div>
 </div>
 
-<div id="outline-container-orga565495" class="outline-4">
-<h4 id="orga565495"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
+<div id="outline-container-orgf5092d8" class="outline-4">
+<h4 id="orgf5092d8"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 To tell Cloudinit to load and execute a specific script at boot time,
@@ -921,13 +922,13 @@ argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-9</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#orgf8bb0da">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org2e8a5b2">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="orgf8bb0da"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Fix DNS resolution</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org2e8a5b2"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Fix DNS resolution</span>
 <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">""</span> &gt;&gt; /etc/resolv.conf
 <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
 
@@ -998,7 +999,7 @@ is a bit annoying.
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt-19]">open an issue</a></p>
-<p class="date">Last modification: 2019-02-25 Mon 03:09</p>
+<p class="date">Last modification: 2019-02-25 Mon 04:20</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.2) – theme by
  <a href="http://gongzhitaao.org/orgcss">http://gongzhitaao.org/orgcss</a></p>
