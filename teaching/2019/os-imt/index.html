@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-02-25 Mon 03:09 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Ronan-Alexandre Cherrueau, Adrien Lebre, Didier Iscovery">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://rcherrueau.github.io/rsc/org.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">Operate Resources in Public and Private Clouds Thanks to OpenStack</h1>
+</header><div class="abstract">
+<p>
+OpenStack has become the de-facto solution to operate compute, network
+and storage resources in public and private clouds. In this lab, we
+are going to:
+</p>
+<ul class="org-ul">
+<li>Deploy an all-in-one OpenStack with <a href="https://github.com/CanonicalLtd/microstack">Snap microstack</a>.</li>
+<li>Operate this OpenStack to manage IaaS resources (e.g., boot VMs,
+setup a private Network).</li>
+<li>Deploys a Wordpress as a Service.</li>
+<li>Automatize all the stuff with the Heat template engine (i.e., manage
+your cloud from your sofa!).</li>
+</ul>
+
+<p>
+Find the slides of the lecture <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2018/os-polytech/docs/CloudFogEdgeIntro.pdf">here</a> and <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2018/os-polytech/docs/openstack-slides.pdf">there</a>.
+</p>
+
+</div>
+
+<nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga0f6c05">1. Requirements and Setup</a>
+<ul>
+<li><a href="#org1c8f8c5">1.1. Environment</a></li>
+<li><a href="#orga5981c0">1.2. Access the Lab machine</a></li>
+<li><a href="#org8f8e220">1.3. Resources of the Lab</a></li>
+<li><a href="#org162793f">1.4. Setup OpenStack</a></li>
+</ul>
+</li>
+<li><a href="#sec:play-with-os">2. Play with OpenStack</a>
+<ul>
+<li><a href="#orgebaeba2">2.1. OpenStack Horizon Dashboard</a></li>
+<li><a href="#org96f94d3">2.2. Unleash the Operator in You</a></li>
+<li><a href="#org3142e10">2.3. In Encryption We Trust</a></li>
+<li><a href="#orge1b0b89">2.4. The Art of Provisioning a VM</a>
+<ul>
+<li><a href="#sec:debian9-ftw">2.4.1. Debian 9 FTW</a></li>
+<li><a href="#orga565495">2.4.2. Cloudinit in Action</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-orga0f6c05" class="outline-2">
+<h2 id="orga0f6c05"><span class="section-number-2">1</span> Requirements and Setup</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org1c8f8c5" class="outline-3">
+<h3 id="org1c8f8c5"><span class="section-number-3">1.1</span> Environment</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
+start VMs on it. Therefore, this lab relies on <a href="https://www.grid5000.fr/">Grid&rsquo;5000</a>, a testbed
+for experimental research, to acquire a <i>lab machine</i> larger than your
+personal one (started on <i>ecotype</i> the cluster hosted in B200). The
+lab machine is a Ubuntu18.04 with 126Go of RAM and 20 CPU cores. This
+should be enough resources for this lab!
+</p>
+
+<p>
+The lab makes use of <a href="https://github.com/CanonicalLtd/microstack">Snap microstack</a>: OpenStack in a Snap that you can
+run locally on a single machine. Snap is the Canonical&rsquo;s App delivery
+mechanism. It enables developers to bundle all dependencies into a
+single app package. And so does Snap microstack for an all-in-one
+OpenStack on your machine.
+</p>
+
+<p>
+An all-in-one OpenStack means that your machine will contain both
+services to <i>operate</i> and <i>host</i> virtualized resources. For instance,
+the <code>nova-conductor</code> to operate the boot of a VM, and <code>nova-compute</code>
+to host the VM. Which is a good setup for a lab. There are several
+other options such as <a href="https://docs.openstack.org/devstack/latest/index.html">DevStack</a>, <a href="https://docs.openstack.org/puppet-openstack-guide/latest/">Puppet-OpenStack</a> or <a href="https://docs.openstack.org/developer/kolla-ansible/">Kolla-ansible</a> and
+all matters. But, Snap microstack takes only 2 minutes to deploy
+OpenStack (instead of 30 minutes for other options).
+</p>
+
+<div class="note">
+<ul class="org-ul">
+<li>Devstack is good for OpenStack developers.</li>
+<li>Puppet-OpenStack or Kolla-ansible are good for production
+deployments.</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga5981c0" class="outline-3">
+<h3 id="orga5981c0"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Here is the assignation list of lab machine per team:
+</p>
+<ul class="org-ul">
+<li>TODO</li>
+</ul>
+
+<p>
+First thing first, you have to connect to the lab machine.
+Unfortunately, the lab machine isn&rsquo;t available publicly, but hides
+behind the Grid&rsquo;5000 private network. One solution, as explained in
+the <a href="https://www.grid5000.fr/mediawiki/index.php/Getting_Started#Connecting_for_the_first_time">official tutorial</a>, consists in opening an SSH connection to the
+publicly available <code>access.grid5000.fr</code> machine, and from there, doing
+a second SSH connection to the lab machine. But this solution is
+fairly limited since it doesn&rsquo;t give an access to services from your
+own machine<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+
+<p>
+To ease the interaction between your own machine and the lab one, you
+should setup the Grid&rsquo;5000 <a href="https://en.wikipedia.org/wiki/Virtual_private_network">VPN</a>. The Grid&rsquo;5000 VPN gives you access to
+the Grid&rsquo;5000 private network and thus, lab machines wherever your are
+on the globe.
+</p>
+
+<p>
+Next gives you the procedure on Ubuntu, but should be similar on other
+UNIX systems. You can also do it on Windows, however expect to be on
+your own in case of troubles.
+</p>
+
+<ol class="org-ol">
+<li><p>
+Install the <a href="https://openvpn.net/">OpenVPN</a> client
+</p>
+<pre class="example">
+apt update -y &amp;&amp; apt install -y openvpn
+</pre></li>
+<li>Go on <a href="https://api.grid5000.fr/stable/users/">UMS</a> &gt; My Account &gt; VPN.</li>
+<li>Create new certificate &gt; Generate from passphrase, and fill the
+form with a new password (remember it!).</li>
+<li><p>
+Click on &ldquo;Zip file&rdquo; Action &gt; store it somewhere on your personal
+machine &gt; unzip it. If the <code>unzip</code> program is unavailable, install
+it with <code>sudo apt install unzip</code>.
+</p>
+<pre class="example">
+unzip &lt;g5k_login&gt;_vpnclient.zip -d g5k_vpnclient
+</pre></li>
+<li><p>
+Run OpenVPN client with sudo
+</p>
+<pre class="example">
+sudo openvpn --config g5k_vpnclient/Grid5000_VPN.ovpn
+</pre></li>
+<li>Use password of step 4 to the question <code>Enter Private Key
+   Password:</code>.</li>
+</ol>
+
+<p>
+You correctly setup the VPN and can access Grid&rsquo;5000 private network
+if your shell hang and see the following route in your routing table.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ ip route
+
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">...</span>
+<span style="color: #d3869b;">10.0.0.0/8</span> via <span style="color: #d3869b;">172.20.255.254</span> dev tun0
+<span style="color: #d3869b;">172.16.0.0/16</span> via <span style="color: #d3869b;">172.20.255.254</span> dev tun0
+<span style="color: #d3869b;">172.20.0.0/16</span> via <span style="color: #d3869b;">172.20.255.254</span> dev tun0
+<span style="color: #d3869b;">172.20.192.0/18</span> dev tun0 proto kernel scope link src <span style="color: #d3869b;">172.20.192.5</span>
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">...</span>
+</pre>
+</div>
+
+<p>
+You can finally connect to your lab machine in another shell with the
+following SSH command. Use <code>os-imt</code> as password.
+</p>
+<pre class="example">
+ssh -l root &lt;ip-of-your-lab-machine&gt;
+</pre>
+
+
+<p>
+The rest of this lab proceeds on the lab machine.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8f8e220" class="outline-3">
+<h3 id="org8f8e220"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Get the resources of the lab at <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz">https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz</a>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">curl -O https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz
+mkdir ~/os-imt
+tar xzf tp.tar.gz -C ~/os-imt
+<span style="color: #fe8019;">cd</span> ~/os-imt
+</pre>
+</div>
+
+<p>
+The archive contains:
+</p>
+<dl class="org-dl">
+<dt>index.txt</dt><dd>The current subject in text format.</dd>
+<dt>setup.sh</dt><dd>Script that sets up the lab.</dd>
+<dt>teardown.sh</dt><dd>Script that uninstalls the lab.</dd>
+<dt>rsc</dt><dd>Resource directory with bash scripts useful for the lab.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org162793f" class="outline-3">
+<h3 id="org162793f"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Install snap.
+</p>
+<pre class="example">
+sudo apt install snapd
+</pre>
+
+
+<p>
+Install OpenStack directly from the snap store.
+</p>
+<pre class="example">
+sudo snap install microstack --classic --edge
+</pre>
+
+
+<p>
+Then, ensure OpenStack services are running on your machine.
+</p>
+
+<div class="do">
+<p>
+Find the snap command that lists microstack OpenStack services and
+there status? What is the purpose of each service?
+</p>
+
+</div>
+
+<p>
+And finally, execute the <code>setup.sh</code> file.
+</p>
+<pre class="example">
+./setup.sh
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf95fc92" class="outline-2">
+<h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack</h2>
+<div class="outline-text-2" id="text-sec:play-with-os">
+</div>
+<div id="outline-container-orgebaeba2" class="outline-3">
+<h3 id="orgebaeba2"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+One service deployed is the OpenStack dashboard (Horizon). On your own
+machine horizon is reachable from the web browser at
+<a href="http://&lt;ip-of-your-lab-machine&gt;">http://&lt;ip-of-your-lab-machine&gt;</a> with the following credentials:
+</p>
+<ul class="org-ul">
+<li>login: <code>admin</code></li>
+<li>password: <code>keystone</code></li>
+</ul>
+
+<p>
+From here, you can reach <code>Project &gt; Compute &gt; Instances &gt; Launch
+Instance</code> and boot a virtual machine given the following information:
+</p>
+<ul class="org-ul">
+<li>a name (e.g., <code>horizon-vm</code>)</li>
+<li>an image (e.g., <code>cirros</code>)</li>
+<li>a flavor to limit the resources of your instance (we recommend
+<code>m1.tiny</code>)</li>
+<li>and a network setting (must be <code>test</code>)</li>
+</ul>
+
+<p>
+You should select options by clicking on the arrow on the right of
+each possibility. When the configuration is OK, the <code>Launch Instance</code>
+button should be enabled. After clicking on it, you should see the
+instance in the <code>Active</code> state in less than a minute.
+</p>
+
+<p>
+Now, you have several options to connect to your freshly deployed VM.
+For instance, by clicking on its name, Horizon provides a virtual
+console under the tab <code>Console</code>. Use the following credentials to
+access the VM:
+</p>
+<ul class="org-ul">
+<li>login: <code>cirros</code></li>
+<li>password: <code>cubswin:)</code></li>
+</ul>
+
+<p>
+Unfortunately this feature is disabled with Snap microstack. But as a
+real DevOps, you will prefer to access to your vm by the command line
+interface &#x2026;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org96f94d3" class="outline-3">
+<h3 id="org96f94d3"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+While Horizon is helpful to discover OpenStack features, this is not
+the tool of choice for a true operator. A true operator prefers
+command line interface 😄. You are lucky, OpenStack provides such a
+command line interface.
+</p>
+
+<p>
+To use it, you need to set your environment with the OpenStack
+credentials, so that the command line won&rsquo;t bother you by requiring
+credentials each time. you can retrieve this information through the
+Horizon interface by clicking on the <code>admin</code> dropdown list at the top
+right corner and get the &ldquo;OpenStack RC File V3&rdquo; (or by following
+<a href="http://&lt;ip-of-your-lab-machine&gt;/project/api_access/openrc/">http://&lt;ip-of-your-lab-machine&gt;/project/api_access/openrc/</a>).
+</p>
+
+<p>
+Take a look at this file, and then source it to setup your
+environment.
+</p>
+<pre class="example">
+source ./admin-openrc.sh
+</pre>
+
+
+<p>
+You can then check that your environment is correctly set.
+</p>
+<pre class="example">
+$ env|fgrep OS_|sort
+
+OS_AUTH_URL=http://localhost:5000/v3/
+OS_IDENTITY_API_VERSION=3
+OS_INTERFACE=public
+OS_PASSWORD=keystone
+OS_PROJECT_DOMAIN_ID=default
+OS_PROJECT_ID=76c02713292e4d3cba0625c9995a96aa
+OS_PROJECT_NAME=admin
+OS_REGION_NAME=microstack
+OS_USER_DOMAIN_NAME=Default
+OS_USERNAME=admin
+</pre>
+
+<p>
+All operations to manage OpenStack are done through one single command
+line, called <code>openstack</code>. Doing an <code>openstack --help</code> displays the
+really long list of possibilities provided by this command. The
+following gives you a selection of the most often used commands to
+operate your Cloud:
+</p>
+<dl class="org-dl">
+<dt>List OpenStack running services</dt><dd><code>openstack endpoint list</code></dd>
+<dt>List images</dt><dd><code>openstack image list</code></dd>
+<dt>List flavors</dt><dd><code>openstack flavor list</code></dd>
+<dt>List networks</dt><dd><code>openstack network list</code></dd>
+<dt>List computes</dt><dd><code>openstack hypervisor list</code></dd>
+<dt>List VMs (running or not)</dt><dd><code>openstack server list</code></dd>
+<dt>Get details on a specific VM</dt><dd><code>openstack server show &lt;vm-name&gt;</code></dd>
+<dt>Start a new VM</dt><dd><code>openstack server create --image &lt;image-name&gt; --flavor &lt;flavor-name&gt; --nic net-id=&lt;net-id&gt; &lt;vm-name&gt;</code></dd>
+<dt>View VMs logs</dt><dd><code>openstack console log show &lt;vm-name&gt;</code></dd>
+</dl>
+
+<p>
+Using all these commands, you can use the CLI to start a new tiny
+cirros VM called <code>cli-vm</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create <span style="color: #b8bb26;">\</span>
+  --image cirros <span style="color: #b8bb26;">\</span>
+  --flavor m1.tiny <span style="color: #b8bb26;">\</span>
+  --network test <span style="color: #b8bb26;">\</span>
+  cli-vm
+</pre>
+</div>
+
+<p>
+Then, display the information about your VM with the following
+command:
+</p>
+<pre class="example">
+openstack server show cli-vm
+</pre>
+
+
+<p>
+Note in particular the <code>status</code> of your VM.
+</p>
+<pre class="example">
+openstack server show cli-vm -c status -f json
+</pre>
+
+
+<p>
+This status will go from <code>BUILD</code>: OpenStack is looking for the best
+place to boot the VM; to <code>ACTIVE</code>: your VM is running. The status
+could also be <code>ERROR</code> if you are experiencing hard times with your
+infrastructure.
+</p>
+
+<p>
+Because an <code>ACTIVE</code> state includes the booting phase, you may wait for
+one minute or two, the time for the VM finishing to boot. You can
+check that by looking at its logs with <code>openstack console log show
+cli-vm</code>. The VM finished to boot when last lines are:
+</p>
+<pre class="example">
+=== cirros: current=0.3.4 uptime=16.56 ===
+  ____               ____  ____
+ / __/ __ ____ ____ / __ \/ __/
+/ /__ / // __// __// /_/ /\ \
+\___//_//_/  /_/   \____/___/
+   http://cirros-cloud.net
+
+
+login as 'cirros' user. default password: 'cubswin:)'. use 'sudo' for root.
+cli-vm login:
+</pre>
+
+<p>
+With the previous <code>openstack server create</code> command, the VM boots with
+a private IP. Private IPs are used for communication between VMs,
+meaning you cannot ping your VM from an external network (e.g., the
+host machine). You have to manually affect a floating IP of the
+<code>external</code> network to your machine if you want it to be pingable from
+the host.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #83a598;">ALLOCATED_FIP</span>=$<span style="color: #458588;">(</span>openstack floating ip create <span style="color: #b8bb26;">\</span>
+  -c floating_ip_address -f value external<span style="color: #458588;">)</span>
+openstack server add floating ip cli-vm <span style="color: #b8bb26;">"$ALLOCATED_FIP"</span>
+</pre>
+</div>
+
+<p>
+Then, ask again for the status of your VM and its IPs.
+</p>
+<pre class="example">
+openstack server show cli-vm -c status -c addresses
+</pre>
+
+
+<div class="do">
+<p>
+Note the new IP address. From which network this IP comes? Ping
+<code>cli-vm</code> on its floating IP.
+</p>
+<pre class="example">
+echo "$ALLOCATED_FIP"
+openstack subnet show external-subnet -c cidr -c allocation_pools
+ping "$ALLOCATED_FIP"
+</pre>
+
+
+<p>
+Does it work? Why? Hint: <a href="https://docs.openstack.org/neutron/latest/feature_classification/general_feature_support_matrix.html#operation_Security_Groups">OpenStack sets security groups by default</a>.
+</p>
+
+</div>
+
+<p>
+Once you succeed to ping the vm, you should be able to SSH on it
+</p>
+<pre class="example">
+ssh -l cirros "$ALLOCATED_FIP"
+</pre>
+
+
+<div class="do">
+<p>
+From the cirros, ping the outside world.
+</p>
+<pre class="example">
+ping 8.8.8.8 # Google, could you HERE me?!
+</pre>
+
+
+<p>
+Does it work? Why? Hint: do a <code>tcpdump -nni br-ex icmp</code> to understand
+how the packets flow. Idem on the NIC of your default route.
+</p>
+
+</div>
+
+<p>
+Go on, and play with the <code>openstack</code> cli. For instance, list all
+features offered by Nova with <code>openstack server --help</code> and try to
+figure out how to:
+</p>
+<ol class="org-ol">
+<li>SSH on <code>cli-vm</code> using its name rather than its IP;</li>
+<li>Suspend and resume it;</li>
+<li>Create a snapshot of <code>cli-vm</code>;</li>
+<li>Boot a new machine <code>cli-vm-clone</code> from the snapshot.</li>
+<li>Delete <code>cli-vm-clone</code>;</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org3142e10" class="outline-3">
+<h3 id="org3142e10"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Any cirros VMs share the same credentials (i.e., <code>cirros</code>, <code>cubswin</code>)
+which is a security problem. As an IaaS DevOps, you want that only
+some clients can SSH on the VMs. Fortunately, OpenStack helps with the
+management of SSH keys. OpenStack can generate a SSH key and push the
+public counterpart on the VM. Therefore, doing a <code>ssh</code> on the VM will
+use the SSH key instead of asking the client to fill the credentials.
+</p>
+
+<p>
+Make an SSH key and store the private counterpart in <code>./admin.pem</code>.
+Then, give that file the correct permission access.
+</p>
+<pre class="example">
+openstack keypair create --private-key ./admin.pem admin
+chmod 600 ./admin.pem
+</pre>
+
+
+<p>
+Start a new VM and ask OpenStack to copy the public counterpart of
+your SSH key in the <code>~/.ssh/authorized_keys</code> of the VM (i.e., note the
+<code>--key-name admin</code>).
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create --wait --image cirros <span style="color: #b8bb26;">\</span>
+  --flavor m1.tiny --network test <span style="color: #b8bb26;">\</span>
+  --key-name admin cli-vm-adminkey
+</pre>
+</div>
+
+<p>
+Attach it a floating IP.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack server add floating ip <span style="color: #b8bb26;">\</span>
+  cli-vm-adminkey <span style="color: #b8bb26;">\</span>
+  $<span style="color: #458588;">(</span>openstack floating ip create -c floating_ip_address -f value external<span style="color: #458588;">)</span>
+</pre>
+</div>
+
+<p>
+Now you can access your VM using SSH without filling credentials.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack server ssh cli-vm-adminkey <span style="color: #b8bb26;">\</span>
+  --login cirros <span style="color: #b8bb26;">\</span>
+  --identity ./admin.pem
+</pre>
+</div>
+
+<p>
+Or directly with the <code>ssh</code> command
+</p>
+<pre class="example">
+ssh -i ./admin.pem cirros@$(openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.+ (10\.20\.20\.[0-9]+).*/\1/g')
+</pre>
+
+
+<div class="NOTE">
+<p>
+A regular <code>ssh</code> command looks like <code>ssh -i &lt;identity-file&gt;
+&lt;name&gt;@&lt;server-ip&gt;</code>. The following OpenStack command followed by the
+<code>sed</code> returns the floating IP of <code>cli-vm-adminkey</code>. You may have to
+adapt it a bit according to your network cidr.
+</p>
+<pre class="example">
+openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.+ (10\.20\.20\.[0-9]+).*/\1/g'
+</pre>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge1b0b89" class="outline-3">
+<h3 id="orge1b0b89"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Provisioning is the process that automatically installs software,
+alters configurations, and more on the machine as part of the boot
+process. On OpenStack, provisioning is achieved thanks to <a href="https://cloud-init.io/">Cloudinit</a>.
+It is a program that runs at the boot time to customize the VM.
+</p>
+
+<p>
+You have already used Cloudinit without even knowing it! The previous
+command <code>openstack server create</code> with the <code>--identity</code> parameter
+tells OpenStack to make the public counterpart of the SSH key
+available to the VM. When the VM boots for the first time, Cloudinit
+is (among other tasks) in charge of fetching this public SSH key from
+OpenStack, and copy it to <code>~/.ssh/authorized_keys</code>. Beyond that,
+Cloudinit is in charge of many aspects of the VM customization like
+mounting volume, resizing file systems or setting an hostname (the
+list of Cloudinit modules can be found <a href="http://cloudinit.readthedocs.io/en/latest/topics/modules.html">here</a>). Furthermore, Cloudinit
+is able to run a bash script that will be executed on the VM as <code>root</code>
+during the boot process.
+</p>
+</div>
+
+<div id="outline-container-org363d4db" class="outline-4">
+<h4 id="sec:debian9-ftw"><span class="section-number-4">2.4.1</span> Debian 9 FTW</h4>
+<div class="outline-text-4" id="text-sec:debian9-ftw">
+<p>
+When it comes the time to deal with real applications, we cannot use
+cirros VMs anymore. A Cirros VM is good for testing because it starts
+fast and has a small memory footprint. However, do not expect to
+launch MySQL or even <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> on a cirros.
+</p>
+
+<p>
+We are going to run several Debian9 VMs in this section. But, a
+Debian9 takes a lot more of resources to run. For this reason, you may
+want to release all your resources before going further.
+</p>
+
+<div class="do">
+<p>
+Make one single bash command that deletes currently running VMs. Do
+the same for floating IPs.
+</p>
+
+</div>
+
+<p>
+Then, create a new flavor with 5 Go of Disk.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack flavor create --ram <span style="color: #d3869b;">2048</span> <span style="color: #b8bb26;">\</span>
+  --disk <span style="color: #d3869b;">5</span> --vcpus <span style="color: #d3869b;">1</span> --swap <span style="color: #d3869b;">1024</span> <span style="color: #b8bb26;">\</span>
+  --public m1.mini
+</pre>
+</div>
+
+<p>
+Download the Debian9 image with support of Cloudinit.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">curl -L -o /tmp/debian-9.qcow2 <span style="color: #b8bb26;">\</span>
+  https://cdimage.debian.org/cdimage/openstack/current-9/debian-9-openstack-amd64.qcow2
+</pre>
+</div>
+
+<div class="do">
+<p>
+And import it into Glance. Use <code>openstack image --help</code>
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga565495" class="outline-4">
+<h4 id="orga565495"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+To tell Cloudinit to load and execute a specific script at boot time,
+you should append the <code>--user-data &lt;file/path/of/your/script&gt;</code> extra
+argument to the regular <code>openstack server create</code> command.
+</p>
+
+<div class="do">
+<p>
+Start a new VM named <code>art-vm</code> based on the <code>debian-9</code> image and the
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#orgf8bb0da">1</a>
+&#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
+<a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="orgf8bb0da"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Fix DNS resolution</span>
+<span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">""</span> &gt;&gt; /etc/resolv.conf
+<span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
+
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Install figlet and lolcat</span>
+apt update
+apt install -y figlet lolcat
+</pre>
+</div>
+
+<p>
+You can follow the correct installation of software with:
+</p>
+<pre class="example">
+watch openstack console log show --lines=20 art-vm
+</pre>
+
+
+<p>
+Tells when the VM has finished to boot based on the output of <code>console
+log</code>.
+</p>
+
+</div>
+
+<p>
+Then, attach it a floating IP.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack server add floating ip <span style="color: #b8bb26;">\</span>
+  art-vm <span style="color: #b8bb26;">\</span>
+  $<span style="color: #458588;">(</span>openstack floating ip create -c floating_ip_address -f value external<span style="color: #458588;">)</span>
+</pre>
+</div>
+
+<p>
+Hence, you can jump on the VM and call the <code>figlet</code> and <code>lolcat</code>
+software.
+</p>
+<pre class="example">
+~$ openstack server ssh art-vm \
+  --login debian \
+  --identity ./admin.pem
+
+The authenticity of host '10.20.20.13 (10.20.20.13)' can't be established.
+ECDSA key fingerprint is SHA256:WgAn+/gWYg9MkauihPyQGwC0LJ8sLWM/ySrUzN8cK9w.
+Are you sure you want to continue connecting (yes/no)? yes
+
+debian@art-vm:~$ figlet "The Art of Provisionning a VM" | lolcat
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+For sure, you always can setup an SSH tunnel but this
+is a bit annoying.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Ronan-Alexandre Cherrueau, Adrien Lebre, Didier Iscovery</p>
+<p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
+<p class="github">Find a typo, wanna make a proposition:
+ <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt-19]">open an issue</a></p>
+<p class="date">Last modification: 2019-02-25 Mon 03:09</p>
+<p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.2) – theme by
+ <a href="http://gongzhitaao.org/orgcss">http://gongzhitaao.org/orgcss</a></p>
+</div>
+</body>
+</html>
