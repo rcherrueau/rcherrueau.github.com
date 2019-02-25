@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-02-25 Mon 11:16 -->
+<!-- 2019-02-25 Mon 15:30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -268,23 +268,23 @@ Find the slides of the lecture <a href="https://raw.githubusercontent.com/Beyond
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org35849c2">1. Requirements and Setup</a>
+<li><a href="#orgd372fcb">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org9ccda50">1.1. Environment</a></li>
-<li><a href="#org2d7a6c3">1.2. Access the Lab machine</a></li>
-<li><a href="#org21adf7d">1.3. Resources of the Lab</a></li>
-<li><a href="#orgf1f503a">1.4. Setup OpenStack</a></li>
+<li><a href="#org7c79e27">1.1. Environment</a></li>
+<li><a href="#org1e9f220">1.2. Access the Lab machine</a></li>
+<li><a href="#orgee69680">1.3. Resources of the Lab</a></li>
+<li><a href="#org5cf3a39">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack</a>
 <ul>
-<li><a href="#orgdb176fd">2.1. OpenStack Horizon Dashboard</a></li>
-<li><a href="#org41c4f92">2.2. Unleash the Operator in You</a></li>
-<li><a href="#org5993c93">2.3. In Encryption We Trust</a></li>
-<li><a href="#orgb9c6da3">2.4. The Art of Provisioning a VM</a>
+<li><a href="#orgeefd813">2.1. OpenStack Horizon Dashboard</a></li>
+<li><a href="#org3b3ab6d">2.2. Unleash the Operator in You</a></li>
+<li><a href="#orga7ab5e3">2.3. In Encryption We Trust</a></li>
+<li><a href="#org2397ef2">2.4. The Art of Provisioning a VM</a>
 <ul>
 <li><a href="#sec:debian9-ftw">2.4.1. Debian 9 FTW</a></li>
-<li><a href="#org28a4a3a">2.4.2. Cloudinit in Action</a></li>
+<li><a href="#orga6bae0d">2.4.2. Cloudinit in Action</a></li>
 </ul>
 </li>
 </ul>
@@ -293,12 +293,12 @@ Find the slides of the lecture <a href="https://raw.githubusercontent.com/Beyond
 </div>
 </nav>
 
-<div id="outline-container-org35849c2" class="outline-2">
-<h2 id="org35849c2"><span class="section-number-2">1</span> Requirements and Setup</h2>
+<div id="outline-container-orgd372fcb" class="outline-2">
+<h2 id="orgd372fcb"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org9ccda50" class="outline-3">
-<h3 id="org9ccda50"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-org7c79e27" class="outline-3">
+<h3 id="org7c79e27"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
@@ -338,8 +338,8 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-org2d7a6c3" class="outline-3">
-<h3 id="org2d7a6c3"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
+<div id="outline-container-org1e9f220" class="outline-3">
+<h3 id="org1e9f220"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Here is the assignation list of Lab machine per team:
@@ -443,8 +443,8 @@ The rest of this lab proceeds on the Lab machine.
 </div>
 </div>
 
-<div id="outline-container-org21adf7d" class="outline-3">
-<h3 id="org21adf7d"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
+<div id="outline-container-orgee69680" class="outline-3">
+<h3 id="orgee69680"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Get the resources of the lab at <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz">https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz</a>.
@@ -470,8 +470,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-orgf1f503a" class="outline-3">
-<h3 id="orgf1f503a"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-org5cf3a39" class="outline-3">
+<h3 id="org5cf3a39"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -499,6 +499,26 @@ Find the snap command that lists microstack OpenStack services and
 there status? What is the purpose of each service?
 </p>
 
+<div class="solution">
+<pre class="example">
+snap services microstack
+</pre>
+
+
+<dl class="org-dl">
+<dt>glance-*</dt><dd>Glance to manage VM images: <code>openstack image --help</code>.</dd>
+<dt>horizon-*</dt><dd>OpenStack Web dashboard: <a href="http://&lt;ip-of-your-lab-machine&gt;">http://&lt;ip-of-your-lab-machine&gt;</a>.</dd>
+<dt>keystone-*</dt><dd>Keystone to manage authentication and authorization
+on OpenStack.</dd>
+<dt>neutron-*</dt><dd>Neutron to manage networks: <code>openstack network --help</code>.</dd>
+<dt>nova-*</dt><dd>Nova to manage VM: <code>openstack server --help</code>.</dd>
+<dt>memcached</dt><dd>Cache used by all OpenStack services</dd>
+<dt>mysqld</dt><dd>Database used by all OpenStack services</dd>
+<dt>rabbitmq-server</dt><dd>Communication bus used by all OpenStack services</dd>
+</dl>
+
+</div>
+
 </div>
 
 <p>
@@ -511,12 +531,12 @@ And finally, execute the <code>setup.sh</code> file.
 </div>
 </div>
 
-<div id="outline-container-org6f08dbb" class="outline-2">
+<div id="outline-container-org24ccc04" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-orgdb176fd" class="outline-3">
-<h3 id="orgdb176fd"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
+<div id="outline-container-orgeefd813" class="outline-3">
+<h3 id="orgeefd813"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -566,8 +586,8 @@ interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org41c4f92" class="outline-3">
-<h3 id="org41c4f92"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
+<div id="outline-container-org3b3ab6d" class="outline-3">
+<h3 id="org3b3ab6d"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 While Horizon is helpful to discover OpenStack features, this is not
@@ -725,9 +745,37 @@ ping "$ALLOCATED_FIP"
 
 <p>
 Does it work? Why? Hint: <a href="https://docs.openstack.org/neutron/latest/feature_classification/general_feature_support_matrix.html#operation_Security_Groups">OpenStack sets security groups by default</a>.
-See also, for examples of security groups
-<a href="https://docs.openstack.org/neutron/latest/admin/deploy-lb-selfservice.html#verify-network-operation">https://docs.openstack.org/neutron/latest/admin/deploy-lb-selfservice.html#verify-network-operation</a>.
+See also some examples of security groups rules in the <a href="https://docs.openstack.org/neutron/latest/admin/deploy-lb-selfservice.html#verify-network-operation">neutron doc</a>.
 </p>
+
+<div class="solution">
+<p>
+The IP comes from the network 10.20.20.0/24 served on the Lab machine
+by <code>br-ex</code>. Actually, Snap microstack <a href="https://github.com/CanonicalLtd/microstack/blob/130ff892b77b7a37268add7126216b31d3b5fd09/snap-overlay/bin/setup-br-ex">creates</a> a new virtual interface
+named <code>br-ex</code> to manage the external network.
+</p>
+
+<pre class="example">
+openstack subnet show external-subnet -c cidr -c allocation_pools
+ip a |fgrep -B 2 10.20.20
+</pre>
+
+
+<p>
+Regarding security rules, OpenStack is very conservative by default
+and prevents ingress and egress traffic. The following rules allow
+icmp packets and SSH connection on the VM.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #83a598;">SECGROUP_ID</span>=<span style="color: #d3869b;">`openstack security group list --project admin -f value -c ID`</span>
+openstack security group rule create $<span style="color: #83a598;">SECGROUP_ID</span> --proto icmp --remote-ip <span style="color: #d3869b;">0.0.0.0/0</span>
+openstack security group rule create $<span style="color: #83a598;">SECGROUP_ID</span> --proto tcp --remote-ip <span style="color: #d3869b;">0.0.0.0/0</span> <span style="color: #b8bb26;">\</span>
+  --dst-port <span style="color: #d3869b;">22</span>
+</pre>
+</div>
+
+</div>
 
 </div>
 
@@ -744,14 +792,71 @@ ssh -l cirros "$ALLOCATED_FIP"
 From the cirros, ping the outside world.
 </p>
 <pre class="example">
-ping 8.8.8.8 # Google, could you HERE me?!
+ping 8.8.8.8 # GOOGLE could you HERE me?!
 </pre>
 
 
 <p>
 Does it work? Why? Hint: do a <code>tcpdump -nni br-ex icmp</code> to understand
-how the packets flow. Idem on the NIC of your default route.
+how the packets flow. Idem on the NIC of your default route, e.g,
+<code>tcpdump -nni eno1 icmp</code>.
 </p>
+
+<div class="solution">
+<p>
+The global network traffic on <code>br-ex</code> is not supposed to go out. The
+<code>ip route</code> on the Lab machine lacks of an <i>explicit</i> route <code>8.8.8.0/9</code>
+that tells toward which NIC a packets is supposed to go for <code>8.8.8.8</code>
+destination. Thus a <i>Google ping from the VM</i> reaches the Lab machine
+but ends here (i.e., <code>tcpdump -nni br-ex icmp</code> shows <code>ping</code> packets,
+but not <code>tcpdump -nni eno1 icmp</code>).
+</p>
+
+<p>
+On the other hand, a <i>VM and Google ping from the Lab</i> machine both
+reaches their target (as in <code>ping "$ALLOCATED_FIP" -c 3</code> and <code>ping
+8.8.8.8 -c 3</code>). Therefore, the Lab machine may be configured as a
+<i>gateway</i> to Internet. The idea consists in saying that any traffic
+that doesn&rsquo;t match any NICs will go through the default Lab NIC (<code>ip
+route|fgrep default</code>, i.e., <code>eno1</code>).
+</p>
+
+<p>
+Configuring the Lab machine as Internet gateway requires to activate
+<i>Kernel IP Forwarding</i>.
+</p>
+<pre class="example">
+sysctl -w net.ipv4.ip_forward=1
+</pre>
+
+
+<p>
+From now, the Google ping from the VM reaches Internet via <code>eno1</code> (as
+seen by <code>tcpdump -nni eno1 icmp</code>). Unfortunately, it still doesn&rsquo;t do
+the trick, because the packet goes out with the <code>10.20.20.*</code> source
+address. For this reason, Google sees <code>ICMP echo request</code> incoming
+packets from <code>10.20.20.*</code> and hence, replies <code>ICMP echo reply</code> to
+<code>10.20.20.*</code> which makes sense nowhere except on the Lab machine.
+</p>
+
+<p>
+You have to change the source IP of out packet (<code>10.20.20.*</code>) to
+gateway&rsquo;s IP (i.e., Your lab machine). The <code>iptables</code> will then
+automatically change the replied packet&rsquo;s destination IP
+(<code>&lt;ip-of-your-Lab-machine&gt;</code>) to the original source IP (<code>10.20.20.*</code>).
+This process is called a SNAT and you can implement it with <code>iptables</code>
+(see,
+<a href="https://www.systutorials.com/1372/setting-up-gateway-using-iptables-and-route-on-linux/">https://www.systutorials.com/1372/setting-up-gateway-using-iptables-and-route-on-linux/</a>).
+</p>
+
+<p>
+Set up the SNAT with <code>iptables</code>.
+</p>
+<pre class="example">
+sudo iptables -t nat -A POSTROUTING ! -d 10.20.20.0/24 -o eno1 -j SNAT --to-source &lt;ip-of-your-Lab-machine&gt;
+</pre>
+
+</div>
 
 </div>
 
@@ -767,11 +872,31 @@ figure out how to:
 <li>Boot a new machine <code>cli-vm-clone</code> from the snapshot.</li>
 <li>Delete <code>cli-vm-clone</code>;</li>
 </ol>
+
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">1.</span>
+openstack server ssh cli-vm -l cirros
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">2.</span>
+openstack server suspend cli-vm; openstack server show cli-vm -c status
+openstack server resume cli-vm; openstack server show cli-vm -c status
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">3.</span>
+openstack server image create --name cli-vm-img cli-vm; openstack image list
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">4.</span>
+openstack server create --wait --flavor m1.tiny <span style="color: #b8bb26;">\</span>
+  --network test --image cli-vm-img <span style="color: #b8bb26;">\</span>
+  cli-vm-clone
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">5.</span>
+openstack server delete cli-vm-clone
+</pre>
+</div>
+
+</div>
 </div>
 </div>
 
-<div id="outline-container-org5993c93" class="outline-3">
-<h3 id="org5993c93"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
+<div id="outline-container-orga7ab5e3" class="outline-3">
+<h3 id="orga7ab5e3"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Any cirros VMs share the same credentials (i.e., <code>cirros</code>, <code>cubswin</code>)
@@ -847,8 +972,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-orgb9c6da3" class="outline-3">
-<h3 id="orgb9c6da3"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
+<div id="outline-container-org2397ef2" class="outline-3">
+<h3 id="org2397ef2"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Provisioning is the process that automatically installs software,
@@ -872,7 +997,7 @@ during the boot process.
 </p>
 </div>
 
-<div id="outline-container-orgf7273bd" class="outline-4">
+<div id="outline-container-orgfffa175" class="outline-4">
 <h4 id="sec:debian9-ftw"><span class="section-number-4">2.4.1</span> Debian 9 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian9-ftw">
 <p>
@@ -924,8 +1049,8 @@ And import it into Glance. Use <code>openstack image --help</code>
 </div>
 </div>
 
-<div id="outline-container-org28a4a3a" class="outline-4">
-<h4 id="org28a4a3a"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
+<div id="outline-container-orga6bae0d" class="outline-4">
+<h4 id="orga6bae0d"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 To tell Cloudinit to load and execute a specific script at boot time,
@@ -936,13 +1061,13 @@ argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-9</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#orgc59b69a">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org77653b9">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="orgc59b69a"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Fix DNS resolution</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org77653b9"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Fix DNS resolution</span>
 <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">""</span> &gt;&gt; /etc/resolv.conf
 <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
 
@@ -1013,7 +1138,7 @@ is a bit annoying.
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt-19]">open an issue</a></p>
-<p class="date">Last modification: 2019-02-25 Mon 11:16</p>
+<p class="date">Last modification: 2019-02-25 Mon 15:30</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.2) – theme by
  <a href="http://gongzhitaao.org/orgcss">http://gongzhitaao.org/orgcss</a></p>
