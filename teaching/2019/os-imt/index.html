@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-02-25 Mon 15:30 -->
+<!-- 2019-02-26 Tue 11:53 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -268,37 +268,38 @@ Find the slides of the lecture <a href="https://raw.githubusercontent.com/Beyond
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd372fcb">1. Requirements and Setup</a>
+<li><a href="#org1993b71">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org7c79e27">1.1. Environment</a></li>
-<li><a href="#org1e9f220">1.2. Access the Lab machine</a></li>
-<li><a href="#orgee69680">1.3. Resources of the Lab</a></li>
-<li><a href="#org5cf3a39">1.4. Setup OpenStack</a></li>
+<li><a href="#orgb60cbca">1.1. Environment</a></li>
+<li><a href="#sec:assign-lab">1.2. Access the Lab machine</a></li>
+<li><a href="#orge14aab0">1.3. Resources of the Lab</a></li>
+<li><a href="#orgbe3743e">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
-<li><a href="#sec:play-with-os">2. Play with OpenStack</a>
+<li><a href="#sec:play-with-os">2. Play with OpenStack (as an Admin)</a>
 <ul>
-<li><a href="#orgeefd813">2.1. OpenStack Horizon Dashboard</a></li>
-<li><a href="#org3b3ab6d">2.2. Unleash the Operator in You</a></li>
-<li><a href="#orga7ab5e3">2.3. In Encryption We Trust</a></li>
-<li><a href="#org2397ef2">2.4. The Art of Provisioning a VM</a>
+<li><a href="#org3f5acfe">2.1. OpenStack Horizon Dashboard</a></li>
+<li><a href="#orgca4f512">2.2. Unleash the Operator in You</a></li>
+<li><a href="#orgaa97158">2.3. In Encryption We Trust</a></li>
+<li><a href="#orgee14199">2.4. The Art of Provisioning a VM</a>
 <ul>
 <li><a href="#sec:debian9-ftw">2.4.1. Debian 9 FTW</a></li>
-<li><a href="#orga6bae0d">2.4.2. Cloudinit in Action</a></li>
+<li><a href="#orgdbf9a67">2.4.2. Cloudinit in Action</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#org90dafdd">3. Deploy a Wordpress as a Service (as a DevOps)</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgd372fcb" class="outline-2">
-<h2 id="orgd372fcb"><span class="section-number-2">1</span> Requirements and Setup</h2>
+<div id="outline-container-org1993b71" class="outline-2">
+<h2 id="org1993b71"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org7c79e27" class="outline-3">
-<h3 id="org7c79e27"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-orgb60cbca" class="outline-3">
+<h3 id="orgb60cbca"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
@@ -338,9 +339,9 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-org1e9f220" class="outline-3">
-<h3 id="org1e9f220"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org8170f43" class="outline-3">
+<h3 id="sec:assign-lab"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
+<div class="outline-text-3" id="text-sec:assign-lab">
 <p>
 Here is the assignation list of Lab machine per team:
 </p>
@@ -443,8 +444,8 @@ The rest of this lab proceeds on the Lab machine.
 </div>
 </div>
 
-<div id="outline-container-orgee69680" class="outline-3">
-<h3 id="orgee69680"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
+<div id="outline-container-orge14aab0" class="outline-3">
+<h3 id="orge14aab0"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Get the resources of the lab at <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz">https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/tp.tar.gz</a>.
@@ -470,8 +471,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-org5cf3a39" class="outline-3">
-<h3 id="org5cf3a39"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-orgbe3743e" class="outline-3">
+<h3 id="orgbe3743e"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -531,12 +532,12 @@ And finally, execute the <code>setup.sh</code> file.
 </div>
 </div>
 
-<div id="outline-container-org24ccc04" class="outline-2">
-<h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack</h2>
+<div id="outline-container-org389bb71" class="outline-2">
+<h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack (as an Admin)</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-orgeefd813" class="outline-3">
-<h3 id="orgeefd813"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
+<div id="outline-container-org3f5acfe" class="outline-3">
+<h3 id="org3f5acfe"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -586,8 +587,8 @@ interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org3b3ab6d" class="outline-3">
-<h3 id="org3b3ab6d"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
+<div id="outline-container-orgca4f512" class="outline-3">
+<h3 id="orgca4f512"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 While Horizon is helpful to discover OpenStack features, this is not
@@ -895,8 +896,8 @@ openstack server delete cli-vm-clone
 </div>
 </div>
 
-<div id="outline-container-orga7ab5e3" class="outline-3">
-<h3 id="orga7ab5e3"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
+<div id="outline-container-orgaa97158" class="outline-3">
+<h3 id="orgaa97158"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Any cirros VMs share the same credentials (i.e., <code>cirros</code>, <code>cubswin</code>)
@@ -953,16 +954,16 @@ Now you can access your VM using SSH without filling credentials.
 Or directly with the <code>ssh</code> command
 </p>
 <pre class="example">
-ssh -i ./admin.pem cirros@$(openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.+ (10\.20\.20\.[0-9]+).*/\1/g')
+ssh -i ./admin.pem -l cirros $(openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.+ (10\.20\.20\.[0-9]+).*/\1/g')
 </pre>
 
 
-<div class="NOTE">
+<div class="note">
 <p>
-A regular <code>ssh</code> command looks like <code>ssh -i &lt;identity-file&gt;
-&lt;name&gt;@&lt;server-ip&gt;</code>. The following OpenStack command followed by the
-<code>sed</code> returns the floating IP of <code>cli-vm-adminkey</code>. You may have to
-adapt it a bit according to your network cidr.
+A regular <code>ssh</code> command looks like <code>ssh -i &lt;identity-file&gt; -l &lt;name&gt;
+&lt;server-ip&gt;</code>. The following OpenStack command followed by the <code>sed</code>
+returns the floating IP of <code>cli-vm-adminkey</code>. You may have to adapt it
+a bit according to your network cidr.
 </p>
 <pre class="example">
 openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.+ (10\.20\.20\.[0-9]+).*/\1/g'
@@ -972,8 +973,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-org2397ef2" class="outline-3">
-<h3 id="org2397ef2"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
+<div id="outline-container-orgee14199" class="outline-3">
+<h3 id="orgee14199"><span class="section-number-3">2.4</span> The Art of Provisioning a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Provisioning is the process that automatically installs software,
@@ -997,14 +998,14 @@ during the boot process.
 </p>
 </div>
 
-<div id="outline-container-orgfffa175" class="outline-4">
+<div id="outline-container-org076d53c" class="outline-4">
 <h4 id="sec:debian9-ftw"><span class="section-number-4">2.4.1</span> Debian 9 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian9-ftw">
 <p>
 When it comes the time to deal with real applications, we cannot use
 cirros VMs anymore. A Cirros VM is good for testing because it starts
 fast and has a small memory footprint. However, do not expect to
-launch MySQL or even <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> on a cirros.
+launch <a href="https://en.wikipedia.org/wiki/MariaDB">MariaDB</a> or even <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> on a cirros.
 </p>
 
 <p>
@@ -1013,26 +1014,23 @@ Debian9 takes a lot more of resources to run. For this reason, you may
 want to release all your resources before going further.
 </p>
 
-<div class="do">
-<p>
-Make one single bash command that deletes currently running VMs. Do
-the same for floating IPs.
-</p>
-
-</div>
-
-<p>
-Then, create a new flavor with 5 Go of Disk.
-</p>
 <div class="org-src-container">
-<pre class="src src-bash">openstack flavor create --ram <span style="color: #d3869b;">2048</span> <span style="color: #b8bb26;">\</span>
-  --disk <span style="color: #d3869b;">5</span> --vcpus <span style="color: #d3869b;">1</span> --swap <span style="color: #d3869b;">1024</span> <span style="color: #b8bb26;">\</span>
-  --public m1.mini
+<pre class="src src-bash" id="orgee164db"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Delete VMs</span>
+<span style="color: #fb4933;">for</span> vm<span style="color: #fb4933;"> in</span> $<span style="color: #458588;">(</span>openstack server list -c Name -f value<span style="color: #458588;">)</span>; <span style="color: #fb4933;">do</span> <span style="color: #b8bb26;">\</span>
+  <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">"Deleting ${vm}..."</span>; <span style="color: #b8bb26;">\</span>
+  openstack server delete <span style="color: #b8bb26;">"${vm}"</span>; <span style="color: #b8bb26;">\</span>
+<span style="color: #fb4933;">done</span>
+
+<span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Releasing floating IPs</span>
+<span style="color: #fb4933;">for</span> ip<span style="color: #fb4933;"> in</span> $<span style="color: #458588;">(</span>openstack floating ip list -c <span style="color: #b8bb26;">"Floating IP Address"</span> -f value<span style="color: #458588;">)</span>; <span style="color: #fb4933;">do</span> <span style="color: #b8bb26;">\</span>
+  <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">"Releasing ${ip}..."</span>; <span style="color: #b8bb26;">\</span>
+  openstack floating ip delete <span style="color: #b8bb26;">"${ip}"</span>; <span style="color: #b8bb26;">\</span>
+<span style="color: #fb4933;">done</span>
 </pre>
 </div>
 
 <p>
-Download the Debian9 image with support of Cloudinit.
+Then, download the Debian9 image with support of Cloudinit.
 </p>
 <div class="org-src-container">
 <pre class="src src-bash">curl -L -o /tmp/debian-9.qcow2 <span style="color: #b8bb26;">\</span>
@@ -1042,15 +1040,23 @@ Download the Debian9 image with support of Cloudinit.
 
 <div class="do">
 <p>
-And import it into Glance. Use <code>openstack image --help</code>
+Import the image into Glance; name it <code>debian-9</code>. Use <code>openstack image
+create --help</code> for creation arguments. Find values example with
+<code>openstack image show cirros</code>.
+</p>
+
+<p>
+And, create a new <code>m1.mini</code> flavor with 5 Go of Disk, 2 Go of RAM, 2
+VCPU and 1 Go of swap. Use <code>openstack flavor create --help</code> for
+creation arguments.
 </p>
 
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga6bae0d" class="outline-4">
-<h4 id="orga6bae0d"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
+<div id="outline-container-orgdbf9a67" class="outline-4">
+<h4 id="orgdbf9a67"><span class="section-number-4">2.4.2</span> Cloudinit in Action</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 To tell Cloudinit to load and execute a specific script at boot time,
@@ -1061,13 +1067,13 @@ argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-9</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org77653b9">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org3bc4fca">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org77653b9"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Fix DNS resolution</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Cloudinit script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org3bc4fca"><span style="color: #7c6f64;"># </span><span style="color: #7c6f64;">Fix DNS resolution</span>
 <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">""</span> &gt;&gt; /etc/resolv.conf
 <span style="color: #fe8019;">echo</span> <span style="color: #b8bb26;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
 
@@ -1086,8 +1092,8 @@ watch openstack console log show --lines=20 art-vm
 
 
 <p>
-Tells when the VM has finished to boot based on the output of <code>console
-log</code>.
+Could you notice <i>when</i> the VM has finished to boot based on the
+<code>console log</code> output?
 </p>
 
 </div>
@@ -1107,7 +1113,7 @@ Hence, you can jump on the VM and call the <code>figlet</code> and <code>lolcat<
 software.
 </p>
 <pre class="example">
-~$ openstack server ssh art-vm \
+openstack server ssh art-vm \
   --login debian \
   --identity ./admin.pem
 
@@ -1118,6 +1124,68 @@ Are you sure you want to continue connecting (yes/no)? yes
 debian@art-vm:~$ figlet "The Art of Provisionning a VM" | lolcat
 </pre>
 </div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org90dafdd" class="outline-2">
+<h2 id="org90dafdd"><span class="section-number-2">3</span> Deploy a Wordpress as a Service (as a DevOps)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+In the previous sessions, we saw how to boot a VM with OpenStack, and
+execute a post-installation script using the <code>user-data</code> mechanism.
+Such mechanism can help us to install software but it is not enough to
+deploy a real Cloud application. Cloud applications are composed of
+multiple services that collaborate to deliver the application. Each
+service is a charge of an aspect of the application. This separation
+of concerns brings flexibility. If a single service is overloaded, it
+is common to deploy new units of this service to balance the load.
+</p>
+
+<p>
+Let&rsquo;s take a simple example: <a href="https://wordpress.org/">WordPress</a>! WordPress is a very popular
+content management system (CMS) in use on the Web. People use it to
+create websites, blogs or applications. It is open-source, written in
+PHP and composed of two elements: a Web server (Apache) and database
+(MariaDB). Apache serves the PHP code of WordPress and stores its
+information in the database.
+</p>
+
+<p>
+Automation is a very important concept for DeVops. Imagine you have
+your own datacenter and want to exploit it by renting WordPress
+instances to your customers. Each time a client rents an instance, you
+have to manually deploy it. Wouldn&rsquo;t it be more convenient to automate
+all the operations? 😎
+</p>
+
+<div class="do">
+<p>
+As the DevOps of OMH &#x2013; Online Mine Hosting &#x2013; your job is to automatize
+the deployment of WordPress on your OpenStack. To do so, you have to
+make a bash script that:
+</p>
+
+<ol class="org-ol">
+<li>Starts <code>wordpress-db</code>: a VM that contains the MariaDB database for
+WordPress.</li>
+<li>Waits until its final deployment (the database is running)</li>
+<li>Starts <code>wordpress-app</code>: a VM that contains a web server and serves
+the Wordpress CMS.</li>
+<li>Finally, connects to the WordPress website and initializes a new
+WordPress project named <code>os-imt</code>.</li>
+</ol>
+
+<p>
+The <code>rsc</code> directory provides bash scripts to deploy the MariaDB
+database and web server of WordPress. Review it before going further
+(spot the <b>TODO</b>).
+</p>
+
+<p>
+Also, remind to <a href="#sec:debian9-ftw">clean your environment</a>.
+</p>
+
 </div>
 </div>
 </div>
@@ -1138,7 +1206,7 @@ is a bit annoying.
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt-19]">open an issue</a></p>
-<p class="date">Last modification: 2019-02-25 Mon 15:30</p>
+<p class="date">Last modification: 2019-02-26 Tue 11:51</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="https://orgmode.org">Org</a> mode 9.2) – theme by
  <a href="http://gongzhitaao.org/orgcss">http://gongzhitaao.org/orgcss</a></p>
