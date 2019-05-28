@@ -1,6 +1,9 @@
+@import 'fonts.css';
+
 html {
-    font-family: sans-serif;
-    line-height: 1.15;
+    font-family: "Fira Sans", sans-serif;
+    line-height: 1.35;
+    font-size: 16px;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -595,6 +598,14 @@ textarea {
 .org-regexp-grouping-construct {
     font-weight: 700
 }
+a.org-ref-reference:before {
+    content: "[";
+    color: #333;
+}
+a.org-ref-reference:after {
+    content: "]";
+    color: #333;
+}
 .org-region {
     background-color: gtk_selection_bg_color
 }
@@ -649,7 +660,6 @@ textarea {
 body {
     width: 95%;
     margin: 2%;
-    font: normal normal normal 16px/1.6em 'Fira Sans', sans-serif;
     color: #333
 }
 @media (min-width: 769px) {
@@ -680,6 +690,10 @@ body {
     margin: auto;
     width: 80%;
     font-style: italic
+}
+.abstract i {
+    font-style: normal;
+    font-weight: 300;
 }
 .abstract p:last-of-type:before {
     content: "    ";
@@ -1034,65 +1048,4 @@ pre.src-makefile:before {
     h4,h5,h6 {
         font-size: 1.1em;
     }
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* Local webfont support */
-/* See, https://google-webfonts-helper.herokuapp.com */
-
-
-/* fira-sans-300 - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 300;
-  src: url('fonts/fira-sans-v8-latin-300.eot'); /* IE9 Compat Modes */
-  src: local('Fira Sans Light'), local('FiraSans-Light'),
-       url('fonts/fira-sans-v8-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/fira-sans-v8-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/fira-sans-v8-latin-300.woff') format('woff'), /* Modern Browsers */
-       url('fonts/fira-sans-v8-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('fonts/fira-sans-v8-latin-300.svg#FiraSans') format('svg'); /* Legacy iOS */
-}
-
-/* fira-sans-300italic - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: italic;
-  font-weight: 300;
-  src: url('fonts/fira-sans-v8-latin-300italic.eot'); /* IE9 Compat Modes */
-  src: local('Fira Sans Light Italic'), local('FiraSans-LightItalic'),
-       url('fonts/fira-sans-v8-latin-300italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/fira-sans-v8-latin-300italic.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/fira-sans-v8-latin-300italic.woff') format('woff'), /* Modern Browsers */
-       url('fonts/fira-sans-v8-latin-300italic.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('fonts/fira-sans-v8-latin-300italic.svg#FiraSans') format('svg'); /* Legacy iOS */
-}
-
-/* fira-sans-regular - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('fonts/fira-sans-v8-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Fira Sans Regular'), local('FiraSans-Regular'),
-       url('fonts/fira-sans-v8-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/fira-sans-v8-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/fira-sans-v8-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('fonts/fira-sans-v8-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('fonts/fira-sans-v8-latin-regular.svg#FiraSans') format('svg'); /* Legacy iOS */
-}
-
-/* fira-sans-500 - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 500;
-  src: url('fonts/fira-sans-v8-latin-500.eot'); /* IE9 Compat Modes */
-  src: local('Fira Sans Medium'), local('FiraSans-Medium'),
-       url('fonts/fira-sans-v8-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/fira-sans-v8-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
-       url('fonts/fira-sans-v8-latin-500.woff') format('woff'), /* Modern Browsers */
-       url('fonts/fira-sans-v8-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('fonts/fira-sans-v8-latin-500.svg#FiraSans') format('svg'); /* Legacy iOS */
 }
