@@ -348,35 +348,42 @@ all sharing the same interface.
 </p>
 
 <p>
-Interestingly &#x2013; here is the firs insight of this manifest &#x2013;, these
+Interestingly &#x2013; here is the firs insight of this manifest &#x2013;, the
 consequences of having independent instances appear to be the
-significant aspects of a distributed system&nbsp;<a class='org-ref-reference' href="#TS07">TS07</a>. Even though the
-system has been develop as a centralized one. From a global
-perspective now, only the <i>collaboration between instances</i> is missing
-to build that distributed system. Something à la peer-to-peer, where
-two instances collaborate so the first instance benefits of resources
-of the second. Something similar to the Figure&nbsp;<a href="#org331b6ac">2</a>,
+significant aspects of a distributed system&nbsp;<a class='org-ref-reference' href="#TS07">TS07</a>. And this, even
+though the system has been develop as a centralized one. Hence,
+approaching the benefits of a distributed system from the simplicity
+of a centralized one. From the global perspective now, only the
+<i>collaboration between instances</i> is missing to build that distributed
+system. Something à la peer-to-peer, where two instances collaborate
+so the first instance benefits of resources of the second.
+</p>
+
+<p>
+More interestingly &#x2013; and here is the second insight of this manifest
+&#x2013;, we can have an <i>inter-service collaboration for free</i> by modifying
+the service composition. Concretely, a swap of some services of the
+workflow with their counterpart in another instance to span the
+workflow over multiple instances. Thus, implementing the
+collaboration. Something similar to the Figure&nbsp;<a href="#org56a4e8e">2</a>,
 where the operator makes a collaboration between the compute service
 in Paris DC and the image service in Berlin DC. Thus, the boot of a VM
 in Paris benefits of an image in the Berlin DC (step&nbsp;2).
 </p>
 
 <p>
-More interestingly &#x2013; and here is the second insight of this manifest
-&#x2013;, this example shows that we can have an <i>inter-service
-collaboration for free</i> by modifying the service composition.
-Concretely, a swap of some services of the workflow with their
-counterpart in another instance to span the workflow over multiple
-instances. Thus, implementing the collaboration. A swap that comes for
-free because services share the same interface cross instances.
+The previous swap of services comes for free because services share
+the same interface cross instances. Hence, Freeing the developer of
+explicitly implementing the collaboration.
 </p>
 
 
-<figure id="org331b6ac">
+<figure id="org56a4e8e">
 <img src="figures/os-example-recompo.png" alt="os-example-recompo.png">
 
 <figcaption><span class="figure-number">Figure 2: </span>Boot workflow of a VM in the Paris DC with a Debian image from the Berlin DC</figcaption>
 </figure>
+
 </div>
 </div>
 <div id="footnotes">
