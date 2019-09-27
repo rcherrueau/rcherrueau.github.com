@@ -598,6 +598,9 @@ textarea {
 .org-regexp-grouping-construct {
     font-weight: 700
 }
+h1.org-ref-bib-h1 {
+    display: none;
+}
 a.org-ref-reference:before {
     content: "[";
     color: #333;
@@ -676,7 +679,8 @@ body {
 }
 .title {
     margin: auto;
-    color: #000
+    color: #000;
+    line-height: 1.15em;
 }
 .subtitle,
 .title {
@@ -684,7 +688,8 @@ body {
 }
 .subtitle {
     font-size: medium;
-    font-weight: 700
+    font-weight: 700;
+    margin-top: 1em;
 }
 .abstract {
     margin: auto;
@@ -732,8 +737,15 @@ a:hover {
 }
 figure {
     padding: 0;
-    margin: 0;
+    margin: 1em 0;
     text-align: center
+}
+figcaption {
+    padding-top: 5px;
+}
+figcaption > .subcaption {
+    font-size: 0.7rem;
+    text-align: left;
 }
 img {
     max-width: 100%;
@@ -843,8 +855,15 @@ kbd {
     color: orange;
     font-family: Lucida Console, monospace
 }
+#table-of-contents a {
+    color: #333;
+}
+#text-table-of-contents > ul {
+    padding-left: 20px;
+}
 #table-of-contents li {
-    clear: both
+    clear: both;
+    margin-top: 0.2rem;
 }
 .tag {
     font-family: Lucida Console, monospace;
@@ -984,30 +1003,35 @@ pre.src-makefile:before {
 }
 
 .note, .do, .solution {
-    padding-left: 2em;
+    padding-left: 1em;
     padding-top: 1ex;
     padding-bottom: 1ex;
     position: relative;
-    background-color: #eee8d5;
-    border-left: 3px solid #b58900;
+    /* background-color: #eee8d5; */
+    border-left-style: solid;
+    border-left-width: thick;
+}
+
+.note {
+    border-left-color:  #b58900;
+}
+
+.do {
+    border-left-color: #cb4b16;
+}
+
+.solution {
+    border-left-color: #268bd2;
 }
 
 .tag span.note, .tag span.do, .tag span.solution {
     padding-left: 5ex;
 }
 
-.do {
-    border-left: 3px solid #cb4b16;
-}
-
-.solution {
-    border-left: 3px solid #268bd2;
-}
-
 .note:before, .do:before, .solution:before {
     display: block;
-    position: absolute;
-    left: 1ex;
+    /* position: absolute; */
+    /* left: 1ex; */
     border-radius: 0.8em;
     -moz-border-radius: 0.8em;
     -webkit-border-radius: 0.8em;
@@ -1018,6 +1042,9 @@ pre.src-makefile:before {
     margin-right: 5px;
     text-align: center;
     width: 1.6em;
+}
+
+.note:before {
     content: "ℹ";
     background: #b58900;
 }
