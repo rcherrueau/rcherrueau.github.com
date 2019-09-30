@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-30 Mon 00:19 -->
+<!-- 2019-09-30 Mon 16:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -270,37 +270,37 @@ Find the slides of the lecture <a href="https://raw.githubusercontent.com/Beyond
 <ul>
 <li><a href="#sec:req-setup">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org98d096e">1.1. Environment</a></li>
+<li><a href="#org89afd8a">1.1. Environment</a></li>
 <li><a href="#sec:rscs-lab">1.2. Resources of the Lab</a></li>
-<li><a href="#org13f6293">1.3. Setup OpenStack</a></li>
+<li><a href="#orgd920e8f">1.3. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack (as an Admin)</a>
 <ul>
-<li><a href="#org08fe0c9">2.1. OpenStack Horizon Dashboard</a></li>
+<li><a href="#orgf965266">2.1. OpenStack Horizon Dashboard</a></li>
 <li><a href="#sec:os-cli">2.2. Unleash the Operator in You</a></li>
 <li><a href="#sec:enc-trust">2.3. In Encryption We Trust</a></li>
-<li><a href="#orgc0d4ba7">2.4. The Art of Contextualizing a VM</a></li>
-<li><a href="#org97154b9">2.5. Run VMs with KVM</a></li>
+<li><a href="#org96b2ed6">2.4. The Art of Contextualizing a VM</a></li>
+<li><a href="#orgbf37096">2.5. Run VMs with KVM</a></li>
 </ul>
 </li>
-<li><a href="#org3c5e0d9">3. Deploy a WordPress as a Service (as a DevOps)</a></li>
-<li><a href="#org123743a">4. Appendix</a>
+<li><a href="#org6524fbe">3. Deploy a WordPress as a Service (as a DevOps)</a></li>
+<li><a href="#org64262ee">4. Appendix</a>
 <ul>
-<li><a href="#org44b1aaf">4.1. Install MariaDB on Debian 9</a></li>
-<li><a href="#orgd622c50">4.2. Install Wordpress application on Debian 9</a></li>
+<li><a href="#org1705dfc">4.1. Install MariaDB on Debian 9</a></li>
+<li><a href="#org0c0a097">4.2. Install Wordpress application on Debian 9</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org6f47dd1" class="outline-2">
+<div id="outline-container-orgcd3628f" class="outline-2">
 <h2 id="sec:req-setup"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-sec:req-setup">
 </div>
-<div id="outline-container-org98d096e" class="outline-3">
-<h3 id="org98d096e"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-org89afd8a" class="outline-3">
+<h3 id="org89afd8a"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To follow the lab you&rsquo;ll need a Linux (prefer Ubuntu 18.04) with 8 Go
@@ -337,7 +337,7 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-org2100231" class="outline-3">
+<div id="outline-container-org4a5367e" class="outline-3">
 <h3 id="sec:rscs-lab"><span class="section-number-3">1.2</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-sec:rscs-lab">
 <p>
@@ -364,8 +364,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-org13f6293" class="outline-3">
-<h3 id="org13f6293"><span class="section-number-3">1.3</span> Setup OpenStack</h3>
+<div id="outline-container-orgd920e8f" class="outline-3">
+<h3 id="orgd920e8f"><span class="section-number-3">1.3</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Install snap.
@@ -394,6 +394,26 @@ Find the snap command that lists microstack OpenStack services and
 there status? What is the purpose of each service?
 </p>
 
+<div class="solution">
+<pre class="example">
+snap services microstack
+</pre>
+
+
+<dl class="org-dl">
+<dt>glance-*</dt><dd>Glance to manage VM images: <code>openstack image --help</code>.</dd>
+<dt>horizon-*</dt><dd>OpenStack Web dashboard: <a href="http://&lt;ip-of-your-lab-machine&gt;">http://&lt;ip-of-your-lab-machine&gt;</a>.</dd>
+<dt>keystone-*</dt><dd>Keystone to manage authentication and authorization
+on OpenStack.</dd>
+<dt>neutron-*</dt><dd>Neutron to manage networks: <code>openstack network --help</code>.</dd>
+<dt>nova-*</dt><dd>Nova to manage VM: <code>openstack server --help</code>.</dd>
+<dt>memcached</dt><dd>Cache used by all OpenStack services</dd>
+<dt>mysqld</dt><dd>Database used by all OpenStack services</dd>
+<dt>rabbitmq-server</dt><dd>Communication bus used by all OpenStack services</dd>
+</dl>
+
+</div>
+
 </div>
 
 <p>
@@ -406,12 +426,12 @@ sudo ./setup.sh
 </div>
 </div>
 
-<div id="outline-container-orgbf418b0" class="outline-2">
+<div id="outline-container-org47a2b0f" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack (as an Admin)</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-org08fe0c9" class="outline-3">
-<h3 id="org08fe0c9"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
+<div id="outline-container-orgf965266" class="outline-3">
+<h3 id="orgf965266"><span class="section-number-3">2.1</span> OpenStack Horizon Dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -461,7 +481,7 @@ interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org307c660" class="outline-3">
+<div id="outline-container-org8b40403" class="outline-3">
 <h3 id="sec:os-cli"><span class="section-number-3">2.2</span> Unleash the Operator in You</h3>
 <div class="outline-text-3" id="text-sec:os-cli">
 <p>
@@ -532,6 +552,17 @@ most often used commands to operate your Cloud:
 Using all these commands, you can use the CLI to start a new tiny
 cirros VM called <code>cli-vm</code>.
 </p>
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create <span style="color: #CC9393;">\</span>
+  --image cirros <span style="color: #CC9393;">\</span>
+  --flavor m1.tiny <span style="color: #CC9393;">\</span>
+  --network test <span style="color: #CC9393;">\</span>
+  cli-vm
+</pre>
+</div>
+
+</div>
 
 </div>
 
@@ -617,10 +648,50 @@ Find the command that list the security group rules of the <code>admin</code>
 project. # (i.e., <code>openstack project show admin</code>).
 </p>
 
+<div class="solution">
+<p>
+Regarding security rules, OpenStack is very conservative by default
+and prevents ingress and egress traffic. Spot the <code>None</code> values at <code>IP
+Protocol</code> and <code>IP Range</code> in the result table of the command that list
+security group rules of the admin project: These values should be
+interpreted as <i>&ldquo;<code>None</code> protocol in <code>None</code> network is allowed&rdquo;</i>.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ <span style="color: #DFAF8F;">SECGROUP_ID</span>=<span style="color: #CC9393;">`openstack security group list --project admin -f value -c ID`</span>
+$ openstack security group rule list -c ID -c <span style="color: #CC9393;">"IP Protocol"</span> -c <span style="color: #CC9393;">"IP Range"</span> $<span style="color: #DFAF8F;">SECGROUP_ID</span>
+
++--------------------------------------+-------------+-----------+
+| ID                                   | IP Protocol | IP Range  |
++--------------------------------------+-------------+-----------+
+| <span style="color: #BFEBBF;">1b892ef7-35a5-43ca-93e8-8748945f0ee8</span> | None        | None      |
+| <span style="color: #BFEBBF;">1ea8cc81-8aa6-4e11-a759-606ba2e16247</span> | None        | None      |
+| <span style="color: #BFEBBF;">7439b698-6e10-45aa-877f-075e49769dd0</span> | None        | None      |
+| <span style="color: #BFEBBF;">9177e69a-ab91-4016-b8a7-b98e04588eee</span> | None        | None      |
++--------------------------------------+-------------+-----------+
+</pre>
+</div>
+
+</div>
+
 <p>
 Then, make it work. See examples of security groups rules in the <a href="https://docs.openstack.org/neutron/latest/admin/deploy-lb-selfservice.html#verify-network-operation">neutron
 doc</a>.
 </p>
+
+<div class="solution">
+<p>
+To make it work, you have to setup new rules in the security group of
+the <code>admin</code> project. The following rules allow ICMP packets (for ping)
+and TCP on port 22 (for SSH connection) on the VM.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack security group rule create $<span style="color: #DFAF8F;">SECGROUP_ID</span> --proto icmp --remote-ip <span style="color: #BFEBBF;">0.0.0.0/0</span>
+openstack security group rule create $<span style="color: #DFAF8F;">SECGROUP_ID</span> --proto tcp --remote-ip <span style="color: #BFEBBF;">0.0.0.0/0</span> <span style="color: #CC9393;">\</span>
+  --dst-port <span style="color: #BFEBBF;">22</span>
+</pre>
+</div>
+
+</div>
 
 </div>
 
@@ -646,28 +717,144 @@ Does it work? Why? To help you in your diagnosis, here is a list of
 hints to check:
 </p>
 <ul class="org-ul">
-<li>Ping Google and the VM from the Lab machine. Does it work?</li>
-</ul>
+<li><p>
+Ping Google and the VM from the Lab machine. Does it work?
+</p>
+<div class="solution">
+<pre class="example">
+ping -c 2 8.8.8.8; ping -c 2 $ALLOCATED_FIP
+</pre>
 
-<ul class="org-ul">
-<li>Note the IP address of <code>$ALLOCATED_FIP</code>. From which network this IP
-comes? Which NIC serves that network on the Lab machine?</li>
-</ul>
+<p>
+The ping from the Lab machine works for both Google and the VM.
+Thus, the Lab machine <i>could be a gateway</i> between VMs and the
+Internet.
+</p>
 
-<ul class="org-ul">
-<li>Do a <code>tcpdump</code> on that NIC. Do you see the ICMP packets from
-<code>$ALLOCATED_FIP</code> that flow over that NIC?</li>
-</ul>
+</div></li>
 
-<ul class="org-ul">
-<li>Find the route that forward packets to the Internet on Lab machine.
+<li><p>
+Note the IP address of <code>$ALLOCATED_FIP</code>. From which network this IP
+comes? Which NIC serves that network on the Lab machine?
+</p>
+<div class="solution">
+<pre class="example">
+echo "$ALLOCATED_FIP"
+openstack subnet show external-subnet -c cidr -c allocation_pools
+ip address | fgrep -B 2 10.20.20
+</pre>
+
+<p>
+The IP of the VM comes from the network 10.20.20.0/24, which is
+served on the Lab machine by <code>br-ex</code>.
+</p>
+
+</div></li>
+
+<li><p>
+Do a <code>tcpdump</code> on that NIC. Do you see the ICMP packets from
+<code>$ALLOCATED_FIP</code> that flow over that NIC?
+</p>
+<div class="solution">
+<pre class="example">
+sudo tcpdump -nni br-ex icmp
+</pre>
+
+<p>
+The <code>tcpdump</code> on <code>br-ex</code> shows ping <code>echo request</code> packets, but no
+<code>echo reply</code>. So the packets are lost somewhere&#x2026;. In other words,
+the Lab machine does not play its role of gateway between VMs and
+the Internet.
+</p>
+
+</div></li>
+
+<li><p>
+Find the route that forward packets to the Internet on Lab machine.
 Do a <code>tcpdump</code> on the NIC that servers that route. Do you see the
-ICMP packets flow over that NIC?</li>
-</ul>
+ICMP packets flow over that NIC?
+</p>
+<div class="solution">
+<p>
+To ensure the Lab machine does not play its role of gateway between
+VMs and the Internet, let&rsquo;s find the route that forward Google
+packets out of the Lab machine.
+</p>
+<pre class="example">
+$ ip route
 
-<ul class="org-ul">
-<li>After making the packets flow on the second NIC, is everything OK
-with the IP address of the source in the <code>tcpdump</code> on <code>eth0</code>?</li>
+default via 192.168.121.1 dev eth0 proto dhcp src 192.168.121.77 metric 100
+10.20.20.0/24 dev br-ex proto kernel scope link src 10.20.20.1
+192.168.121.0/24 dev eth0 proto kernel scope link src 192.168.121.77
+192.168.121.1 dev eth0 proto dhcp scope link src 192.168.121.77 metric 100
+</pre>
+
+<p>
+The command does not show up an <i>explicit</i> route for <code>8.8.8.0/9</code>
+packets. This means that packets are supposed to flow through the
+<i>default</i> route served by the <code>eth0</code> NIC on my machine.
+</p>
+
+<p>
+Next, do a <code>tcpdump</code> on that NIC to see if the ICMP packet go
+through it.
+</p>
+<pre class="example">
+sudo tcpdump -nni eth0 icmp
+</pre>
+
+<p>
+Nothing appears. So ICMP packet are lost somewhere between <code>br-ex</code>
+and <code>eth0</code>, despite the first hint.
+</p>
+
+<p>
+To put it differently, the Lab machine does not forward the incoming
+traffic on <code>br-ex</code> to <code>eth0</code>. And this is normal, there is <a href="https://serverfault.com/questions/749682/ip-forwarding-on-linux-anything-important-to-make-sure-to-do-or-know">no reason</a>
+for Linux to enable this by default. However in our case, we have to
+activate it. This is called <i>Kernel IP Forwarding</i>, and it could be
+set up with the next command (or <code>echo 1 &gt;
+  /proc/sys/net/ipv4/ip_forward</code>).
+</p>
+<pre class="example">
+sudo sysctl -w net.ipv4.ip_forward=1
+</pre>
+
+</div></li>
+
+<li><p>
+After making the packets flow on the second NIC, is everything OK
+with the IP address of the source in the <code>tcpdump</code> on <code>eth0</code>?
+</p>
+<div class="solution">
+<p>
+From now, the ping of Google from the VM reaches Internet via <code>eth0</code>
+(as seen by <code>tcpdump -nni eth0 icmp</code>). Unfortunately, it still
+doesn&rsquo;t do the trick, because the packet goes out with the
+<code>10.20.20.*</code> source address. For this reason, Google sees <code>ICMP echo
+  request</code> incoming packets from <code>10.20.20.*</code> and hence, replies <code>ICMP
+  echo reply</code> to <code>10.20.20.*</code> which does not makes sense except on the
+Lab machine.
+</p>
+
+<p>
+You have to change the source IP of out packet (<code>10.20.20.*</code>) to
+gateway&rsquo;s IP (i.e., Your lab machine). The <code>iptables</code> will then
+automatically change the replied packet&rsquo;s destination IP
+(<code>&lt;ip-of-your-Lab-machine&gt;</code>) to the original source IP
+(<code>10.20.20.*</code>). This process is called a SNAT and you can implement
+it with <code>iptables</code> (see,
+<a href="https://www.systutorials.com/1372/setting-up-gateway-using-iptables-and-route-on-linux/">https://www.systutorials.com/1372/setting-up-gateway-using-iptables-and-route-on-linux/</a>).
+</p>
+
+<p>
+Set up the SNAT with <code>iptables</code>.
+</p>
+<pre class="example">
+sudo iptables -t nat -A POSTROUTING ! -d 10.20.20.0/24 -o eth0 -j SNAT --to-source &lt;ip-of-your-Lab-machine&gt;
+</pre>
+
+</div></li>
 </ul>
 
 </div>
@@ -684,10 +871,30 @@ figure out how to:
 <li>Boot a new machine <code>cli-vm-clone</code> from the snapshot.</li>
 <li>Delete <code>cli-vm-clone</code>;</li>
 </ol>
+
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">1.</span>
+openstack server ssh cli-vm -l cirros
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">2.</span>
+openstack server suspend cli-vm; openstack server show cli-vm -c status
+openstack server resume cli-vm; openstack server show cli-vm -c status
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">3.</span>
+openstack server image create --name cli-vm-img cli-vm; openstack image list
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">4.</span>
+openstack server create --wait --flavor m1.tiny <span style="color: #CC9393;">\</span>
+  --network test --image cli-vm-img <span style="color: #CC9393;">\</span>
+  cli-vm-clone
+<span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">5.</span>
+openstack server delete cli-vm-clone
+</pre>
+</div>
+
+</div>
 </div>
 </div>
 
-<div id="outline-container-org190cb04" class="outline-3">
+<div id="outline-container-org78e9999" class="outline-3">
 <h3 id="sec:enc-trust"><span class="section-number-3">2.3</span> In Encryption We Trust</h3>
 <div class="outline-text-3" id="text-sec:enc-trust">
 <p>
@@ -764,8 +971,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-orgc0d4ba7" class="outline-3">
-<h3 id="orgc0d4ba7"><span class="section-number-3">2.4</span> The Art of Contextualizing a VM</h3>
+<div id="outline-container-org96b2ed6" class="outline-3">
+<h3 id="org96b2ed6"><span class="section-number-3">2.4</span> The Art of Contextualizing a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Contextualizing is the process that automatically installs software,
@@ -790,7 +997,7 @@ executed on the VM as <code>root</code> during the boot process.
 </p>
 </div>
 
-<div id="outline-container-org31f3cbb" class="outline-4">
+<div id="outline-container-org8ad7d95" class="outline-4">
 <h4 id="sec:debian9-ftw"><span class="section-number-4">2.4.1</span> Debian 9 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian9-ftw">
 <p>
@@ -807,7 +1014,7 @@ want to release all your resources before going further.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash" id="org8210bc7"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Delete VMs</span>
+<pre class="src src-bash" id="orgad7cf25"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Delete VMs</span>
 <span style="color: #F0DFAF; font-weight: bold;">for</span> vm<span style="color: #F0DFAF; font-weight: bold;"> in</span> $<span style="color: #DCDCCC;">(</span>openstack server list -c ID -f value<span style="color: #DCDCCC;">)</span>; <span style="color: #F0DFAF; font-weight: bold;">do</span> <span style="color: #CC9393;">\</span>
   <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"Deleting ${vm}..."</span>; <span style="color: #CC9393;">\</span>
   openstack server delete <span style="color: #CC9393;">"${vm}"</span>; <span style="color: #CC9393;">\</span>
@@ -836,18 +1043,37 @@ Import the image into Glance; name it <code>debian-9</code>. Use <code>openstack
 create --help</code> for creation arguments. Find values example with
 <code>openstack image show cirros</code>.
 </p>
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack image create --disk-format=qcow2 <span style="color: #CC9393;">\</span>
+  --container-format=bare --property <span style="color: #DFAF8F;">architecture</span>=x86_64 <span style="color: #CC9393;">\</span>
+  --public --file /tmp/debian-9.qcow2 <span style="color: #CC9393;">\</span>
+  debian-9
+</pre>
+</div>
+
+</div>
 
 <p>
 And, create a new <code>m1.mini</code> flavor with 5 Go of Disk, 2 Go of RAM, 2
 VCPU and 1 Go of swap. Use <code>openstack flavor create --help</code> for
 creation arguments.
 </p>
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack flavor create --ram <span style="color: #BFEBBF;">2048</span> <span style="color: #CC9393;">\</span>
+  --disk <span style="color: #BFEBBF;">5</span> --vcpus <span style="color: #BFEBBF;">2</span> --swap <span style="color: #BFEBBF;">1024</span> <span style="color: #CC9393;">\</span>
+  --public m1.mini
+</pre>
+</div>
+
+</div>
 
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgca093fc" class="outline-4">
+<div id="outline-container-org6a50cfc" class="outline-4">
 <h4 id="sec:cloud-init"><span class="section-number-4">2.4.2</span> <code>cloud-init</code> in Action</h4>
 <div class="outline-text-4" id="text-sec:cloud-init">
 <p>
@@ -859,13 +1085,13 @@ extra argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-9</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#orgf112f1a">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#orgae0d130">1</a>
 &#x2013; available under <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/rsc/art.sh"><code>rsc/art.sh</code></a> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/rsc/art.sh"><code>rsc/art.sh</code></a></label><pre class="src src-bash" id="orgf112f1a"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/usr/bin/</span><span style="color: #F0DFAF; font-weight: bold;">env</span><span style="color: #7F9F7F;"> bash</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <a href="https://raw.githubusercontent.com/BeyondTheClouds/lectures/master/2019/os-imt/rsc/art.sh"><code>rsc/art.sh</code></a></label><pre class="src src-bash" id="orgae0d130"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/usr/bin/</span><span style="color: #F0DFAF; font-weight: bold;">env</span><span style="color: #7F9F7F;"> bash</span>
 <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Fix DNS resolution</span>
 <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">""</span> &gt;&gt; /etc/resolv.conf
 <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
@@ -874,6 +1100,18 @@ Start a new VM named <code>art-vm</code> based on the <code>debian-9</code> imag
 apt update
 apt install -y figlet lolcat
 </pre>
+</div>
+
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create --wait --image debian-9 <span style="color: #CC9393;">\</span>
+  --flavor m1.mini --network test <span style="color: #CC9393;">\</span>
+  --key-name admin <span style="color: #CC9393;">\</span>
+  --user-data ./rsc/art.sh <span style="color: #CC9393;">\</span>
+  art-vm
+</pre>
+</div>
+
 </div>
 
 <p>
@@ -888,6 +1126,40 @@ watch openstack console log show --lines=20 art-vm
 Could you notice <i>when</i> the VM has finished to boot based on the
 <code>console log</code> output?
 </p>
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #DFAF8F;">CLOUDINIT_END_RX</span>=<span style="color: #CC9393;">"Cloud-init v\. .\+ finished"</span>
+<span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">wait_contextualization</span> <span style="color: #DCDCCC;">{</span>
+  <span style="color: #DCDCCC; font-weight: bold;">local</span> <span style="color: #DFAF8F;">vm</span>=<span style="color: #CC9393;">"$1"</span>
+  <span style="color: #DCDCCC; font-weight: bold;">local</span> <span style="color: #DFAF8F;">console_log</span>=$<span style="color: #BFEBBF;">(</span>openstack console log show --lines=<span style="color: #BFEBBF;">20</span> <span style="color: #CC9393;">"${vm}"</span><span style="color: #BFEBBF;">)</span>
+  <span style="color: #F0DFAF; font-weight: bold;">while ! </span><span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"${console_log}"</span>|grep -q <span style="color: #CC9393;">"${CLOUDINIT_END_RX}"</span>
+  <span style="color: #F0DFAF; font-weight: bold;">do</span>
+      <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"Waiting for cloud-init to finish..."</span>
+      <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"Current status is:"</span>
+      <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"${console_log}"</span>
+      sleep <span style="color: #BFEBBF;">5</span>
+      <span style="color: #DFAF8F;">console_log</span>=$<span style="color: #BFEBBF;">(</span>openstack console log show --lines=<span style="color: #BFEBBF;">20</span> <span style="color: #CC9393;">"${vm}"</span><span style="color: #BFEBBF;">)</span>
+      <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">Clear the screen (cuu1 move cursor up by one line, el clear the line)</span>
+      <span style="color: #F0DFAF; font-weight: bold;">for</span> i<span style="color: #F0DFAF; font-weight: bold;"> in</span> <span style="color: #BFEBBF;">{</span><span style="color: #BFEBBF;">1..22</span><span style="color: #BFEBBF;">}</span>
+      <span style="color: #F0DFAF; font-weight: bold;">do</span>
+          tput cuu1; tput el
+      <span style="color: #F0DFAF; font-weight: bold;">done</span>
+  <span style="color: #F0DFAF; font-weight: bold;">done</span>
+
+  <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"cloud-init finished: "</span>
+  <span style="color: #DCDCCC; font-weight: bold;">echo</span> <span style="color: #CC9393;">"${console_log}"</span>|grep <span style="color: #CC9393;">"${CLOUDINIT_END_RX}"</span>
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+
+<p>
+Then use it as the following.
+</p>
+<pre class="example">
+wait_contextualization art-vm
+</pre>
+
+</div>
 
 </div>
 
@@ -920,8 +1192,8 @@ debian@art-vm:~$ figlet "The Art of Contextualizing a VM" | lolcat
 </div>
 </div>
 
-<div id="outline-container-org97154b9" class="outline-3">
-<h3 id="org97154b9"><span class="section-number-3">2.5</span> Run VMs with KVM</h3>
+<div id="outline-container-orgbf37096" class="outline-3">
+<h3 id="orgbf37096"><span class="section-number-3">2.5</span> Run VMs with KVM</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every time you do an <code>openstack server create ...</code>, your request hits,
@@ -958,14 +1230,32 @@ to speed up the VMs execution.
 
 <div class="do">
 <ul class="org-ul">
-<li>Check that the KVM kernel module is loaded, and load it otherwise.
-Seek the <a href="https://wiki.archlinux.org/index.php/KVM#Kernel_support">archlinux wiki</a> for some help.</li>
-</ul>
+<li><p>
+Check that the KVM kernel module is loaded, and load it otherwise.
+Seek the <a href="https://wiki.archlinux.org/index.php/KVM#Kernel_support">archlinux wiki</a> for some help.
+</p>
+<div class="solution">
+<pre class="example">
+lsmod|fgrep kvm
+modprobe -r kvm_intel
+</pre>
 
-<ul class="org-ul">
-<li>Change the configuration of <code>nova-compute</code> hypervisor (file
+</div></li>
+
+<li><p>
+Change the configuration of <code>nova-compute</code> hypervisor (file
 <code>/var/snap/microstack/common/etc/nova/nova.conf.d/hypervisor.conf</code>)
-to support KVM and reload it.</li>
+to support KVM and reload it.
+</p>
+<div class="solution">
+<pre class="example">
+NOVA_HYPERV_CONF=/var/snap/microstack/common/etc/nova/nova.conf.d/hypervisor.conf
+sudo sed -i 's|virt_type.\+|virt_type = kvm|' $NOVA_HYPERV_CONF
+sudo sed -i 's|cpu_mode.\+|cpu_mode = host-passthrough|' $NOVA_HYPERV_CONF
+sudo snap restart microstack.nova-compute
+</pre>
+
+</div></li>
 </ul>
 
 </div>
@@ -979,8 +1269,8 @@ Contextualizing a VM" | lolcat</code> command.
 </div>
 </div>
 
-<div id="outline-container-org3c5e0d9" class="outline-2">
-<h2 id="org3c5e0d9"><span class="section-number-2">3</span> Deploy a WordPress as a Service (as a DevOps)</h2>
+<div id="outline-container-org6524fbe" class="outline-2">
+<h2 id="org6524fbe"><span class="section-number-2">3</span> Deploy a WordPress as a Service (as a DevOps)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In the previous sessions, we saw how to boot a VM with OpenStack, and
@@ -1029,7 +1319,7 @@ WordPress project named <code>os-oph</code>.</li>
 
 <p>
 The <code>rsc</code> directory provides bash scripts to deploy the MariaDB
-database and web server of WordPress (also in <a href="#org123743a">Appendix</a>). Review it
+database and web server of WordPress (also in <a href="#org64262ee">Appendix</a>). Review it
 before going further (spot the <b>TODO</b>).
 </p>
 
@@ -1037,16 +1327,126 @@ before going further (spot the <b>TODO</b>).
 Also, remind to <a href="#sec:debian9-ftw">clean your environment</a>.
 </p>
 
+<div class="solution">
+<p>
+Find the solution in the <a href="rsc/wordpress-deploy.sh"><code>rsc/wordpress-deploy.sh</code></a> script.
+</p>
+
+<p>
+First thing first, enable HTTP connections.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack security group rule create $<span style="color: #DFAF8F;">SECGROUP_ID</span> <span style="color: #CC9393;">\</span>
+  --proto tcp --remote-ip <span style="color: #BFEBBF;">0.0.0.0/0</span> <span style="color: #CC9393;">\</span>
+  --dst-port <span style="color: #BFEBBF;">80</span>
+</pre>
+</div>
+
+<p>
+Then start a VM with the <code>wordpress-db</code> name, <code>debian-9</code> image,
+<code>m1.mini</code> flavor, <code>test</code> network and <code>admin</code> key-pair. Also,
+contextualize your VM with the <a href="rsc/install-mariadb.sh"><code>rsc/install-mariadb.sh</code></a> script thanks
+to the <code>--user-data ./rsc/install-mariadb.sh</code> option.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create --wait --image debian-9 <span style="color: #CC9393;">\</span>
+  --flavor m1.mini --network test <span style="color: #CC9393;">\</span>
+  --key-name admin <span style="color: #CC9393;">\</span>
+  --user-data ./rsc/install-mariadb.sh <span style="color: #CC9393;">\</span>
+  wordpress-db
+
+wait_contextualization wordpress-db
+</pre>
+</div>
+
+<p>
+Next, start a VM with <code>wordpress-app</code> name, <code>debian-9</code> image,
+<code>m1.mini</code> flavor, <code>test</code> network and <code>admin</code> key-pair. Also,
+contextualize your VM with the <a href="rsc/install-wp.sh"><code>rsc/install-wp.sh</code></a> script thanks to
+the <code>--user-data ./rsc/install-wp.sh</code> option. Note that you need to
+provide the IP address of the <code>wordpress-db</code> to this script before
+running it.
+</p>
+
+<p>
+Set the script with IP address of <code>wordpress-db</code> # and floating ip
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sed -i <span style="color: #CC9393;">'13s|.*|DB_HOST="'</span>$<span style="color: #DCDCCC;">(</span>openstack server show wordpress-db -c addresses -f value | sed -Er <span style="color: #CC9393;">"s/test=//g"</span><span style="color: #DCDCCC;">)</span><span style="color: #CC9393;">'"|'</span> ./rsc/install-wp.sh
+</pre>
+</div>
+
+<p>
+Then, create <code>wordpress-app</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create --wait --image debian-9 <span style="color: #CC9393;">\</span>
+  --flavor m1.mini --network test <span style="color: #CC9393;">\</span>
+  --key-name admin <span style="color: #CC9393;">\</span>
+  --user-data ./rsc/install-wp.sh <span style="color: #CC9393;">\</span>
+  wordpress-app
+
+wait_contextualization wordpress-app
+</pre>
+</div>
+
+<p>
+Get a floating ip for the VM.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #DFAF8F;">WP_APP_FIP</span>=$<span style="color: #DCDCCC;">(</span>openstack floating ip create -c floating_ip_address -f value external<span style="color: #DCDCCC;">)</span>
+</pre>
+</div>
+
+<p>
+Attach the <code>WP_APP_FIP</code> floating ip to that VM.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack server add floating ip wordpress-app <span style="color: #CC9393;">"${WP_APP_FIP}"</span>
+</pre>
+</div>
+
+<p>
+Setup redirection to access your floating ip on port 80.
+</p>
+<pre class="example">
+sudo iptables -t nat -A PREROUTING -p tcp --dport 8081 -j DNAT --to "${WP_APP_FIP}:80"
+</pre>
+
+
+<p>
+Finally, you can reach WordPress on <a href="http://&lt;ip-of-your-lab&gt;:8080/wp">http://&lt;ip-of-your-lab&gt;:8080/wp</a>.
+</p>
+
+<div class="note">
+<p>
+Optionally, you can do it with an SSH tunnel to access <code>10.20.20.*</code>
+from your own machine.
+</p>
+<pre class="example">
+ssh -NL 8080:&lt;floating-ip&gt;:80 -l root &lt;ip-of-your-lab-machine&gt;
+</pre>
+
+
+<p>
+Then, reach WordPress on <a href="http://localhost:8080/wp">http://localhost:8080/wp</a>.
+</p>
+
+</div>
+
+</div>
+
 </div>
 </div>
 </div>
 
-<div id="outline-container-org123743a" class="outline-2">
-<h2 id="org123743a"><span class="section-number-2">4</span> Appendix</h2>
+<div id="outline-container-org64262ee" class="outline-2">
+<h2 id="org64262ee"><span class="section-number-2">4</span> Appendix</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org44b1aaf" class="outline-3">
-<h3 id="org44b1aaf"><span class="section-number-3">4.1</span> Install MariaDB on Debian 9</h3>
+<div id="outline-container-org1705dfc" class="outline-3">
+<h3 id="org1705dfc"><span class="section-number-3">4.1</span> Install MariaDB on Debian 9</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/usr/bin/</span><span style="color: #F0DFAF; font-weight: bold;">env</span><span style="color: #7F9F7F;"> bash</span>
@@ -1091,8 +1491,8 @@ cat &lt;&lt; EOSQL | mysql -u root --password=$<span style="color: #DCDCCC;">{</
 </div>
 </div>
 
-<div id="outline-container-orgd622c50" class="outline-3">
-<h3 id="orgd622c50"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 9</h3>
+<div id="outline-container-org0c0a097" class="outline-3">
+<h3 id="org0c0a097"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 9</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #5F7F5F;">#</span><span style="color: #7F9F7F;">!/usr/bin/</span><span style="color: #F0DFAF; font-weight: bold;">env</span><span style="color: #7F9F7F;"> bash</span>
@@ -1150,7 +1550,7 @@ cat &lt;&lt; EOF &gt; /etc/wordpress/config-default.php
 <p class="date">Date: 2019-09-30 Mon 00:00</p>
 <p class="author">Author: Ronan-Alexandre Cherrueau, Adrien Lebre, Didier Iscovery</p>
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
-<p class="date">Created: 2019-09-30 Mon 00:19</p>
+<p class="date">Created: 2019-09-30 Mon 16:41</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
