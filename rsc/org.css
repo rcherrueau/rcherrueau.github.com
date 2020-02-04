@@ -704,10 +704,14 @@ aside blockquote {
     }
 }
 ::-moz-selection {
-    background: #d6edff
+	  background: #FF5E99;
+	  color: #fff;
+	  text-shadow: none;
 }
 ::selection {
-    background: #d6edff
+	  background: #FF5E99;
+	  color: #fff;
+	  text-shadow: none;
 }
 .title {
     margin: auto;
