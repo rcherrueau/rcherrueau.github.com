@@ -671,18 +671,20 @@ body {
 }
 
 #content, #postamble {
-    max-width: 610px;
+    max-width: 740px;
 }
 
 aside {
-    display: none;
-    padding: 1ex;
-}
-
-aside p {
-    font-size: 0.8rem;
+    float: right;
+    font-size: 0.8em;
     line-height: 1.3;
-    margin-top: 0;
+    max-width: 250px;
+    margin-bottom: 1em;
+    margin-left: 1.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 2.5px;
+    background-color: rgba(238,232,213, .5);
 }
 
 aside blockquote {
@@ -690,19 +692,13 @@ aside blockquote {
     margin-left: 0;
 }
 
-@media (min-width: 940px) {
+/* For screen smaller than iphone5 */
+@media screen and (max-width: 567px) {
     aside {
-        display: block;
-        position: absolute;
-        left: 640px;
-        padding: initial;
-    }
-
-    aside p {
-        text-align: left;
-        width: 300px;
+        float: none;
     }
 }
+
 ::-moz-selection {
 	  background: #FF5E99;
 	  color: #fff;
@@ -729,7 +725,7 @@ aside blockquote {
 }
 .abstract {
     margin: auto;
-    width: 80%;
+    width: 85%;
     font-style: italic
 }
 .abstract i {
@@ -950,12 +946,12 @@ p.verse {
     margin-left: 3%
 }
 pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    font-family: Lucida Console, monospace;
+    border: none;
+    border-radius: 2.5px;
+    font-family: Iosevka, monospace;
     margin: 1.2em;
     padding: 8pt;
-    font-size: 80%;
+    font-size: 0.85em;
     background:  #3f3f3f;
     color: #dcdccc;
 }
