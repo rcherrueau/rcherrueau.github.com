@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-09 Mon 08:29 -->
+<!-- 2020-11-09 Mon 08:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -272,47 +272,47 @@ Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectu
 <ul>
 <li><a href="#sec:req">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org86e7e23">1.1. Environment</a></li>
+<li><a href="#orgb849f03">1.1. Environment</a></li>
 <li><a href="#sec:assign-lab">1.2. Access the Lab machine</a></li>
 <li><a href="#sec:rscs-lab">1.3. Resources of the Lab</a></li>
-<li><a href="#org75bde91">1.4. Setup OpenStack</a></li>
+<li><a href="#org70f0684">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack (as an Admin)</a>
 <ul>
-<li><a href="#org32a12a2">2.1. OpenStack Horizon dashboard</a></li>
+<li><a href="#orgbbbe370">2.1. OpenStack Horizon dashboard</a></li>
 <li><a href="#sec:os-cli">2.2. Unleash the operator in you</a>
 <ul>
-<li><a href="#org6bc395c">2.2.1. Make the world reaches the VM</a></li>
+<li><a href="#org54e9e33">2.2.1. Make the world reaches the VM</a></li>
 </ul>
 </li>
 <li><a href="#sec:enc-trust">2.3. In encryption we trust</a></li>
-<li><a href="#orgdc1df97">2.4. The art of contextualizing a VM</a>
+<li><a href="#orgf7f2dfa">2.4. The art of contextualizing a VM</a>
 <ul>
 <li><a href="#sec:debian10-ftw">2.4.1. Debian 10 FTW</a></li>
 <li><a href="#sec:cloud-init">2.4.2. <code>cloud-init</code> in Action</a></li>
 </ul>
 </li>
-<li><a href="#org51f08c7">2.5. Run VMs at (near-)native speed</a></li>
+<li><a href="#orgf0be94d">2.5. Run VMs at (near-)native speed</a></li>
 </ul>
 </li>
 <li><a href="#sec:wp-devops">3. Deploy a WordPress as a Service (as a DevOps)</a></li>
-<li><a href="#orgd8b803c">4. Appendix</a>
+<li><a href="#org18f724a">4. Appendix</a>
 <ul>
-<li><a href="#org39b04fb">4.1. Install MariaDB on Debian 10</a></li>
-<li><a href="#org7bbd49f">4.2. Install Wordpress application on Debian 10</a></li>
+<li><a href="#orgac7392e">4.1. Install MariaDB on Debian 10</a></li>
+<li><a href="#orgaf31894">4.2. Install Wordpress application on Debian 10</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org5984913" class="outline-2">
+<div id="outline-container-org5e22fd1" class="outline-2">
 <h2 id="sec:req"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-sec:req">
 </div>
-<div id="outline-container-org86e7e23" class="outline-3">
-<h3 id="org86e7e23"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-orgb849f03" class="outline-3">
+<h3 id="orgb849f03"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
@@ -352,26 +352,26 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd631c44" class="outline-3">
+<div id="outline-container-org51300d2" class="outline-3">
 <h3 id="sec:assign-lab"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
 <div class="outline-text-3" id="text-sec:assign-lab">
 <p>
 Here is the assignation list of Lab machine per team:
 </p>
 <dl class="org-dl">
-<dt>Ronan, Adrien</dt><dd><code>paravance-39.rennes.grid5000.fr</code></dd>
-<dt>Thomas Herbelin, Simon Le Bars</dt><dd><code>paravance-10.rennes.grid5000.fr</code></dd>
-<dt>Samy Le Galloudec, Marc Lamy</dt><dd><code>paravance-11.rennes.grid5000.fr</code></dd>
-<dt>Maël Gaonach, Antoine Omond</dt><dd><code>paravance-12.rennes.grid5000.fr</code></dd>
-<dt>Robin Carrez, Evrard-Nil Daillet</dt><dd><code>paravance-13.rennes.grid5000.fr</code></dd>
-<dt>Paul Bavazzano, Hoan My TRAN</dt><dd><code>paravance-14.rennes.grid5000.fr</code></dd>
-<dt>Florian Le Menn </dt><dd><code>paravance-30.rennes.grid5000.fr</code></dd>
-<dt>Xavier Aleman, Ismaïl El Khantache</dt><dd><code>paravance-31.rennes.grid5000.fr</code></dd>
-<dt>Barthélémy Tek </dt><dd><code>paravance-32.rennes.grid5000.fr</code></dd>
-<dt>Javed  Syed Khasim, Emeric Chonigbaum</dt><dd><code>paravance-33.rennes.grid5000.fr</code></dd>
-<dt>Lucas Pelec</dt><dd><code>paravance-34.rennes.grid5000.fr</code></dd>
-<dt>Théo Coutant</dt><dd><code>paravance-35.rennes.grid5000.fr</code></dd>
-<dt>Raphael Hascoet</dt><dd><code>paravance-36.rennes.grid5000.fr</code></dd>
+<dt>Ronan, Adrien</dt><dd><code>172.16.96.39.</code></dd>
+<dt>Thomas Herbelin, Simon Le Bars</dt><dd><code>172.16.96.10.</code></dd>
+<dt>Samy Le Galloudec, Marc Lamy</dt><dd><code>172.16.96.11.</code></dd>
+<dt>Maël Gaonach, Antoine Omond</dt><dd><code>172.16.96.12.</code></dd>
+<dt>Robin Carrez, Evrard-Nil Daillet</dt><dd><code>172.16.96.13.</code></dd>
+<dt>Paul Bavazzano, Hoan My TRAN</dt><dd><code>172.16.96.14.</code></dd>
+<dt>Florian Le Menn </dt><dd><code>172.16.96.30.</code></dd>
+<dt>Xavier Aleman, Ismaïl El Khantache</dt><dd><code>172.16.96.31.</code></dd>
+<dt>Barthélémy Tek </dt><dd><code>172.16.96.32.</code></dd>
+<dt>Javed  Syed Khasim, Emeric Chonigbaum</dt><dd><code>172.16.96.33.</code></dd>
+<dt>Lucas Pelec</dt><dd><code>172.16.96.34.</code></dd>
+<dt>Théo Coutant</dt><dd><code>172.16.96.35.</code></dd>
+<dt>Raphael Hascoet</dt><dd><code>172.16.96.36.</code></dd>
 </dl>
 
 
@@ -459,7 +459,7 @@ The rest of this lab <b>proceeds on the Lab machine</b>.
 </div>
 </div>
 
-<div id="outline-container-org9d4e907" class="outline-3">
+<div id="outline-container-org73f3cc8" class="outline-3">
 <h3 id="sec:rscs-lab"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-sec:rscs-lab">
 <p>
@@ -484,8 +484,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-org75bde91" class="outline-3">
-<h3 id="org75bde91"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-org70f0684" class="outline-3">
+<h3 id="org70f0684"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -525,12 +525,12 @@ status? What is the purpose of each service?
 </div>
 </div>
 
-<div id="outline-container-orgd245a0f" class="outline-2">
+<div id="outline-container-org7add909" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack (as an Admin)</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-org32a12a2" class="outline-3">
-<h3 id="org32a12a2"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
+<div id="outline-container-orgbbbe370" class="outline-3">
+<h3 id="orgbbbe370"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -579,7 +579,7 @@ the command line interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org87f5aab" class="outline-3">
+<div id="outline-container-org0cca08a" class="outline-3">
 <h3 id="sec:os-cli"><span class="section-number-3">2.2</span> Unleash the operator in you</h3>
 <div class="outline-text-3" id="text-sec:os-cli">
 <p>
@@ -677,8 +677,8 @@ cli-vm login:
 </pre>
 </div>
 
-<div id="outline-container-org6bc395c" class="outline-4">
-<h4 id="org6bc395c"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
+<div id="outline-container-org54e9e33" class="outline-4">
+<h4 id="org54e9e33"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 The <a href="https://docs.openstack.org/neutron/ussuri/">neutron</a> service manage networks in OpenStack.  Neutron
@@ -767,7 +767,7 @@ ssh -l cirros "$ALLOCATED_FIP"
 </div>
 </div>
 
-<div id="outline-container-org05aacef" class="outline-3">
+<div id="outline-container-orgce7c4e2" class="outline-3">
 <h3 id="sec:enc-trust"><span class="section-number-3">2.3</span> In encryption we trust</h3>
 <div class="outline-text-3" id="text-sec:enc-trust">
 <p>
@@ -844,8 +844,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-orgdc1df97" class="outline-3">
-<h3 id="orgdc1df97"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
+<div id="outline-container-orgf7f2dfa" class="outline-3">
+<h3 id="orgf7f2dfa"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Contextualizing is the process that automatically installs software,
@@ -870,7 +870,7 @@ executed on the VM as <code>root</code> during the boot process.
 </p>
 </div>
 
-<div id="outline-container-orgb18ff97" class="outline-4">
+<div id="outline-container-org8449a1a" class="outline-4">
 <h4 id="sec:debian10-ftw"><span class="section-number-4">2.4.1</span> Debian 10 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian10-ftw">
 <p>
@@ -887,7 +887,7 @@ want to release all your resources before going further.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash" id="org4a823c2"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
+<pre class="src src-bash" id="org857aed3"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
 <span style="color: #81A1C1;">for</span> vm<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span>openstack server list -c ID -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
   <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Deleting ${vm}..."</span>; <span style="color: #A3BE8C;">\</span>
   openstack server delete <span style="color: #A3BE8C;">"${vm}"</span>; <span style="color: #A3BE8C;">\</span>
@@ -927,7 +927,7 @@ creation arguments.
 </div>
 </div>
 
-<div id="outline-container-org8758c1b" class="outline-4">
+<div id="outline-container-orgf525613" class="outline-4">
 <h4 id="sec:cloud-init"><span class="section-number-4">2.4.2</span> <code>cloud-init</code> in Action</h4>
 <div class="outline-text-4" id="text-sec:cloud-init">
 <p>
@@ -939,7 +939,7 @@ extra argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org15dece0">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#orgc42d8f3">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
@@ -947,7 +947,7 @@ Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> ima
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org15dece0"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="orgc42d8f3"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
 <span style="color: #616e88;"># </span><span style="color: #616e88;">Fix DNS resolution</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">""</span> &gt; /etc/resolv.conf
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
@@ -1004,8 +1004,8 @@ debian@art-vm:~$ figlet "The Art of Contextualizing a VM" | lolcat
 </div>
 </div>
 
-<div id="outline-container-org51f08c7" class="outline-3">
-<h3 id="org51f08c7"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
+<div id="outline-container-orgf0be94d" class="outline-3">
+<h3 id="orgf0be94d"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every time you do an <code>openstack server create ...</code>, your request hits,
@@ -1063,7 +1063,7 @@ Contextualizing a VM with KVM" | lolcat</code> command.
 </div>
 </div>
 
-<div id="outline-container-org849967d" class="outline-2">
+<div id="outline-container-org4ae9f02" class="outline-2">
 <h2 id="sec:wp-devops"><span class="section-number-2">3</span> Deploy a WordPress as a Service (as a DevOps)</h2>
 <div class="outline-text-2" id="text-sec:wp-devops">
 <p>
@@ -1119,26 +1119,26 @@ project named <code>os-owph</code>.</li>
 
 <p>
 The <code>rsc</code> directory provides bash scripts to deploy the MariaDB
-database and web server of WordPress (also in <a href="#orgd8b803c">Appendix</a>). Review it
+database and web server of WordPress (also in <a href="#org18f724a">Appendix</a>). Review it
 before going any further (spot the <b>TODO</b>).  And ask yourself
 questions such as: Does the <code>wordpress-db</code> VM needs a floating IP in
 order to be reached by the <code>wordpress-app</code> VM?
 </p>
 
 <p>
-Also, remind to <a href="#org4a823c2">clean your environment</a>.
+Also, remind to <a href="#org857aed3">clean your environment</a>.
 </p>
 
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd8b803c" class="outline-2">
-<h2 id="orgd8b803c"><span class="section-number-2">4</span> Appendix</h2>
+<div id="outline-container-org18f724a" class="outline-2">
+<h2 id="org18f724a"><span class="section-number-2">4</span> Appendix</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org39b04fb" class="outline-3">
-<h3 id="org39b04fb"><span class="section-number-3">4.1</span> Install MariaDB on Debian 10</h3>
+<div id="outline-container-orgac7392e" class="outline-3">
+<h3 id="orgac7392e"><span class="section-number-3">4.1</span> Install MariaDB on Debian 10</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -1183,8 +1183,8 @@ cat &lt;&lt; EOSQL | mysql -u root --password=$<span style="color: #8FBCBB;">{</
 </div>
 </div>
 
-<div id="outline-container-org7bbd49f" class="outline-3">
-<h3 id="org7bbd49f"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 10</h3>
+<div id="outline-container-orgaf31894" class="outline-3">
+<h3 id="orgaf31894"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 10</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -1254,7 +1254,7 @@ is a bit annoying.
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt]">open an issue</a></p>
-<p class="date">Last modification: 2020-11-09 Mon 08:28</p>
+<p class="date">Last modification: 2020-11-09 Mon 08:33</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3.8) – <a href="http://gongzhitaao.org/orgcss">Zhitao Gong</a> customized theme</p>
 </div>
