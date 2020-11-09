@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-09 Mon 10:43 -->
+<!-- 2020-11-09 Mon 12:19 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -272,47 +272,47 @@ Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectu
 <ul>
 <li><a href="#sec:req">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org7c78bc4">1.1. Environment</a></li>
+<li><a href="#orga692f29">1.1. Environment</a></li>
 <li><a href="#sec:assign-lab">1.2. Access the Lab machine</a></li>
 <li><a href="#sec:rscs-lab">1.3. Resources of the Lab</a></li>
-<li><a href="#org5470122">1.4. Setup OpenStack</a></li>
+<li><a href="#orge4f9115">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack (as an Admin)</a>
 <ul>
-<li><a href="#org3683830">2.1. OpenStack Horizon dashboard</a></li>
+<li><a href="#orge5d27f3">2.1. OpenStack Horizon dashboard</a></li>
 <li><a href="#sec:os-cli">2.2. Unleash the operator in you</a>
 <ul>
-<li><a href="#orgceaa154">2.2.1. Make the world reaches the VM</a></li>
+<li><a href="#org0a8d199">2.2.1. Make the world reaches the VM</a></li>
 </ul>
 </li>
 <li><a href="#sec:enc-trust">2.3. In encryption we trust</a></li>
-<li><a href="#org9548fae">2.4. The art of contextualizing a VM</a>
+<li><a href="#org7ddbcf0">2.4. The art of contextualizing a VM</a>
 <ul>
 <li><a href="#sec:debian10-ftw">2.4.1. Debian 10 FTW</a></li>
 <li><a href="#sec:cloud-init">2.4.2. <code>cloud-init</code> in Action</a></li>
 </ul>
 </li>
-<li><a href="#org5ec9cbc">2.5. Run VMs at (near-)native speed</a></li>
+<li><a href="#orga42c78a">2.5. Run VMs at (near-)native speed</a></li>
 </ul>
 </li>
 <li><a href="#sec:wp-devops">3. Deploy a WordPress as a Service (as a DevOps)</a></li>
-<li><a href="#orgcccfd06">4. Appendix</a>
+<li><a href="#org514745f">4. Appendix</a>
 <ul>
-<li><a href="#orgb310a20">4.1. Install MariaDB on Debian 10</a></li>
-<li><a href="#org0705747">4.2. Install Wordpress application on Debian 10</a></li>
+<li><a href="#org7e3b7c6">4.1. Install MariaDB on Debian 10</a></li>
+<li><a href="#org02a7066">4.2. Install Wordpress application on Debian 10</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org8fba669" class="outline-2">
+<div id="outline-container-org581b62e" class="outline-2">
 <h2 id="sec:req"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-sec:req">
 </div>
-<div id="outline-container-org7c78bc4" class="outline-3">
-<h3 id="org7c78bc4"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-orga692f29" class="outline-3">
+<h3 id="orga692f29"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
@@ -352,7 +352,7 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-org4d29657" class="outline-3">
+<div id="outline-container-org3e59893" class="outline-3">
 <h3 id="sec:assign-lab"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
 <div class="outline-text-3" id="text-sec:assign-lab">
 <p>
@@ -457,7 +457,7 @@ The rest of this lab <b>proceeds on the Lab machine</b>.
 </div>
 </div>
 
-<div id="outline-container-orged2674b" class="outline-3">
+<div id="outline-container-org182ac4a" class="outline-3">
 <h3 id="sec:rscs-lab"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-sec:rscs-lab">
 <p>
@@ -482,8 +482,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-org5470122" class="outline-3">
-<h3 id="org5470122"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-orge4f9115" class="outline-3">
+<h3 id="orge4f9115"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -543,12 +543,12 @@ on OpenStack.</dd>
 </div>
 </div>
 
-<div id="outline-container-orgcc8cf88" class="outline-2">
+<div id="outline-container-orgf31ca43" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack (as an Admin)</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-org3683830" class="outline-3">
-<h3 id="org3683830"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
+<div id="outline-container-orge5d27f3" class="outline-3">
+<h3 id="orge5d27f3"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -597,7 +597,7 @@ the command line interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org9b586fa" class="outline-3">
+<div id="outline-container-org7441f01" class="outline-3">
 <h3 id="sec:os-cli"><span class="section-number-3">2.2</span> Unleash the operator in you</h3>
 <div class="outline-text-3" id="text-sec:os-cli">
 <p>
@@ -621,7 +621,7 @@ most often used commands to operate your Cloud:
 <dt>List computes</dt><dd><code>openstack hypervisor list</code></dd>
 <dt>List VMs (running or not)</dt><dd><code>openstack server list</code></dd>
 <dt>Get details on a specific VM</dt><dd><code>openstack server show &lt;vm-name&gt;</code></dd>
-<dt>Start a new VM</dt><dd><code>openstack server create --image &lt;image-name&gt; --flavor &lt;flavor-name&gt; --nic net-id=&lt;net-id&gt; &lt;vm-name&gt;</code></dd>
+<dt>Start a new VM</dt><dd><code>openstack server create --image &lt;image-name&gt; --flavor &lt;flavor-name&gt; --network &lt;network-name&gt; &lt;vm-name&gt;</code></dd>
 <dt>View VMs logs</dt><dd><code>openstack console log show &lt;vm-name&gt;</code></dd>
 </dl>
 
@@ -702,6 +702,17 @@ You can then check that your environment is correctly set.
 Using all these commands, use the CLI to start a new tiny cirros VM
 called <code>cli-vm</code>.
 </p>
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create <span style="color: #A3BE8C;">\</span>
+  --image cirros <span style="color: #A3BE8C;">\</span>
+  --flavor m1.tiny <span style="color: #A3BE8C;">\</span>
+  --network test <span style="color: #A3BE8C;">\</span>
+  cli-vm
+</pre>
+</div>
+
+</div>
 
 </div>
 
@@ -735,6 +746,21 @@ infrastructure.
 What is the purpose of the <code>-c</code> and <code>-f</code> argument in the previous
 command.
 </p>
+<div class="solution">
+<pre class="example">
+$ openstack server create --help
+...
+output formatters:
+  output formatter options
+
+  -f {json,shell,table,value,yaml}, --format {json,shell,table,value,yaml}
+                        the output format, defaults to table
+  -c COLUMN, --column COLUMN
+                        specify the column(s) to include, can be repeated
+...
+</pre>
+
+</div>
 
 </div>
 
@@ -759,8 +785,8 @@ cli-vm login:
 </pre>
 </div>
 
-<div id="outline-container-orgceaa154" class="outline-4">
-<h4 id="orgceaa154"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
+<div id="outline-container-org0a8d199" class="outline-4">
+<h4 id="org0a8d199"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 The <a href="https://docs.openstack.org/neutron/ussuri/">neutron</a> service manage networks in OpenStack.  Neutron
@@ -779,6 +805,16 @@ Find the IP address of the <code>cli-vm</code>. Check that you can ping that
 address from the <code>horizon-vm</code> (using the <code>Console</code> tab in the Horizon
 dashboard).  Ensure that you <b>cannot</b> ping that VM from the Lab machine.
 </p>
+
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #D8DEE9;">PRIV_IP</span>=$<span style="color: #8FBCBB;">(</span>openstack server show cli-vm -c addresses -f value | sed -E <span style="color: #A3BE8C;">'s/test=(.+)/\1/g'</span><span style="color: #8FBCBB;">)</span>
+<span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Private IP of cli-vm is ${PRIV_IP}"</span>
+ping -c <span style="color: #81A1C1;">3</span> <span style="color: #A3BE8C;">"${PRIV_IP}"</span> <span style="color: #616e88;"># </span><span style="color: #616e88;">From horizon-vm: 0% packet loss, From lab: 100% packet loss</span>
+</pre>
+</div>
+
+</div>
 
 </div>
 
@@ -832,10 +868,51 @@ security group rules of the <code>admin</code> project. # (i.e., <code>openstack
 project show admin</code>).
 </p>
 
+<div class="solution">
+<p>
+Regarding security rules, OpenStack is very conservative by default
+and prevents ingress and egress traffic. Spot the <code>None</code> value at <code>IP
+Protocol</code>, and <code>0.0.0.0/0</code> <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> at <code>IP Range</code>, in the result table of
+the command that list security group rules of the admin project: These
+values should be interpreted as <i>&ldquo;<code>None</code> protocol on any (<code>0.0.0.0/0</code>)
+network is allowed&rdquo;</i>.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ <span style="color: #D8DEE9;">SECGROUP_ID</span>=$<span style="color: #8FBCBB;">(</span>openstack security group list --project admin -f value -c ID<span style="color: #8FBCBB;">)</span>
+$ openstack security group rule list -c ID -c <span style="color: #A3BE8C;">"IP Protocol"</span> -c <span style="color: #A3BE8C;">"IP Range"</span> $<span style="color: #D8DEE9;">SECGROUP_ID</span>
+
++--------------------------------------+-------------+-----------+
+| ID                                   | IP Protocol | IP Range  |
++--------------------------------------+-------------+-----------+
+| <span style="color: #81A1C1;">473c2c5e-bd23-4b56-9d33-2276e483ac33</span> | None        | <span style="color: #81A1C1;">0.0.0.0/0</span> |
+| ecd3aa5a-acde-4e9f-9738-14945bcee258 | None        | <span style="color: #81A1C1;">0.0.0.0/0</span> |
+| <span style="color: #81A1C1;">5b08ae18-ed18-4a82-8382-aa1cfc3effff</span> | None        | ::/0      |
+| <span style="color: #81A1C1;">9b104d51-61d2-4a0f-bac4-36b5803ac721</span> | None        | ::/0      |
++--------------------------------------+-------------+-----------+
+</pre>
+</div>
+
+</div>
+
 <p>
 Then, make it work for <code>10.20.20.0/24</code> network. See examples of
 security groups rules in the <a href="https://docs.openstack.org/neutron/latest/admin/deploy-lb-selfservice.html#verify-network-operation">neutron doc</a>.
 </p>
+
+<div class="solution">
+<p>
+To make it work, you have to setup new rules in the security group of
+the <code>admin</code> project. The following rules allow ICMP packets (for ping)
+and TCP on port 22 (for SSH connection) on the VM.
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openstack security group rule create $<span style="color: #D8DEE9;">SECGROUP_ID</span> --proto icmp --remote-ip <span style="color: #81A1C1;">10.20.20.0/24</span>
+openstack security group rule create $<span style="color: #D8DEE9;">SECGROUP_ID</span> --proto tcp --remote-ip <span style="color: #81A1C1;">10.20.20.0/24</span> <span style="color: #A3BE8C;">\</span>
+  --dst-port <span style="color: #81A1C1;">22</span>
+</pre>
+</div>
+
+</div>
 
 </div>
 
@@ -849,7 +926,7 @@ ssh -l cirros "$ALLOCATED_FIP"
 </div>
 </div>
 
-<div id="outline-container-org258a737" class="outline-3">
+<div id="outline-container-org1fb2cc3" class="outline-3">
 <h3 id="sec:enc-trust"><span class="section-number-3">2.3</span> In encryption we trust</h3>
 <div class="outline-text-3" id="text-sec:enc-trust">
 <p>
@@ -926,8 +1003,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-org9548fae" class="outline-3">
-<h3 id="org9548fae"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
+<div id="outline-container-org7ddbcf0" class="outline-3">
+<h3 id="org7ddbcf0"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Contextualizing is the process that automatically installs software,
@@ -952,7 +1029,7 @@ executed on the VM as <code>root</code> during the boot process.
 </p>
 </div>
 
-<div id="outline-container-org4267771" class="outline-4">
+<div id="outline-container-org0ff214a" class="outline-4">
 <h4 id="sec:debian10-ftw"><span class="section-number-4">2.4.1</span> Debian 10 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian10-ftw">
 <p>
@@ -969,7 +1046,7 @@ want to release all your resources before going further.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash" id="org6e7e858"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
+<pre class="src src-bash" id="org514dd80"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
 <span style="color: #81A1C1;">for</span> vm<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span>openstack server list -c ID -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
   <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Deleting ${vm}..."</span>; <span style="color: #A3BE8C;">\</span>
   openstack server delete <span style="color: #A3BE8C;">"${vm}"</span>; <span style="color: #A3BE8C;">\</span>
@@ -1009,7 +1086,7 @@ creation arguments.
 </div>
 </div>
 
-<div id="outline-container-org5c7be02" class="outline-4">
+<div id="outline-container-org0af123a" class="outline-4">
 <h4 id="sec:cloud-init"><span class="section-number-4">2.4.2</span> <code>cloud-init</code> in Action</h4>
 <div class="outline-text-4" id="text-sec:cloud-init">
 <p>
@@ -1021,7 +1098,7 @@ extra argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org094ebda">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org41e21bc">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
@@ -1029,7 +1106,7 @@ Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> ima
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org094ebda"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org41e21bc"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
 <span style="color: #616e88;"># </span><span style="color: #616e88;">Fix DNS resolution</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">""</span> &gt; /etc/resolv.conf
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
@@ -1086,8 +1163,8 @@ debian@art-vm:~$ figlet "The Art of Contextualizing a VM" | lolcat
 </div>
 </div>
 
-<div id="outline-container-org5ec9cbc" class="outline-3">
-<h3 id="org5ec9cbc"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
+<div id="outline-container-orga42c78a" class="outline-3">
+<h3 id="orga42c78a"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every time you do an <code>openstack server create ...</code>, your request hits,
@@ -1145,7 +1222,7 @@ Contextualizing a VM with KVM" | lolcat</code> command.
 </div>
 </div>
 
-<div id="outline-container-orga161fe1" class="outline-2">
+<div id="outline-container-orgaffd9ba" class="outline-2">
 <h2 id="sec:wp-devops"><span class="section-number-2">3</span> Deploy a WordPress as a Service (as a DevOps)</h2>
 <div class="outline-text-2" id="text-sec:wp-devops">
 <p>
@@ -1201,26 +1278,26 @@ project named <code>os-owph</code>.</li>
 
 <p>
 The <code>rsc</code> directory provides bash scripts to deploy the MariaDB
-database and web server of WordPress (also in <a href="#orgcccfd06">Appendix</a>). Review it
+database and web server of WordPress (also in <a href="#org514745f">Appendix</a>). Review it
 before going any further (spot the <b>TODO</b>).  And ask yourself
 questions such as: Does the <code>wordpress-db</code> VM needs a floating IP in
 order to be reached by the <code>wordpress-app</code> VM?
 </p>
 
 <p>
-Also, remind to <a href="#org6e7e858">clean your environment</a>.
+Also, remind to <a href="#org514dd80">clean your environment</a>.
 </p>
 
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgcccfd06" class="outline-2">
-<h2 id="orgcccfd06"><span class="section-number-2">4</span> Appendix</h2>
+<div id="outline-container-org514745f" class="outline-2">
+<h2 id="org514745f"><span class="section-number-2">4</span> Appendix</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgb310a20" class="outline-3">
-<h3 id="orgb310a20"><span class="section-number-3">4.1</span> Install MariaDB on Debian 10</h3>
+<div id="outline-container-org7e3b7c6" class="outline-3">
+<h3 id="org7e3b7c6"><span class="section-number-3">4.1</span> Install MariaDB on Debian 10</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -1265,8 +1342,8 @@ cat &lt;&lt; EOSQL | mysql -u root --password=$<span style="color: #8FBCBB;">{</
 </div>
 </div>
 
-<div id="outline-container-org0705747" class="outline-3">
-<h3 id="org0705747"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 10</h3>
+<div id="outline-container-org02a7066" class="outline-3">
+<h3 id="org02a7066"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 10</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -1336,7 +1413,7 @@ is a bit annoying.
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt]">open an issue</a></p>
-<p class="date">Last modification: 2020-11-09 Mon 10:43</p>
+<p class="date">Last modification: 2020-11-09 Mon 12:19</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3.8) – <a href="http://gongzhitaao.org/orgcss">Zhitao Gong</a> customized theme</p>
 </div>
