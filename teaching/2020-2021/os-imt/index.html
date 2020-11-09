@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-09 Mon 12:19 -->
+<!-- 2020-11-09 Mon 16:06 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -272,47 +272,47 @@ Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectu
 <ul>
 <li><a href="#sec:req">1. Requirements and Setup</a>
 <ul>
-<li><a href="#orga692f29">1.1. Environment</a></li>
+<li><a href="#org80be95c">1.1. Environment</a></li>
 <li><a href="#sec:assign-lab">1.2. Access the Lab machine</a></li>
 <li><a href="#sec:rscs-lab">1.3. Resources of the Lab</a></li>
-<li><a href="#orge4f9115">1.4. Setup OpenStack</a></li>
+<li><a href="#org0058f26">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack (as an Admin)</a>
 <ul>
-<li><a href="#orge5d27f3">2.1. OpenStack Horizon dashboard</a></li>
+<li><a href="#org884227f">2.1. OpenStack Horizon dashboard</a></li>
 <li><a href="#sec:os-cli">2.2. Unleash the operator in you</a>
 <ul>
-<li><a href="#org0a8d199">2.2.1. Make the world reaches the VM</a></li>
+<li><a href="#orgfd21498">2.2.1. Make the world reaches the VM</a></li>
 </ul>
 </li>
 <li><a href="#sec:enc-trust">2.3. In encryption we trust</a></li>
-<li><a href="#org7ddbcf0">2.4. The art of contextualizing a VM</a>
+<li><a href="#orgc66f041">2.4. The art of contextualizing a VM</a>
 <ul>
 <li><a href="#sec:debian10-ftw">2.4.1. Debian 10 FTW</a></li>
 <li><a href="#sec:cloud-init">2.4.2. <code>cloud-init</code> in Action</a></li>
 </ul>
 </li>
-<li><a href="#orga42c78a">2.5. Run VMs at (near-)native speed</a></li>
+<li><a href="#org84c3128">2.5. Run VMs at (near-)native speed</a></li>
 </ul>
 </li>
 <li><a href="#sec:wp-devops">3. Deploy a WordPress as a Service (as a DevOps)</a></li>
-<li><a href="#org514745f">4. Appendix</a>
+<li><a href="#orgae1a851">4. Appendix</a>
 <ul>
-<li><a href="#org7e3b7c6">4.1. Install MariaDB on Debian 10</a></li>
-<li><a href="#org02a7066">4.2. Install Wordpress application on Debian 10</a></li>
+<li><a href="#org2de7789">4.1. Install MariaDB on Debian 10</a></li>
+<li><a href="#org51c60b6">4.2. Install Wordpress application on Debian 10</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org581b62e" class="outline-2">
+<div id="outline-container-org5122b41" class="outline-2">
 <h2 id="sec:req"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-sec:req">
 </div>
-<div id="outline-container-orga692f29" class="outline-3">
-<h3 id="orga692f29"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-org80be95c" class="outline-3">
+<h3 id="org80be95c"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
@@ -352,7 +352,7 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-org3e59893" class="outline-3">
+<div id="outline-container-orgdf60356" class="outline-3">
 <h3 id="sec:assign-lab"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
 <div class="outline-text-3" id="text-sec:assign-lab">
 <p>
@@ -457,7 +457,7 @@ The rest of this lab <b>proceeds on the Lab machine</b>.
 </div>
 </div>
 
-<div id="outline-container-org182ac4a" class="outline-3">
+<div id="outline-container-org388f043" class="outline-3">
 <h3 id="sec:rscs-lab"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-sec:rscs-lab">
 <p>
@@ -482,8 +482,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-orge4f9115" class="outline-3">
-<h3 id="orge4f9115"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-org0058f26" class="outline-3">
+<h3 id="org0058f26"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -543,12 +543,12 @@ on OpenStack.</dd>
 </div>
 </div>
 
-<div id="outline-container-orgf31ca43" class="outline-2">
+<div id="outline-container-org5f380a3" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack (as an Admin)</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-orge5d27f3" class="outline-3">
-<h3 id="orge5d27f3"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
+<div id="outline-container-org884227f" class="outline-3">
+<h3 id="org884227f"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -597,7 +597,7 @@ the command line interface &#x2026;
 </div>
 </div>
 
-<div id="outline-container-org7441f01" class="outline-3">
+<div id="outline-container-orga33bf8b" class="outline-3">
 <h3 id="sec:os-cli"><span class="section-number-3">2.2</span> Unleash the operator in you</h3>
 <div class="outline-text-3" id="text-sec:os-cli">
 <p>
@@ -785,8 +785,8 @@ cli-vm login:
 </pre>
 </div>
 
-<div id="outline-container-org0a8d199" class="outline-4">
-<h4 id="org0a8d199"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
+<div id="outline-container-orgfd21498" class="outline-4">
+<h4 id="orgfd21498"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 The <a href="https://docs.openstack.org/neutron/ussuri/">neutron</a> service manage networks in OpenStack.  Neutron
@@ -926,7 +926,7 @@ ssh -l cirros "$ALLOCATED_FIP"
 </div>
 </div>
 
-<div id="outline-container-org1fb2cc3" class="outline-3">
+<div id="outline-container-org0038842" class="outline-3">
 <h3 id="sec:enc-trust"><span class="section-number-3">2.3</span> In encryption we trust</h3>
 <div class="outline-text-3" id="text-sec:enc-trust">
 <p>
@@ -1003,8 +1003,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-org7ddbcf0" class="outline-3">
-<h3 id="org7ddbcf0"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
+<div id="outline-container-orgc66f041" class="outline-3">
+<h3 id="orgc66f041"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Contextualizing is the process that automatically installs software,
@@ -1029,7 +1029,7 @@ executed on the VM as <code>root</code> during the boot process.
 </p>
 </div>
 
-<div id="outline-container-org0ff214a" class="outline-4">
+<div id="outline-container-org2818224" class="outline-4">
 <h4 id="sec:debian10-ftw"><span class="section-number-4">2.4.1</span> Debian 10 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian10-ftw">
 <p>
@@ -1046,7 +1046,7 @@ want to release all your resources before going further.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash" id="org514dd80"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
+<pre class="src src-bash" id="org3110420"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
 <span style="color: #81A1C1;">for</span> vm<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span>openstack server list -c ID -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
   <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Deleting ${vm}..."</span>; <span style="color: #A3BE8C;">\</span>
   openstack server delete <span style="color: #A3BE8C;">"${vm}"</span>; <span style="color: #A3BE8C;">\</span>
@@ -1075,18 +1075,37 @@ Import the image into Glance; name it <code>debian-10</code>. Use <code>openstac
 create --help</code> for creation arguments. Find values example with
 <code>openstack image show cirros</code>.
 </p>
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack image create --disk-format=qcow2 <span style="color: #A3BE8C;">\</span>
+  --container-format=bare --property <span style="color: #D8DEE9;">architecture</span>=x86_64 <span style="color: #A3BE8C;">\</span>
+  --public --file /tmp/debian-10.qcow2 <span style="color: #A3BE8C;">\</span>
+  debian-10
+</pre>
+</div>
+
+</div>
 
 <p>
 And, create a new <code>m1.mini</code> flavor with 5 Go of Disk, 2 Go of RAM, 2
 VCPU and 1 Go of swap. Use <code>openstack flavor create --help</code> for
 creation arguments.
 </p>
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack flavor create --ram <span style="color: #81A1C1;">2048</span> <span style="color: #A3BE8C;">\</span>
+  --disk <span style="color: #81A1C1;">5</span> --vcpus <span style="color: #81A1C1;">2</span> --swap <span style="color: #81A1C1;">1024</span> <span style="color: #A3BE8C;">\</span>
+  --public m1.mini
+</pre>
+</div>
+
+</div>
 
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0af123a" class="outline-4">
+<div id="outline-container-orgcb35e0b" class="outline-4">
 <h4 id="sec:cloud-init"><span class="section-number-4">2.4.2</span> <code>cloud-init</code> in Action</h4>
 <div class="outline-text-4" id="text-sec:cloud-init">
 <p>
@@ -1098,15 +1117,27 @@ extra argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org41e21bc">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org6cc95ef">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
 
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash">openstack server create --wait --image debian-10 <span style="color: #A3BE8C;">\</span>
+  --flavor m1.mini --network test <span style="color: #A3BE8C;">\</span>
+  --key-name admin <span style="color: #A3BE8C;">\</span>
+  --user-data ./rsc/art.sh <span style="color: #A3BE8C;">\</span>
+  art-vm
+</pre>
+</div>
+
+</div>
+
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org41e21bc"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org6cc95ef"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
 <span style="color: #616e88;"># </span><span style="color: #616e88;">Fix DNS resolution</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">""</span> &gt; /etc/resolv.conf
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
@@ -1131,6 +1162,61 @@ Could you notice <i>when</i> the VM has finished to boot based on the
 <code>console log</code> output?  Write a small bash script that waits until the
 boot has finished.
 </p>
+
+<div class="solution">
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #81A1C1;">function</span> <span style="color: #88C0D0;">wait_contextualization</span> <span style="color: #8FBCBB;">{</span>
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">VM to get the log of</span>
+  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">vm</span>=<span style="color: #A3BE8C;">"$1"</span>
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Number of rows displayed by the term</span>
+  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">term_lines</span>=$<span style="color: #88C0D0;">(</span>tput lines<span style="color: #88C0D0;">)</span>
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Number of log lines to display is min(term_lines, 20)</span>
+  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">console_lines</span>=$<span style="color: #88C0D0;">(</span><span style="color: #81A1C1;">(</span>$<span style="color: #D8DEE9;">term_lines</span>&lt;<span style="color: #81A1C1;">22</span> ? $<span style="color: #D8DEE9;">term_lines</span> - <span style="color: #81A1C1;">2</span> : <span style="color: #81A1C1;">20</span><span style="color: #81A1C1;">)</span><span style="color: #88C0D0;">)</span>
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Get the log</span>
+  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">console_log</span>=$<span style="color: #88C0D0;">(</span>openstack console log show --lines=$<span style="color: #81A1C1;">{</span><span style="color: #D8DEE9;">console_lines</span><span style="color: #81A1C1;">}</span> <span style="color: #A3BE8C;">"${vm}"</span><span style="color: #88C0D0;">)</span>
+
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Do not wrap long lines</span>
+  tput rmam
+
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Loop till cloud-init finished</span>
+  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">cloudinit_end_rx</span>=<span style="color: #A3BE8C;">"Cloud-init v\. .\+ finished"</span>
+  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Waiting for cloud-init to finish..."</span>
+  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Current status is:"</span>
+  <span style="color: #81A1C1;">while ! </span><span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"${console_log}"</span>|grep -q <span style="color: #A3BE8C;">"${cloudinit_end_rx}"</span>
+  <span style="color: #81A1C1;">do</span>
+      <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"${console_log}"</span>
+      sleep <span style="color: #81A1C1;">5</span>
+
+      <span style="color: #616e88;"># </span><span style="color: #616e88;">Compute the new console log before clearing</span>
+      <span style="color: #616e88;"># </span><span style="color: #616e88;">the screen is it does not remain blank for two long.</span>
+      <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">new_console_log</span>=$<span style="color: #88C0D0;">(</span>openstack console log show --lines=$<span style="color: #81A1C1;">{</span><span style="color: #D8DEE9;">console_lines</span><span style="color: #81A1C1;">}</span> <span style="color: #A3BE8C;">"${vm}"</span><span style="color: #88C0D0;">)</span>
+
+      <span style="color: #616e88;"># </span><span style="color: #616e88;">Clear the screen (`cuu1` move cursor up by one line, `el`</span>
+      <span style="color: #616e88;"># </span><span style="color: #616e88;">clear the line)</span>
+      <span style="color: #81A1C1;">while </span><span style="color: #81A1C1;">read</span> -r line; <span style="color: #81A1C1;">do</span>
+          tput cuu1; tput el
+      <span style="color: #81A1C1;">done</span> &lt;&lt;&lt; <span style="color: #A3BE8C;">"${console_log}"</span>
+
+      <span style="color: #D8DEE9;">console_log</span>=<span style="color: #A3BE8C;">"${new_console_log}"</span>
+  <span style="color: #81A1C1;">done</span>
+
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">cloud-init finished</span>
+  <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"${console_log}"</span>|grep --color=always <span style="color: #A3BE8C;">"${cloudinit_end_rx}"</span>
+
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Re-enable wrap of long lines</span>
+  tput smam
+<span style="color: #8FBCBB;">}</span>
+</pre>
+</div>
+
+<p>
+Then use it as the following.
+</p>
+<pre class="example">
+wait_contextualization art-vm
+</pre>
+
+</div>
 
 </div>
 
@@ -1163,8 +1249,8 @@ debian@art-vm:~$ figlet "The Art of Contextualizing a VM" | lolcat
 </div>
 </div>
 
-<div id="outline-container-orga42c78a" class="outline-3">
-<h3 id="orga42c78a"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
+<div id="outline-container-org84c3128" class="outline-3">
+<h3 id="org84c3128"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every time you do an <code>openstack server create ...</code>, your request hits,
@@ -1202,13 +1288,54 @@ help.
 
 <div class="do">
 <ul class="org-ul">
-<li>Check that the KVM kernel module is loaded, and load it otherwise.</li>
-</ul>
+<li><p>
+Check that the KVM kernel module is loaded, and load it otherwise.
+</p>
+<div class="solution">
+<p>
+<i>From the <a href="https://docs.openstack.org/nova/stein/admin/configuration/hypervisor-kvm.html#for-x86-based-systems">Nova documentation</a></i>
+</p>
 
-<ul class="org-ul">
-<li>Change the configuration of <code>nova-compute</code> hypervisor (file
+<p>
+Do the following command to list the loaded kernel modules and
+verify that the KVM modules are loaded.
+</p>
+<pre class="example">
+lsmod|fgrep kvm
+</pre>
+
+<p>
+If the output includes <code>kvm_intel</code> or <code>kvm_amd</code>, the KVM hardware
+virtualization modules are loaded and your kernel meets the module
+requirements for OpenStack Compute.
+</p>
+
+<p>
+If the output does not show that the KVM module is loaded, run the
+next command.
+</p>
+<pre class="example">
+modprobe -a kvm
+modprobe -a kvm-intel  # for Intel
+modprobe -a kvm-amd    # for amd
+</pre>
+
+</div></li>
+
+<li><p>
+Change the configuration of <code>nova-compute</code> hypervisor (file
 <code>/var/snap/microstack/common/etc/nova/nova.conf.d/hypervisor.conf</code>)
-to support KVM and restart it.</li>
+to support KVM and restart it.
+</p>
+<div class="solution">
+<pre class="example">
+NOVA_HYPERV_CONF=/var/snap/microstack/common/etc/nova/nova.conf.d/hypervisor.conf
+sudo sed -i 's|virt_type.\+|virt_type = kvm|' $NOVA_HYPERV_CONF
+sudo sed -i 's|cpu_mode.\+|cpu_mode = host-passthrough|' $NOVA_HYPERV_CONF
+sudo snap restart microstack.nova-compute
+</pre>
+
+</div></li>
 </ul>
 
 </div>
@@ -1222,7 +1349,7 @@ Contextualizing a VM with KVM" | lolcat</code> command.
 </div>
 </div>
 
-<div id="outline-container-orgaffd9ba" class="outline-2">
+<div id="outline-container-orgd397d15" class="outline-2">
 <h2 id="sec:wp-devops"><span class="section-number-2">3</span> Deploy a WordPress as a Service (as a DevOps)</h2>
 <div class="outline-text-2" id="text-sec:wp-devops">
 <p>
@@ -1278,26 +1405,26 @@ project named <code>os-owph</code>.</li>
 
 <p>
 The <code>rsc</code> directory provides bash scripts to deploy the MariaDB
-database and web server of WordPress (also in <a href="#org514745f">Appendix</a>). Review it
+database and web server of WordPress (also in <a href="#orgae1a851">Appendix</a>). Review it
 before going any further (spot the <b>TODO</b>).  And ask yourself
 questions such as: Does the <code>wordpress-db</code> VM needs a floating IP in
 order to be reached by the <code>wordpress-app</code> VM?
 </p>
 
 <p>
-Also, remind to <a href="#org514dd80">clean your environment</a>.
+Also, remind to <a href="#org3110420">clean your environment</a>.
 </p>
 
 </div>
 </div>
 </div>
 
-<div id="outline-container-org514745f" class="outline-2">
-<h2 id="org514745f"><span class="section-number-2">4</span> Appendix</h2>
+<div id="outline-container-orgae1a851" class="outline-2">
+<h2 id="orgae1a851"><span class="section-number-2">4</span> Appendix</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org7e3b7c6" class="outline-3">
-<h3 id="org7e3b7c6"><span class="section-number-3">4.1</span> Install MariaDB on Debian 10</h3>
+<div id="outline-container-org2de7789" class="outline-3">
+<h3 id="org2de7789"><span class="section-number-3">4.1</span> Install MariaDB on Debian 10</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -1342,8 +1469,8 @@ cat &lt;&lt; EOSQL | mysql -u root --password=$<span style="color: #8FBCBB;">{</
 </div>
 </div>
 
-<div id="outline-container-org02a7066" class="outline-3">
-<h3 id="org02a7066"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 10</h3>
+<div id="outline-container-org51c60b6" class="outline-3">
+<h3 id="org51c60b6"><span class="section-number-3">4.2</span> Install Wordpress application on Debian 10</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -1413,7 +1540,7 @@ is a bit annoying.
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt]">open an issue</a></p>
-<p class="date">Last modification: 2020-11-09 Mon 12:19</p>
+<p class="date">Last modification: 2020-11-09 Mon 16:06</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3.8) – <a href="http://gongzhitaao.org/orgcss">Zhitao Gong</a> customized theme</p>
 </div>
