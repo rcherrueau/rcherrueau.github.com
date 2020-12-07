@@ -1038,13 +1038,13 @@ pre.src-makefile:before {
     padding-top: 1ex;
     padding-bottom: 1ex;
     position: relative;
-    background-color: rgba(238,232,213, .5);
+    background-color: rgba(238,232,213, .25);
     border-left-style: solid;
     border-left-width: thick;
 }
 
 .note {
-    border-left-color:  #b58900;
+    border-left-color:  #ffcf75;
 }
 
 .do {
@@ -1077,8 +1077,9 @@ pre.src-makefile:before {
 }
 
 .note:before {
-    content: "ℹ";
-    background: #b58900;
+    content: "👩🏾‍🔬";
+    font-size: 1.3em;
+    background: #ffcf75;
 }
 
 .do:before {
