@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-12-18 Fri 17:25 -->
+<!-- 2020-12-21 Mon 12:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -261,7 +261,7 @@ your cloud from your sofa!).</li>
 </ul>
 
 <p>
-Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectures/blob/34c031d/2018-2019/os-polytech/docs/CloudFogEdgeIntro.pdf?raw=true">here</a> and <a href="https://github.com/BeyondTheClouds/lectures/blob/34c031d/2018-2019/os-polytech/docs/openstack-slides.pdf?raw=true">there</a>.  Find the collaborative
+Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectures/blob/d672a1c/2018-2019/os-polytech/docs/CloudFogEdgeIntro.pdf?raw=true">here</a> and <a href="https://github.com/BeyondTheClouds/lectures/blob/d672a1c/2018-2019/os-polytech/docs/openstack-slides.pdf?raw=true">there</a>.  Find the collaborative
 editor to follow lab completion <a href="https://pad.inria.fr/p/np_KeAkcZTawSB7hPq3_os-poly-grp2">here</a>.
 </p>
 
@@ -273,22 +273,22 @@ editor to follow lab completion <a href="https://pad.inria.fr/p/np_KeAkcZTawSB7h
 <ul>
 <li><a href="#sec:req">1. Requirements and Setup</a>
 <ul>
-<li><a href="#org8924459">1.1. Environment</a></li>
+<li><a href="#org815c493">1.1. Environment</a></li>
 <li><a href="#sec:assign-lab">1.2. Access the Lab machine</a></li>
 <li><a href="#sec:rscs-lab">1.3. Resources of the Lab</a></li>
-<li><a href="#org36a1f7d">1.4. Setup OpenStack</a></li>
+<li><a href="#org9f4c3ba">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack (as an Admin)</a>
 <ul>
-<li><a href="#orgc1959bb">2.1. OpenStack Horizon dashboard</a></li>
+<li><a href="#org2747ae9">2.1. OpenStack Horizon dashboard</a></li>
 <li><a href="#sec:os-cli">2.2. Unleash the operator in you</a>
 <ul>
-<li><a href="#org203d42d">2.2.1. Make the world reaches the VM</a></li>
+<li><a href="#org11a1c32">2.2.1. Make the world reaches the VM</a></li>
 </ul>
 </li>
 <li><a href="#sec:enc-trust">2.3. In encryption we trust</a></li>
-<li><a href="#org7e64c50">2.4. The art of contextualizing a VM</a>
+<li><a href="#orgd82bb75">2.4. The art of contextualizing a VM</a>
 <ul>
 <li><a href="#sec:debian10-ftw">2.4.1. Debian 10 FTW</a></li>
 <li><a href="#sec:cloud-init">2.4.2. <code>cloud-init</code> in Action</a></li>
@@ -299,44 +299,50 @@ editor to follow lab completion <a href="https://pad.inria.fr/p/np_KeAkcZTawSB7h
 <li><a href="#sec:wp-devops">3. Deploy a WordPress as a Service (as a DevOps)</a></li>
 <li><a href="#sec:heat">4. Automatize the Deployment with Heat</a>
 <ul>
-<li><a href="#org7762770">4.1. Install the Heat orchestration service on microstack</a></li>
-<li><a href="#org7dc3929">4.2. Boot a VM</a></li>
+<li><a href="#org52bb90b">4.1. Install the Heat orchestration service on microstack</a></li>
+<li><a href="#org2bdf893">4.2. Boot a VM</a></li>
 <li><a href="#sec:heat-params">4.3. Need more flexibility: let&rsquo;s add parameters</a></li>
 <li><a href="#sec:heat-outputs">4.4. Need to return values: let&rsquo;s use outputs</a></li>
-<li><a href="#org6c09133">4.5. Integrate <code>cloud-init</code></a></li>
-<li><a href="#org1e2416d">4.6. Dynamic configuration with <code>cloud-init</code> and parameters</a></li>
+<li><a href="#org558021b">4.5. Integrate <code>cloud-init</code></a></li>
+<li><a href="#org6be3a79">4.6. Dynamic configuration with <code>cloud-init</code> and parameters</a></li>
 <li><a href="#sec:data-deps-rscs">4.7. Data dependency between resources</a></li>
-<li><a href="#org8af0e80">4.8. Nested templates</a></li>
-<li><a href="#org126af98">4.9. Nested templates with data dependency</a></li>
-<li><a href="#org502e945">4.10. Other type of resources: floating IP</a></li>
+<li><a href="#orgd8de3dc">4.8. Nested templates</a></li>
+<li><a href="#orgfa9b15e">4.9. Nested templates with data dependency</a></li>
+<li><a href="#org1e8f136">4.10. Other type of resources: floating IP</a></li>
 </ul>
 </li>
-<li><a href="#sec:wp-heat">5. Deploy a WordPress as a Service (as a Heat DevOps)</a></li>
-<li><a href="#orgfa0747e">6. Appendix</a>
+<li><a href="#sec:wp-heat">5. Deploy a WordPress as a Service (as a Heat DevOps)</a>
 <ul>
-<li><a href="#org112b0c7">6.1. Vagrantfile</a></li>
-<li><a href="#org84460e5">6.2. Install MariaDB on Debian 10</a></li>
-<li><a href="#org9e97d0b">6.3. Install Wordpress application on Debian 10</a></li>
-<li><a href="#org01bea38">6.4. VM Live migration</a></li>
+<li><a href="#org91c5c3a">5.1. Database VM template&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
+<li><a href="#org846e680">5.2. Web VM template&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
+<li><a href="#orgcbbdf93">5.3. Wordpress application template&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org5a190ee">6. Appendix</a>
+<ul>
+<li><a href="#org7b4414a">6.1. Vagrantfile</a></li>
+<li><a href="#orgbaebd4b">6.2. Install MariaDB on Debian 10</a></li>
+<li><a href="#org24a2664">6.3. Install Wordpress application on Debian 10</a></li>
+<li><a href="#org6131b59">6.4. VM Live migration</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org3304124" class="outline-2">
+<div id="outline-container-org5123b12" class="outline-2">
 <h2 id="sec:req"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-sec:req">
 </div>
-<div id="outline-container-org8924459" class="outline-3">
-<h3 id="org8924459"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-org815c493" class="outline-3">
+<h3 id="org815c493"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To follow the lab you&rsquo;ll need a Linux (tested under Ubuntu 20.04)
 with, at least, 8 GiB of RAM and 2 CPU.  We are going to use Linux
 Dell R320 from room D011.  If you have a <b>different version</b> of Ubuntu
 installed &#x2013; use <code>lsb_release -d</code> to check it out &#x2013; you should start
-a proper VM using, for instance, the <a href="#org112b0c7">Vagrantfile</a> given in the
+a proper VM using, for instance, the <a href="#org7b4414a">Vagrantfile</a> given in the
 Appendix.  Alternatively, you can also use your own machine.
 </p>
 
@@ -370,7 +376,7 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-org6747550" class="outline-3">
+<div id="outline-container-orgf412d1a" class="outline-3">
 <h3 id="sec:assign-lab"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
 <div class="outline-text-3" id="text-sec:assign-lab">
 <p>
@@ -418,15 +424,15 @@ The rest of this lab <b>proceeds on the Lab machine</b>.
 </div>
 </div>
 
-<div id="outline-container-orgc5de0be" class="outline-3">
+<div id="outline-container-org85e54a7" class="outline-3">
 <h3 id="sec:rscs-lab"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-sec:rscs-lab">
 <p>
-Get the resources of the lab at <a href="https://github.com/BeyondTheClouds/lectures/blob/34c031d/2020-2021/os-polytech/tp.tar.gz?raw=true">https://github.com/BeyondTheClouds/lectures/blob/34c031d/2020-2021/os-polytech/tp.tar.gz?raw=true</a>.
+Get the resources of the lab at <a href="https://github.com/BeyondTheClouds/lectures/blob/d672a1c/2020-2021/os-polytech/tp.tar.gz?raw=true">https://github.com/BeyondTheClouds/lectures/blob/d672a1c/2020-2021/os-polytech/tp.tar.gz?raw=true</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">curl https://github.com/BeyondTheClouds/lectures/blob/34c031d/2020-2021/os-polytech/tp.tar.gz?<span style="color: #D8DEE9;">raw</span>=true -o tp.tar.gz -L
+<pre class="src src-bash">curl https://github.com/BeyondTheClouds/lectures/blob/d672a1c/2020-2021/os-polytech/tp.tar.gz?<span style="color: #D8DEE9;">raw</span>=true -o tp.tar.gz -L
 tar xzf tp.tar.gz
 <span style="color: #81A1C1;">cd</span> lab-os
 </pre>
@@ -443,8 +449,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-org36a1f7d" class="outline-3">
-<h3 id="org36a1f7d"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-org9f4c3ba" class="outline-3">
+<h3 id="org9f4c3ba"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -512,12 +518,12 @@ on OpenStack.</dd>
 </div>
 </div>
 
-<div id="outline-container-orgc12a8d9" class="outline-2">
+<div id="outline-container-org466b5e7" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack (as an Admin)</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-orgc1959bb" class="outline-3">
-<h3 id="orgc1959bb"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
+<div id="outline-container-org2747ae9" class="outline-3">
+<h3 id="org2747ae9"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -566,7 +572,7 @@ the command line interface &hellip;
 </div>
 </div>
 
-<div id="outline-container-org5fc509e" class="outline-3">
+<div id="outline-container-org47c783e" class="outline-3">
 <h3 id="sec:os-cli"><span class="section-number-3">2.2</span> Unleash the operator in you</h3>
 <div class="outline-text-3" id="text-sec:os-cli">
 <p>
@@ -752,8 +758,8 @@ cli-vm login:
 </pre>
 </div>
 
-<div id="outline-container-org203d42d" class="outline-4">
-<h4 id="org203d42d"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
+<div id="outline-container-org11a1c32" class="outline-4">
+<h4 id="org11a1c32"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 The <a href="https://docs.openstack.org/neutron/ussuri/">neutron</a> service manage networks in OpenStack.  Neutron
@@ -937,7 +943,7 @@ openstack server delete cli-vm-clone
 </div>
 </div>
 
-<div id="outline-container-org9dc51a6" class="outline-3">
+<div id="outline-container-orgfb7c267" class="outline-3">
 <h3 id="sec:enc-trust"><span class="section-number-3">2.3</span> In encryption we trust</h3>
 <div class="outline-text-3" id="text-sec:enc-trust">
 <p>
@@ -1014,8 +1020,8 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-org7e64c50" class="outline-3">
-<h3 id="org7e64c50"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
+<div id="outline-container-orgd82bb75" class="outline-3">
+<h3 id="orgd82bb75"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Contextualizing is the process that automatically installs software,
@@ -1040,7 +1046,7 @@ executed on the VM as <code>root</code> during the boot process.
 </p>
 </div>
 
-<div id="outline-container-org8e5b91b" class="outline-4">
+<div id="outline-container-org2f7c50f" class="outline-4">
 <h4 id="sec:debian10-ftw"><span class="section-number-4">2.4.1</span> Debian 10 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian10-ftw">
 <p>
@@ -1057,7 +1063,7 @@ want to release all your resources before going further.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash" id="org9c07a58"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
+<pre class="src src-bash" id="org56975fa"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
 <span style="color: #81A1C1;">for</span> vm<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span>openstack server list -c ID -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
   <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Deleting ${vm}..."</span>; <span style="color: #A3BE8C;">\</span>
   openstack server delete <span style="color: #A3BE8C;">"${vm}"</span>; <span style="color: #A3BE8C;">\</span>
@@ -1116,7 +1122,7 @@ creation arguments.
 </div>
 </div>
 
-<div id="outline-container-orgb1105ba" class="outline-4">
+<div id="outline-container-org7833447" class="outline-4">
 <h4 id="sec:cloud-init"><span class="section-number-4">2.4.2</span> <code>cloud-init</code> in Action</h4>
 <div class="outline-text-4" id="text-sec:cloud-init">
 <p>
@@ -1128,7 +1134,7 @@ extra argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org0e3ce2d">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org7a94112">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
@@ -1148,7 +1154,7 @@ Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> ima
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org0e3ce2d"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org7a94112"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
 <span style="color: #616e88;"># </span><span style="color: #616e88;">Fix DNS resolution</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">""</span> &gt; /etc/resolv.conf
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
@@ -1261,7 +1267,7 @@ debian@art-vm:~$ figlet "The Art of Contextualizing a VM" | lolcat
 </div>
 </div>
 
-<div id="outline-container-orgf4b8892" class="outline-2">
+<div id="outline-container-org04746d5" class="outline-2">
 <h2 id="sec:wp-devops"><span class="section-number-2">3</span> Deploy a WordPress as a Service (as a DevOps)</h2>
 <div class="outline-text-2" id="text-sec:wp-devops">
 <p>
@@ -1317,14 +1323,14 @@ project named <code>os-owph</code>.</li>
 
 <p>
 The <code>rsc</code> directory provides bash scripts to deploy the MariaDB
-database and web server of WordPress (also in <a href="#orgfa0747e">Appendix</a>). Review it
+database and web server of WordPress (also in <a href="#org5a190ee">Appendix</a>). Review it
 before going any further (spot the <b>TODO</b>).  And ask yourself
 questions such as: Does the <code>wordpress-db</code> VM needs a floating IP in
 order to be reached by the <code>wordpress-app</code> VM?
 </p>
 
 <p>
-Also, remind to <a href="#org9c07a58">clean your environment</a>.
+Also, remind to <a href="#org56975fa">clean your environment</a>.
 </p>
 
 <div class="solution">
@@ -1442,7 +1448,7 @@ Then, reach WordPress on <a href="http://localhost:8080/wp">http://localhost:808
 </div>
 </div>
 
-<div id="outline-container-org92a418b" class="outline-2">
+<div id="outline-container-org75eed0d" class="outline-2">
 <h2 id="sec:heat"><span class="section-number-2">4</span> Automatize the Deployment with Heat</h2>
 <div class="outline-text-2" id="text-sec:heat">
 <p>
@@ -1460,8 +1466,8 @@ find interesting examples in the <a href="https://docs.openstack.org/heat/ussuri
 </p>
 </div>
 
-<div id="outline-container-org7762770" class="outline-3">
-<h3 id="org7762770"><span class="section-number-3">4.1</span> Install the Heat orchestration service on microstack</h3>
+<div id="outline-container-org52bb90b" class="outline-3">
+<h3 id="org52bb90b"><span class="section-number-3">4.1</span> Install the Heat orchestration service on microstack</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The documentation to install Heat on Ubuntu is available <a href="https://docs.openstack.org/heat/ussuri/install/install-ubuntu.html">online</a>. The
@@ -1476,8 +1482,8 @@ sudo ./install-heat.sh
 </div>
 </div>
 
-<div id="outline-container-org7dc3929" class="outline-3">
-<h3 id="org7dc3929"><span class="section-number-3">4.2</span> Boot a VM</h3>
+<div id="outline-container-org2bdf893" class="outline-3">
+<h3 id="org2bdf893"><span class="section-number-3">4.2</span> Boot a VM</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 The simplest HOT template you can declare describes how to boot a VM.
@@ -1538,7 +1544,7 @@ parameters to add flexibility.
 </div>
 </div>
 
-<div id="outline-container-org055cb98" class="outline-3">
+<div id="outline-container-org69c9066" class="outline-3">
 <h3 id="sec:heat-params"><span class="section-number-3">4.3</span> Need more flexibility: let&rsquo;s add parameters</h3>
 <div class="outline-text-3" id="text-sec:heat-params">
 <p>
@@ -1635,7 +1641,7 @@ on declaring outputs, so that a stack can return a set of attributes
 </div>
 </div>
 
-<div id="outline-container-org6f51c89" class="outline-3">
+<div id="outline-container-org8f23050" class="outline-3">
 <h3 id="sec:heat-outputs"><span class="section-number-3">4.4</span> Need to return values: let&rsquo;s use outputs</h3>
 <div class="outline-text-3" id="text-sec:heat-outputs">
 <p>
@@ -1758,8 +1764,8 @@ openstack stack delete --wait --yes hw3
 </div>
 </div>
 
-<div id="outline-container-org6c09133" class="outline-3">
-<h3 id="org6c09133"><span class="section-number-3">4.5</span> Integrate <code>cloud-init</code></h3>
+<div id="outline-container-org558021b" class="outline-3">
+<h3 id="org558021b"><span class="section-number-3">4.5</span> Integrate <code>cloud-init</code></h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 It is possible to declare a post-installation script in the template
@@ -1831,8 +1837,8 @@ right after the log <code>Cloud-init v. ... running</code>.
 </div>
 </div>
 
-<div id="outline-container-org1e2416d" class="outline-3">
-<h3 id="org1e2416d"><span class="section-number-3">4.6</span> Dynamic configuration with <code>cloud-init</code> and parameters</h3>
+<div id="outline-container-org6be3a79" class="outline-3">
+<h3 id="org6be3a79"><span class="section-number-3">4.6</span> Dynamic configuration with <code>cloud-init</code> and parameters</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Let&rsquo;s mix parameters and cloud-init to write a template with a
@@ -1903,7 +1909,7 @@ that Heat resources can exchange information.
 </div>
 </div>
 
-<div id="outline-container-org645dcb2" class="outline-3">
+<div id="outline-container-orgd76be98" class="outline-3">
 <h3 id="sec:data-deps-rscs"><span class="section-number-3">4.7</span> Data dependency between resources</h3>
 <div class="outline-text-3" id="text-sec:data-deps-rscs">
 <p>
@@ -1978,8 +1984,8 @@ openstack stack delete --wait --yes hw6
 </div>
 </div>
 
-<div id="outline-container-org8af0e80" class="outline-3">
-<h3 id="org8af0e80"><span class="section-number-3">4.8</span> Nested templates</h3>
+<div id="outline-container-orgd8de3dc" class="outline-3">
+<h3 id="orgd8de3dc"><span class="section-number-3">4.8</span> Nested templates</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 Heat is able to compose templates to keep human-readable files, using
@@ -2034,8 +2040,8 @@ dependency.
 </div>
 </div>
 
-<div id="outline-container-org126af98" class="outline-3">
-<h3 id="org126af98"><span class="section-number-3">4.9</span> Nested templates with data dependency</h3>
+<div id="outline-container-orgfa9b15e" class="outline-3">
+<h3 id="orgfa9b15e"><span class="section-number-3">4.9</span> Nested templates with data dependency</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 Let&rsquo;s describe the same deployment as in section <a href="#sec:data-deps-rscs">4.7</a>
@@ -2129,8 +2135,8 @@ openstack stack delete --wait --yes hw8
 </div>
 </div>
 
-<div id="outline-container-org502e945" class="outline-3">
-<h3 id="org502e945"><span class="section-number-3">4.10</span> Other type of resources: floating IP</h3>
+<div id="outline-container-org1e8f136" class="outline-3">
+<h3 id="org1e8f136"><span class="section-number-3">4.10</span> Other type of resources: floating IP</h3>
 <div class="outline-text-3" id="text-4-10">
 <p>
 It&rsquo;s Floating IP time!
@@ -2197,7 +2203,7 @@ openstack stack delete --wait --yes hw9
 </div>
 </div>
 
-<div id="outline-container-orgc1cc1e5" class="outline-2">
+<div id="outline-container-org3697b2d" class="outline-2">
 <h2 id="sec:wp-heat"><span class="section-number-2">5</span> Deploy a WordPress as a Service (as a Heat DevOps)</h2>
 <div class="outline-text-2" id="text-sec:wp-heat">
 <p>
@@ -2243,14 +2249,192 @@ the tarball and in the following subsections.
 
 </div>
 </div>
+
+<div id="outline-container-org91c5c3a" class="outline-3">
+<h3 id="org91c5c3a"><span class="section-number-3">5.1</span> Database VM template&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
+
+<span style="color: #D8DEE9;">description</span>: &gt;
+  <span style="color: #A3BE8C;">Deploy an MariaDB server, outputs its IP address.</span>
+
+<span style="color: #D8DEE9;">parameters</span>:
+  <span style="color: #D8DEE9;">ServerKeyName</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the SSH key to provide to cloud-init
+    <span style="color: #D8DEE9;">type</span>: string
+    <span style="color: #D8DEE9;">default</span>: admin
+
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Parameters used in the cloud-init script to install &amp; configure</span>
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">MariaDB.</span>
+  <span style="color: #D8DEE9;">DBRootPassword</span>:
+    <span style="color: #D8DEE9;">label</span>: Value of the password to manage the database
+    <span style="color: #D8DEE9;">type</span>: string
+  <span style="color: #D8DEE9;">DBName</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the database to create
+    <span style="color: #D8DEE9;">type</span>: string
+  <span style="color: #D8DEE9;">DBUser</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the database user
+    <span style="color: #D8DEE9;">type</span>: string
+  <span style="color: #D8DEE9;">DBPassword</span>:
+    <span style="color: #D8DEE9;">label</span>: Password to access the database
+    <span style="color: #D8DEE9;">type</span>: string
+
+<span style="color: #D8DEE9;">resources</span>:
+  <span style="color: #D8DEE9;">db-vm</span>:
+    <span style="color: #D8DEE9;">type</span>: OS::Nova::Server
+    <span style="color: #D8DEE9;">properties</span>:
+      <span style="color: #D8DEE9;">key_name</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
+      <span style="color: #D8DEE9;">image</span>: debian-10
+      <span style="color: #D8DEE9;">flavor</span>: m1.mini
+      <span style="color: #D8DEE9;">networks</span>:
+        - {<span style="color: #D8DEE9;">network</span>: test}
+      <span style="color: #D8DEE9;">user_data</span>:
+        <span style="color: #D8DEE9;">str_replace</span>:
+          <span style="color: #D8DEE9;">template</span>: { <span style="color: #D8DEE9;">get_file</span>: ../../install-mariadb.sh }
+          <span style="color: #D8DEE9;">params</span>:
+            <span style="color: #D8DEE9;">${DB_ROOTPASSWORD}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBRootPassword }
+            <span style="color: #D8DEE9;">${DB_NAME}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBName }
+            <span style="color: #D8DEE9;">${DB_USER}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBUser }
+            <span style="color: #D8DEE9;">${DB_PASSWORD}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
+<span style="color: #D8DEE9;">outputs</span>:
+  <span style="color: #D8DEE9;">DBHost</span>:
+    <span style="color: #D8DEE9;">description</span>: IP address of the created instance running MariaDB
+    <span style="color: #D8DEE9;">value</span>: { <span style="color: #D8DEE9;">get_attr</span>: [db-vm, networks, test, 0] }
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orgfa0747e" class="outline-2">
-<h2 id="orgfa0747e"><span class="section-number-2">6</span> Appendix</h2>
+<div id="outline-container-org846e680" class="outline-3">
+<h3 id="org846e680"><span class="section-number-3">5.2</span> Web VM template&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
+
+<span style="color: #D8DEE9;">description</span>: &gt;
+  <span style="color: #A3BE8C;">Deploy an HTTP server that serves WordPress. Requires an SQL</span>
+<span style="color: #A3BE8C;">  database, whose IP address must be provided as a parameter.</span>
+
+<span style="color: #D8DEE9;">parameters</span>:
+  <span style="color: #D8DEE9;">ServerKeyName</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the SSH key to provide to cloud-init
+    <span style="color: #D8DEE9;">type</span>: string
+    <span style="color: #D8DEE9;">default</span>: admin
+
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Parameters used in the cloud-init script to install &amp; configure</span>
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">the WordPress app.</span>
+  <span style="color: #D8DEE9;">DBName</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the database to use
+    <span style="color: #D8DEE9;">type</span>: string
+  <span style="color: #D8DEE9;">DBUser</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the database user
+    <span style="color: #D8DEE9;">type</span>: string
+  <span style="color: #D8DEE9;">DBPassword</span>:
+    <span style="color: #D8DEE9;">label</span>: Password to access the database
+    <span style="color: #D8DEE9;">type</span>: string
+  <span style="color: #D8DEE9;">DBHost</span>:
+    <span style="color: #D8DEE9;">label</span>: IP address of the SQL server
+    <span style="color: #D8DEE9;">type</span>: string
+
+<span style="color: #D8DEE9;">resources</span>:
+  <span style="color: #D8DEE9;">wp-vm</span>:
+    <span style="color: #D8DEE9;">type</span>: OS::Nova::Server
+    <span style="color: #D8DEE9;">properties</span>:
+      <span style="color: #D8DEE9;">key_name</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
+      <span style="color: #D8DEE9;">image</span>: debian-10
+      <span style="color: #D8DEE9;">flavor</span>: m1.mini
+      <span style="color: #D8DEE9;">networks</span>:
+        - {<span style="color: #D8DEE9;">network</span>: test}
+      <span style="color: #D8DEE9;">user_data</span>:
+        <span style="color: #D8DEE9;">str_replace</span>:
+          <span style="color: #D8DEE9;">template</span>: { <span style="color: #D8DEE9;">get_file</span>: ../../install-wp.sh }
+          <span style="color: #D8DEE9;">params</span>:
+            <span style="color: #D8DEE9;">${DB_NAME}</span>:     { <span style="color: #D8DEE9;">get_param</span>: DBName }
+            <span style="color: #D8DEE9;">${DB_USER}</span>:     { <span style="color: #D8DEE9;">get_param</span>: DBUser }
+            <span style="color: #D8DEE9;">${DB_PASSWORD}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
+            <span style="color: #D8DEE9;">${DB_HOST}</span>:     { <span style="color: #D8DEE9;">get_param</span>: DBHost }
+
+  <span style="color: #D8DEE9;">floating-ip</span>:
+    <span style="color: #D8DEE9;">type</span>: OS::Neutron::FloatingIP
+    <span style="color: #D8DEE9;">properties</span>:
+      <span style="color: #D8DEE9;">floating_network</span>: external
+
+  <span style="color: #D8DEE9;">association</span>:
+    <span style="color: #D8DEE9;">type</span>: OS::Neutron::FloatingIPAssociation
+    <span style="color: #D8DEE9;">properties</span>:
+      <span style="color: #D8DEE9;">floatingip_id</span>: { <span style="color: #D8DEE9;">get_resource</span>: floating-ip }
+      <span style="color: #D8DEE9;">port_id</span>: { <span style="color: #D8DEE9;">get_attr</span>: [wp-vm, addresses, test, 0, port]}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcbbdf93" class="outline-3">
+<h3 id="orgcbbdf93"><span class="section-number-3">5.3</span> Wordpress application template&#xa0;&#xa0;&#xa0;<span class="tag"><span class="solution">solution</span></span></h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
+
+<span style="color: #D8DEE9;">description</span>: &gt;
+  <span style="color: #A3BE8C;">Deploy a WordPress application, composed of an SQL</span>
+<span style="color: #A3BE8C;">  instance and an HTTP instance that serves WordPress.</span>
+
+
+<span style="color: #D8DEE9;">parameters</span>:
+  <span style="color: #D8DEE9;">ServerKeyName</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the SSH key to provide to cloud-init
+    <span style="color: #D8DEE9;">type</span>: string
+    <span style="color: #D8DEE9;">default</span>: admin
+
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">Parameters used in the cloud-init script to install &amp; configure</span>
+  <span style="color: #616e88;"># </span><span style="color: #616e88;">MariaDB</span>
+  <span style="color: #D8DEE9;">DBRootPassword</span>:
+    <span style="color: #D8DEE9;">label</span>: Value of the password to manage the database
+    <span style="color: #D8DEE9;">type</span>: string
+    <span style="color: #D8DEE9;">default</span>: 0p3nSt4cK
+  <span style="color: #D8DEE9;">DBName</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the database to create
+    <span style="color: #D8DEE9;">type</span>: string
+    <span style="color: #D8DEE9;">default</span>: wordpress
+  <span style="color: #D8DEE9;">DBUser</span>:
+    <span style="color: #D8DEE9;">label</span>: Name of the database user
+    <span style="color: #D8DEE9;">type</span>: string
+    <span style="color: #D8DEE9;">default</span>: donatello
+  <span style="color: #D8DEE9;">DBPassword</span>:
+    <span style="color: #D8DEE9;">label</span>: Password to access the database
+    <span style="color: #D8DEE9;">type</span>: string
+    <span style="color: #D8DEE9;">default</span>: leonardo
+
+<span style="color: #D8DEE9;">resources</span>:
+  <span style="color: #D8DEE9;">database</span>:
+    <span style="color: #D8DEE9;">type</span>: ./db-vm.yaml
+    <span style="color: #D8DEE9;">properties</span>:
+      <span style="color: #D8DEE9;">ServerKeyName</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
+      <span style="color: #D8DEE9;">DBRootPassword</span>: { <span style="color: #D8DEE9;">get_param</span>: DBRootPassword }
+      <span style="color: #D8DEE9;">DBName</span>: { <span style="color: #D8DEE9;">get_param</span>: DBName }
+      <span style="color: #D8DEE9;">DBUser</span>: { <span style="color: #D8DEE9;">get_param</span>: DBUser }
+      <span style="color: #D8DEE9;">DBPassword</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
+  <span style="color: #D8DEE9;">wordpress</span>:
+    <span style="color: #D8DEE9;">type</span>: ./wp-vm.yaml
+    <span style="color: #D8DEE9;">properties</span>:
+      <span style="color: #D8DEE9;">ServerKeyName</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
+      <span style="color: #D8DEE9;">DBName</span>: { <span style="color: #D8DEE9;">get_param</span>: DBName }
+      <span style="color: #D8DEE9;">DBUser</span>: { <span style="color: #D8DEE9;">get_param</span>: DBUser }
+      <span style="color: #D8DEE9;">DBPassword</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
+      <span style="color: #D8DEE9;">DBHost</span>: { <span style="color: #D8DEE9;">get_attr</span>: [database, DBHost] }
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5a190ee" class="outline-2">
+<h2 id="org5a190ee"><span class="section-number-2">6</span> Appendix</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org112b0c7" class="outline-3">
-<h3 id="org112b0c7"><span class="section-number-3">6.1</span> Vagrantfile</h3>
+<div id="outline-container-org7b4414a" class="outline-3">
+<h3 id="org7b4414a"><span class="section-number-3">6.1</span> Vagrantfile</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 <a href="https://en.wikipedia.org/wiki/Vagrant_%28software%29">Vagrant</a> is an open-source software to build development environment
@@ -2320,8 +2504,8 @@ the content of the <code>/vagrant</code> directory in the lab machine with the
 </div>
 </div>
 
-<div id="outline-container-org84460e5" class="outline-3">
-<h3 id="org84460e5"><span class="section-number-3">6.2</span> Install MariaDB on Debian 10</h3>
+<div id="outline-container-orgbaebd4b" class="outline-3">
+<h3 id="orgbaebd4b"><span class="section-number-3">6.2</span> Install MariaDB on Debian 10</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -2366,8 +2550,8 @@ cat &lt;&lt; EOSQL | mysql -u root --password=$<span style="color: #8FBCBB;">{</
 </div>
 </div>
 
-<div id="outline-container-org9e97d0b" class="outline-3">
-<h3 id="org9e97d0b"><span class="section-number-3">6.3</span> Install Wordpress application on Debian 10</h3>
+<div id="outline-container-org24a2664" class="outline-3">
+<h3 id="org24a2664"><span class="section-number-3">6.3</span> Install Wordpress application on Debian 10</h3>
 <div class="outline-text-3" id="text-6-3">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -2420,8 +2604,8 @@ cat &lt;&lt; EOF &gt; /etc/wordpress/config-default.php
 </div>
 </div>
 
-<div id="outline-container-org01bea38" class="outline-3">
-<h3 id="org01bea38"><span class="section-number-3">6.4</span> VM Live migration</h3>
+<div id="outline-container-org6131b59" class="outline-3">
+<h3 id="org6131b59"><span class="section-number-3">6.4</span> VM Live migration</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 First start a VM with mpv and libcaca to output videos in the
@@ -2473,7 +2657,7 @@ openstack server migrate migrate-vm --live-migration --block-migration
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-polytech-laroche]">open an issue</a></p>
-<p class="date">Last modification: 2020-12-18 Fri 17:25</p>
+<p class="date">Last modification: 2020-12-21 Mon 12:08</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3.7) – <a href="http://gongzhitaao.org/orgcss">Zhitao Gong</a> customized theme</p>
 </div>
