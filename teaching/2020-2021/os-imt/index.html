@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-11-10 Tue 16:12 -->
+<!-- 2021-03-03 Wed 11:09 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate Resources in Public and Private Clouds Thanks to OpenStack</title>
@@ -261,7 +261,8 @@ your cloud from your sofa!).</li>
 </ul>
 
 <p>
-Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectures/blob/da421e2/2018-2019/os-polytech/docs/CloudFogEdgeIntro.pdf?raw=true">here</a> and <a href="https://github.com/BeyondTheClouds/lectures/blob/da421e2/2018-2019/os-polytech/docs/openstack-slides.pdf?raw=true">there</a>.
+Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectures/blob/da421e2/2018-2019/os-polytech/docs/CloudFogEdgeIntro.pdf?raw=true">here</a> and <a href="https://github.com/BeyondTheClouds/lectures/blob/da421e2/2018-2019/os-polytech/docs/openstack-slides.pdf?raw=true">there</a>.  Find the collaborative
+editor to follow lab completion <a href="https://pad.inria.fr/p/https://pad.inria.fr/p/np_HcC3U1VsFnNgT1af_Nuage-2020-2021">here.</a>
 </p>
 
 </div>
@@ -272,69 +273,63 @@ Find the slides of the lecture <a href="https://github.com/BeyondTheClouds/lectu
 <ul>
 <li><a href="#sec:req">1. Requirements and Setup</a>
 <ul>
-<li><a href="#orgea11cbd">1.1. Environment</a></li>
+<li><a href="#orgd1f5448">1.1. Environment</a></li>
 <li><a href="#sec:assign-lab">1.2. Access the Lab machine</a></li>
 <li><a href="#sec:rscs-lab">1.3. Resources of the Lab</a></li>
-<li><a href="#org6b479da">1.4. Setup OpenStack</a></li>
+<li><a href="#orge12e3f2">1.4. Setup OpenStack</a></li>
 </ul>
 </li>
 <li><a href="#sec:play-with-os">2. Play with OpenStack (as an Admin)</a>
 <ul>
-<li><a href="#org166c88c">2.1. OpenStack Horizon dashboard</a></li>
+<li><a href="#org1cb6fa3">2.1. OpenStack Horizon dashboard</a></li>
 <li><a href="#sec:os-cli">2.2. Unleash the operator in you</a>
 <ul>
-<li><a href="#orge83f418">2.2.1. Make the world reaches the VM</a></li>
+<li><a href="#org69323a4">2.2.1. Make the world reaches the VM</a></li>
 </ul>
 </li>
 <li><a href="#sec:enc-trust">2.3. In encryption we trust</a></li>
-<li><a href="#org57a3d7d">2.4. The art of contextualizing a VM</a>
+<li><a href="#orge86136d">2.4. The art of contextualizing a VM</a>
 <ul>
 <li><a href="#sec:debian10-ftw">2.4.1. Debian 10 FTW</a></li>
 <li><a href="#sec:cloud-init">2.4.2. <code>cloud-init</code> in Action</a></li>
 </ul>
 </li>
-<li><a href="#org3f37524">2.5. Run VMs at (near-)native speed</a></li>
+<li><a href="#orgc060c14">2.5. Run VMs at (near-)native speed</a></li>
 </ul>
 </li>
 <li><a href="#sec:wp-devops">3. Deploy a WordPress as a Service (as a DevOps)</a></li>
 <li><a href="#sec:heat">4. Automatize the Deployment with Heat</a>
 <ul>
-<li><a href="#orgf6ccf05">4.1. Preamble</a></li>
-<li><a href="#org72c0a08">4.2. Boot a VM</a></li>
+<li><a href="#orgc5e349a">4.1. Preamble</a></li>
+<li><a href="#orgf124ff3">4.2. Boot a VM</a></li>
 <li><a href="#sec:heat-params">4.3. Need more flexibility: let&rsquo;s add parameters</a></li>
-<li><a href="#sec:heat-outputs">4.4. Need to return values: let&rsquo;s use outputs!</a></li>
-<li><a href="#org6fa5e6f">4.5. Integrate <code>cloud-init</code></a></li>
-<li><a href="#org4fab2c7">4.6. Dynamic configuration with <code>cloud-init</code> and parameters</a></li>
+<li><a href="#sec:heat-outputs">4.4. Need to return values: let&rsquo;s use outputs</a></li>
+<li><a href="#org0610ee8">4.5. Integrate <code>cloud-init</code></a></li>
+<li><a href="#org3c1fb3a">4.6. Dynamic configuration with <code>cloud-init</code> and parameters</a></li>
 <li><a href="#sec:data-deps-rscs">4.7. Data dependency between resources</a></li>
-<li><a href="#org709cc7c">4.8. Nested templates</a></li>
-<li><a href="#org94cb28a">4.9. Nested templates with data dependency</a></li>
-<li><a href="#orgc61bf31">4.10. Other type of resources: floating IP</a></li>
+<li><a href="#org16f5512">4.8. Nested templates</a></li>
+<li><a href="#org2f76c51">4.9. Nested templates with data dependency</a></li>
+<li><a href="#org1859fec">4.10. Other type of resources: floating IP</a></li>
 </ul>
 </li>
-<li><a href="#sec:wp-heat">5. Deploy a WordPress as a Service (as a Heat DevOps)</a>
+<li><a href="#sec:wp-heat">5. Deploy a WordPress as a Service (as a Heat DevOps)</a></li>
+<li><a href="#org2cc3e64">6. Appendix</a>
 <ul>
-<li><a href="#org473c86d">5.1. Database VM template</a></li>
-<li><a href="#org611b188">5.2. Web VM template</a></li>
-<li><a href="#orgfaca1fd">5.3. Wordpress application template</a></li>
-</ul>
-</li>
-<li><a href="#org42a3bd5">6. Appendix</a>
-<ul>
-<li><a href="#orga32d3cb">6.1. Install MariaDB on Debian 10</a></li>
-<li><a href="#orgf7737cf">6.2. Install Wordpress application on Debian 10</a></li>
-<li><a href="#org0f07b55">6.3. VM Live migration</a></li>
+<li><a href="#org0398455">6.1. Install MariaDB on Debian 10</a></li>
+<li><a href="#orga337b60">6.2. Install Wordpress application on Debian 10</a></li>
+<li><a href="#orgf29149f">6.3. VM Live migration</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org2b85d82" class="outline-2">
+<div id="outline-container-orgf16d98e" class="outline-2">
 <h2 id="sec:req"><span class="section-number-2">1</span> Requirements and Setup</h2>
 <div class="outline-text-2" id="text-sec:req">
 </div>
-<div id="outline-container-orgea11cbd" class="outline-3">
-<h3 id="orgea11cbd"><span class="section-number-3">1.1</span> Environment</h3>
+<div id="outline-container-orgd1f5448" class="outline-3">
+<h3 id="orgd1f5448"><span class="section-number-3">1.1</span> Environment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 OpenStack needs, at least, 6 Go of RAM to run. And plenty more to
@@ -374,7 +369,7 @@ deployments.</li>
 </div>
 </div>
 
-<div id="outline-container-orge55e32a" class="outline-3">
+<div id="outline-container-orgff8beda" class="outline-3">
 <h3 id="sec:assign-lab"><span class="section-number-3">1.2</span> Access the Lab machine</h3>
 <div class="outline-text-3" id="text-sec:assign-lab">
 <p>
@@ -443,13 +438,13 @@ Run OpenVPN client with sudo
 <pre class="example">
 cd g5k_vpnclient; sudo openvpn Grid5000_VPN.ovpn
 </pre></li>
-<li>Fill password of step 4 to the question <code>Enter Private Key
+<li>Fill in the password of Step 4 to the question <code>Enter Private Key
    Password:</code>.</li>
 </ol>
 
 <p>
 You correctly setup the VPN and can access Grid&rsquo;5000 private network
-if your shell hangs and you see the following route in your routing
+if your <b>shell hangs</b> and you see the following route in your routing
 table.
 </p>
 <div class="org-src-container">
@@ -479,7 +474,7 @@ The rest of this lab <b>proceeds on the Lab machine</b>.
 </div>
 </div>
 
-<div id="outline-container-org52bff3a" class="outline-3">
+<div id="outline-container-org0b9f377" class="outline-3">
 <h3 id="sec:rscs-lab"><span class="section-number-3">1.3</span> Resources of the Lab</h3>
 <div class="outline-text-3" id="text-sec:rscs-lab">
 <p>
@@ -504,8 +499,8 @@ The archive contains:
 </div>
 </div>
 
-<div id="outline-container-org6b479da" class="outline-3">
-<h3 id="org6b479da"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
+<div id="outline-container-orge12e3f2" class="outline-3">
+<h3 id="orge12e3f2"><span class="section-number-3">1.4</span> Setup OpenStack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Install snap.
@@ -517,7 +512,7 @@ sudo apt install snapd
 
 
 <p>
-Install OpenStack directly from the snap store.
+Install the latest version of OpenStack from the snap store.
 </p>
 <pre class="example">
 sudo snap install --channel=latest/beta microstack --devmode
@@ -565,12 +560,12 @@ on OpenStack.</dd>
 </div>
 </div>
 
-<div id="outline-container-org4697ec6" class="outline-2">
+<div id="outline-container-orgb8c9500" class="outline-2">
 <h2 id="sec:play-with-os"><span class="section-number-2">2</span> Play with OpenStack (as an Admin)</h2>
 <div class="outline-text-2" id="text-sec:play-with-os">
 </div>
-<div id="outline-container-org166c88c" class="outline-3">
-<h3 id="org166c88c"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
+<div id="outline-container-org1cb6fa3" class="outline-3">
+<h3 id="org1cb6fa3"><span class="section-number-3">2.1</span> OpenStack Horizon dashboard</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 One service deployed is the OpenStack dashboard (Horizon). On your own
@@ -579,7 +574,7 @@ machine, horizon is reachable from the web browser at
 </p>
 <ul class="org-ul">
 <li>login: <code>admin</code></li>
-<li>password: <code>keystone</code></li>
+<li>password: <code>lab-os</code></li>
 </ul>
 
 <p>
@@ -614,25 +609,25 @@ credentials to access the VM:
 
 <p>
 However, as a <i>real DevOps</i>, you will prefer to access to your VM by
-the command line interface &#x2026;
+the command line interface &hellip;
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3655b04" class="outline-3">
+<div id="outline-container-org64a8a6b" class="outline-3">
 <h3 id="sec:os-cli"><span class="section-number-3">2.2</span> Unleash the operator in you</h3>
 <div class="outline-text-3" id="text-sec:os-cli">
 <p>
 While Horizon is helpful to discover OpenStack features, this is not
-the tool of choice for an operator. An operator prefers command line
-interface 😄. You are lucky, OpenStack provides one.
+the tool of choice for an operator.  An operator prefers command line
+interface 😄.  You are lucky, OpenStack provides one.
 </p>
 
 <p>
 All operations to manage OpenStack are done through one unique command
-line, called <code>openstack &lt;service&gt; &lt;action&gt; ...</code>. Doing an <code>openstack
+line, called <code>openstack &lt;service&gt; &lt;action&gt; ...</code>.  Doing an <code>openstack
 --help</code> displays the <i>really long</i> list of services/possibilities
-provided by this command. The following gives you a selection of the
+provided by this command.  The following gives you a selection of the
 most often used commands to operate your Cloud:
 </p>
 <dl class="org-dl">
@@ -649,8 +644,9 @@ most often used commands to operate your Cloud:
 
 <div class="do">
 <p>
-Try one of these commands. Does it works? What is the problem, how to
-fix it? Hint: Look at the <a href="https://docs.openstack.org/python-openstackclient/ussuri/cli/authentication.html">password authentication process</a> for the CLI.
+Try one of these commands.  Does it works?  What is the problem, how
+to fix it?  Hint: Look at the <a href="https://docs.openstack.org/python-openstackclient/ussuri/cli/authentication.html">password authentication process</a> for the
+CLI.
 </p>
 
 <div class="solution">
@@ -668,9 +664,9 @@ arguments of the command.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">openstack endpoint list --os-auth-url=http://&lt;ip-of-your-lab-machine&gt;:5000/v3/ <span style="color: #A3BE8C;">\</span>
+<pre class="src src-bash">openstack server list --os-auth-url=http://&lt;ip-of-your-lab-machine&gt;:5000/v3/ <span style="color: #A3BE8C;">\</span>
                         --os-username=admin <span style="color: #A3BE8C;">\</span>
-                        --os-password=keystone <span style="color: #A3BE8C;">\</span>
+                        --os-password=lab-os <span style="color: #A3BE8C;">\</span>
                         --os-project-name=admin <span style="color: #A3BE8C;">\</span>
                         --os-user-domain-name=Default <span style="color: #A3BE8C;">\</span>
                         --os-project-domain-id=default
@@ -705,7 +701,7 @@ You can then check that your environment is correctly set.
 <span style="color: #D8DEE9;">OS_AUTH_URL</span>=http://&lt;ip-of-your-lab-machine&gt;:5000/v3/
 <span style="color: #D8DEE9;">OS_IDENTITY_API_VERSION</span>=<span style="color: #81A1C1;">3</span>
 <span style="color: #D8DEE9;">OS_INTERFACE</span>=public
-<span style="color: #D8DEE9;">OS_PASSWORD</span>=keystone
+<span style="color: #D8DEE9;">OS_PASSWORD</span>=lab-os
 <span style="color: #D8DEE9;">OS_PROJECT_DOMAIN_ID</span>=default
 <span style="color: #D8DEE9;">OS_PROJECT_ID</span>=<span style="color: #81A1C1;">2bad71b9246a4a06a0c9daf2d8896108</span>
 <span style="color: #D8DEE9;">OS_PROJECT_NAME</span>=admin
@@ -758,7 +754,7 @@ openstack server show cli-vm -c status -f json
 
 <p>
 This status will go from <code>BUILD</code>: OpenStack is looking for the best
-place to boot the VM; to <code>ACTIVE</code>: your VM is running. The status
+place to boot the VM; to <code>ACTIVE</code>: your VM is running.  The status
 could also be <code>ERROR</code> if you are experiencing hard times with your
 infrastructure.
 </p>
@@ -770,8 +766,7 @@ command.
 </p>
 <div class="solution">
 <pre class="example">
-$ openstack server create --help
-...
+$ openstack server create --help | fgrep -A 6 "output formatters:"
 output formatters:
   output formatter options
 
@@ -779,7 +774,6 @@ output formatters:
                         the output format, defaults to table
   -c COLUMN, --column COLUMN
                         specify the column(s) to include, can be repeated
-...
 </pre>
 
 </div>
@@ -807,8 +801,8 @@ cli-vm login:
 </pre>
 </div>
 
-<div id="outline-container-orge83f418" class="outline-4">
-<h4 id="orge83f418"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
+<div id="outline-container-org69323a4" class="outline-4">
+<h4 id="org69323a4"><span class="section-number-4">2.2.1</span> Make the world reaches the VM</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 The <a href="https://docs.openstack.org/neutron/ussuri/">neutron</a> service manage networks in OpenStack.  Neutron
@@ -830,7 +824,7 @@ dashboard).  Ensure that you <b>cannot</b> ping that VM from the Lab machine.
 
 <div class="solution">
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #D8DEE9;">PRIV_IP</span>=$<span style="color: #8FBCBB;">(</span>openstack server show cli-vm -c addresses -f value | sed -E <span style="color: #A3BE8C;">'s/test=(.+)/\1/g'</span><span style="color: #8FBCBB;">)</span>
+<pre class="src src-bash"><span style="color: #D8DEE9;">PRIV_IP</span>=$<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> server show cli-vm -c addresses -f value | sed -E <span style="color: #A3BE8C;">'s/test=(.+)/\1/g'</span><span style="color: #8FBCBB;">)</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Private IP of cli-vm is ${PRIV_IP}"</span>
 ping -c <span style="color: #81A1C1;">3</span> <span style="color: #A3BE8C;">"${PRIV_IP}"</span> <span style="color: #616e88;"># </span><span style="color: #616e88;">From horizon-vm: 0% packet loss, From lab: 100% packet loss</span>
 </pre>
@@ -858,7 +852,7 @@ Affect a floating IP of the <code>external</code> network to your machine if you
 want it to be pingable from the host.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #D8DEE9;">ALLOCATED_FIP</span>=$<span style="color: #8FBCBB;">(</span>openstack floating ip create <span style="color: #A3BE8C;">\</span>
+<pre class="src src-bash"><span style="color: #D8DEE9;">ALLOCATED_FIP</span>=$<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> floating ip create <span style="color: #A3BE8C;">\</span>
   -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"${ALLOCATED_FIP}"</span>
 openstack server add floating ip cli-vm <span style="color: #A3BE8C;">"${ALLOCATED_FIP}"</span>
@@ -886,8 +880,8 @@ ping -c 3 "$ALLOCATED_FIP"
 Does it work? Why? Hint: OpenStack limits the incomming traffic by
 default for security reasons.  The mechanisms to control the traffic
 in OpenStack is called <a href="https://docs.openstack.org/neutron/ussuri/feature_classification/general_feature_support_matrix.html#operation_Security_Groups">security group</a>.  Find the command that list the
-security group rules of the <code>admin</code> project. # (i.e., <code>openstack
-project show admin</code>).
+security group rules of the <code>admin</code> project (i.e., <code>openstack project
+show admin</code>).
 </p>
 
 <div class="solution">
@@ -900,7 +894,7 @@ values should be interpreted as <i>&ldquo;<code>None</code> protocol on any (<co
 network is allowed&rdquo;</i>.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">$ <span style="color: #D8DEE9;">SECGROUP_ID</span>=$<span style="color: #8FBCBB;">(</span>openstack security group list --project admin -f value -c ID<span style="color: #8FBCBB;">)</span>
+<pre class="src src-bash">$ <span style="color: #D8DEE9;">SECGROUP_ID</span>=$<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> security group list --project admin -f value -c ID<span style="color: #8FBCBB;">)</span>
 $ openstack security group rule list -c ID -c <span style="color: #A3BE8C;">"IP Protocol"</span> -c <span style="color: #A3BE8C;">"IP Range"</span> $<span style="color: #D8DEE9;">SECGROUP_ID</span>
 
 +--------------------------------------+-------------+-----------+
@@ -946,16 +940,18 @@ ssh -l cirros "$ALLOCATED_FIP"
 </pre>
 
 
+<div class="do">
 <p>
-Go on, and play with the <code>openstack</code> cli. For instance, list all
-features offered by Nova with <code>openstack server --help</code> and try to
-figure out how to:
+Go on, and play with the <code>openstack</code> CLI.  List all features offered
+by Nova with <code>openstack server --help</code> and figure out how to:
 </p>
 <ol class="org-ol">
 <li>SSH on <code>cli-vm</code> using its name rather than its IP;</li>
-<li>Suspend and resume it;</li>
+<li>Pause it, note the footprint on the ram of the hypervisor, and unpause it;</li>
+<li><del>Suspend it, note the footprint on the ram of the hypervisor, and
+resume it;</del> Does not work right now 😒</li>
 <li>Create a snapshot of <code>cli-vm</code>;</li>
-<li>Boot a new machine <code>cli-vm-clone</code> from the snapshot.</li>
+<li>Boot a new machine <code>cli-vm-clone</code> from the snapshot;</li>
 <li>Delete <code>cli-vm-clone</code>;</li>
 </ol>
 
@@ -964,25 +960,33 @@ figure out how to:
 <pre class="src src-bash"><span style="color: #616e88;"># </span><span style="color: #616e88;">1.</span>
 openstack server ssh cli-vm -l cirros
 <span style="color: #616e88;"># </span><span style="color: #616e88;">2.</span>
-openstack server suspend cli-vm; openstack server show cli-vm -c status
-openstack server resume cli-vm; openstack server show cli-vm -c status
+openstack hypervisor show $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> server show cli-vm -c <span style="color: #A3BE8C;">"OS-EXT-SRV-ATTR:hypervisor_hostname"</span> -f value<span style="color: #8FBCBB;">)</span> -c free_ram_mb
+openstack server pause cli-vm; openstack server show cli-vm -c status
+openstack hypervisor show $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> server show cli-vm -c <span style="color: #A3BE8C;">"OS-EXT-SRV-ATTR:hypervisor_hostname"</span> -f value<span style="color: #8FBCBB;">)</span> -c free_ram_mb
+openstack server unpause cli-vm; openstack server show cli-vm -c status
 <span style="color: #616e88;"># </span><span style="color: #616e88;">3.</span>
-openstack server image create --name cli-vm-img cli-vm; openstack image list
+openstack server suspend cli-vm; openstack server show cli-vm -c status
+openstack hypervisor show $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> server show cli-vm -c <span style="color: #A3BE8C;">"OS-EXT-SRV-ATTR:hypervisor_hostname"</span> -f value<span style="color: #8FBCBB;">)</span> -c free_ram_mb
+openstack server resume cli-vm; openstack server show cli-vm -c status
 <span style="color: #616e88;"># </span><span style="color: #616e88;">4.</span>
+openstack server image create --name cli-vm-img cli-vm; openstack image list
+<span style="color: #616e88;"># </span><span style="color: #616e88;">5.</span>
 openstack server create --wait --flavor m1.tiny <span style="color: #A3BE8C;">\</span>
   --network test --image cli-vm-img <span style="color: #A3BE8C;">\</span>
   cli-vm-clone
-<span style="color: #616e88;"># </span><span style="color: #616e88;">5.</span>
+<span style="color: #616e88;"># </span><span style="color: #616e88;">6.</span>
 openstack server delete cli-vm-clone
 </pre>
 </div>
 
 </div>
+
+</div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc8fb28c" class="outline-3">
+<div id="outline-container-org8dccc5a" class="outline-3">
 <h3 id="sec:enc-trust"><span class="section-number-3">2.3</span> In encryption we trust</h3>
 <div class="outline-text-3" id="text-sec:enc-trust">
 <p>
@@ -1022,7 +1026,7 @@ Attach it a floating IP.
 <div class="org-src-container">
 <pre class="src src-bash">openstack server add floating ip <span style="color: #A3BE8C;">\</span>
   cli-vm-adminkey <span style="color: #A3BE8C;">\</span>
-  $<span style="color: #8FBCBB;">(</span>openstack floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
+  $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
 </pre>
 </div>
 
@@ -1059,22 +1063,22 @@ openstack server show cli-vm-adminkey -c addresses -f value | sed  -Er 's/test=.
 </div>
 </div>
 
-<div id="outline-container-org57a3d7d" class="outline-3">
-<h3 id="org57a3d7d"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
+<div id="outline-container-orge86136d" class="outline-3">
+<h3 id="orge86136d"><span class="section-number-3">2.4</span> The art of contextualizing a VM</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Contextualizing is the process that automatically installs software,
 alters configurations, and does more on a machine as part of its boot
-process. On OpenStack, contextualizing is achieved thanks to
-<a href="https://cloud-init.io/"><code>cloud-init</code></a>. It is a program that runs at the boot time to customize
+process.  On OpenStack, contextualizing is achieved thanks to
+<a href="https://cloud-init.io/"><code>cloud-init</code></a>.  It is a program that runs at the boot time to customize
 the VM.
 </p>
 
 <p>
-You have already used <code>cloud-init</code> without even knowing it! The
+You have already used <code>cloud-init</code> without even knowing it!  The
 previous command <code>openstack server create</code> with the <code>--identity</code>
 parameter tells OpenStack to make the public counterpart of the SSH
-key available to the VM. When the VM boots for the first time,
+key available to the VM.  When the VM boots for the first time,
 <code>cloud-init</code> is (among other tasks) in charge of fetching this public
 SSH key from OpenStack, and copy it to <code>~/.ssh/authorized_keys</code>.
 Beyond that, <code>cloud-init</code> is in charge of many aspects of the VM
@@ -1085,14 +1089,14 @@ executed on the VM as <code>root</code> during the boot process.
 </p>
 </div>
 
-<div id="outline-container-orgee1b674" class="outline-4">
+<div id="outline-container-orgf830871" class="outline-4">
 <h4 id="sec:debian10-ftw"><span class="section-number-4">2.4.1</span> Debian 10 FTW</h4>
 <div class="outline-text-4" id="text-sec:debian10-ftw">
 <p>
 When it comes the time to deal with real applications, we cannot use
-cirros VMs anymore. A Cirros VM is good for testing because it starts
-fast and has a small memory footprint. However, do not expect to
-launch <a href="https://en.wikipedia.org/wiki/MariaDB">MariaDB</a> or even <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> on a cirros.
+cirros VMs anymore.  A Cirros VM is good for testing because it starts
+fast and has a small memory footprint.  However, do not expect to
+launch <a href="https://en.wikipedia.org/wiki/MariaDB">MariaDB</a> on a cirros.
 </p>
 
 <p>
@@ -1102,14 +1106,14 @@ want to release all your resources before going further.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash" id="orga172041"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
-<span style="color: #81A1C1;">for</span> vm<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span>openstack server list -c ID -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
+<pre class="src src-bash" id="orgb6e5fe8"><span style="color: #616e88;"># </span><span style="color: #616e88;">Delete VMs</span>
+<span style="color: #81A1C1;">for</span> vm<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> server list -c ID -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
   <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Deleting ${vm}..."</span>; <span style="color: #A3BE8C;">\</span>
   openstack server delete <span style="color: #A3BE8C;">"${vm}"</span>; <span style="color: #A3BE8C;">\</span>
 <span style="color: #81A1C1;">done</span>
 
 <span style="color: #616e88;"># </span><span style="color: #616e88;">Releasing floating IPs</span>
-<span style="color: #81A1C1;">for</span> ip<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span>openstack floating ip list -c <span style="color: #A3BE8C;">"Floating IP Address"</span> -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
+<span style="color: #81A1C1;">for</span> ip<span style="color: #81A1C1;"> in</span> $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> floating ip list -c <span style="color: #A3BE8C;">"Floating IP Address"</span> -f value<span style="color: #8FBCBB;">)</span>; <span style="color: #81A1C1;">do</span> <span style="color: #A3BE8C;">\</span>
   <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"Releasing ${ip}..."</span>; <span style="color: #A3BE8C;">\</span>
   openstack floating ip delete <span style="color: #A3BE8C;">"${ip}"</span>; <span style="color: #A3BE8C;">\</span>
 <span style="color: #81A1C1;">done</span>
@@ -1120,7 +1124,7 @@ want to release all your resources before going further.
 Then, download the Debian10 image with support of <code>cloud-init</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">curl -L -o /tmp/debian-10.qcow2 <span style="color: #A3BE8C;">\</span>
+<pre class="src src-bash">curl -L -o ./debian-10.qcow2 <span style="color: #A3BE8C;">\</span>
   https://cloud.debian.org/images/cloud/OpenStack/current-10/debian-10-openstack-amd64.qcow2
 </pre>
 </div>
@@ -1135,7 +1139,7 @@ create --help</code> for creation arguments. Find values example with
 <div class="org-src-container">
 <pre class="src src-bash">openstack image create --disk-format=qcow2 <span style="color: #A3BE8C;">\</span>
   --container-format=bare --property <span style="color: #D8DEE9;">architecture</span>=x86_64 <span style="color: #A3BE8C;">\</span>
-  --public --file /tmp/debian-10.qcow2 <span style="color: #A3BE8C;">\</span>
+  --public --file ./debian-10.qcow2 <span style="color: #A3BE8C;">\</span>
   debian-10
 </pre>
 </div>
@@ -1161,7 +1165,7 @@ creation arguments.
 </div>
 </div>
 
-<div id="outline-container-org63dd309" class="outline-4">
+<div id="outline-container-org87bd847" class="outline-4">
 <h4 id="sec:cloud-init"><span class="section-number-4">2.4.2</span> <code>cloud-init</code> in Action</h4>
 <div class="outline-text-4" id="text-sec:cloud-init">
 <p>
@@ -1173,14 +1177,14 @@ extra argument to the regular <code>openstack server create</code> command.
 <div class="do">
 <p>
 Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> image and the
-<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org7af8a7f">1</a>
+<code>m1.mini</code> flavor. The VM should load and execute the script <a href="#org2aa4080">1</a>
 &#x2013; available under <code>rsc/art.sh</code> &#x2013; that installs the <a href="https://github.com/cmatsuoka/figlet"><code>figlet</code></a> and
 <a href="https://github.com/busyloop/lolcat"><code>lolcat</code></a> softwares on the VM.
 </p>
 
 <div class="solution">
 <div class="org-src-container">
-<pre class="src src-bash">openstack server create --wait --image debian-10 <span style="color: #A3BE8C;">\</span>
+<pre class="src src-bash">openstack server create --wait --image debina-10 <span style="color: #A3BE8C;">\</span>
   --flavor m1.mini --network test <span style="color: #A3BE8C;">\</span>
   --key-name admin <span style="color: #A3BE8C;">\</span>
   --user-data ./rsc/art.sh <span style="color: #A3BE8C;">\</span>
@@ -1193,7 +1197,7 @@ Start a new VM named <code>art-vm</code> based on the <code>debian-10</code> ima
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org7af8a7f"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
+<label class="org-src-name"><span class="listing-number">Listing 1: </span><code>cloud-init</code> script available under <code>rsc/art.sh</code></label><pre class="src src-bash" id="org2aa4080"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
 <span style="color: #616e88;"># </span><span style="color: #616e88;">Fix DNS resolution</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">""</span> &gt; /etc/resolv.conf
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"nameserver 8.8.8.8"</span> &gt;&gt; /etc/resolv.conf
@@ -1225,11 +1229,11 @@ boot has finished.
   <span style="color: #616e88;"># </span><span style="color: #616e88;">VM to get the log of</span>
   <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">vm</span>=<span style="color: #A3BE8C;">"$1"</span>
   <span style="color: #616e88;"># </span><span style="color: #616e88;">Number of rows displayed by the term</span>
-  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">term_lines</span>=$<span style="color: #88C0D0;">(</span>tput lines<span style="color: #88C0D0;">)</span>
+  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">term_lines</span>=$<span style="color: #88C0D0;">(</span><span style="color: #fa8072;">tput</span> lines<span style="color: #88C0D0;">)</span>
   <span style="color: #616e88;"># </span><span style="color: #616e88;">Number of log lines to display is min(term_lines, 20)</span>
   <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">console_lines</span>=$<span style="color: #88C0D0;">(</span><span style="color: #81A1C1;">(</span>$<span style="color: #D8DEE9;">term_lines</span>&lt;<span style="color: #81A1C1;">22</span> ? $<span style="color: #D8DEE9;">term_lines</span> - <span style="color: #81A1C1;">2</span> : <span style="color: #81A1C1;">20</span><span style="color: #81A1C1;">)</span><span style="color: #88C0D0;">)</span>
   <span style="color: #616e88;"># </span><span style="color: #616e88;">Get the log</span>
-  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">console_log</span>=$<span style="color: #88C0D0;">(</span>openstack console log show --lines=$<span style="color: #81A1C1;">{</span><span style="color: #D8DEE9;">console_lines</span><span style="color: #81A1C1;">}</span> <span style="color: #A3BE8C;">"${vm}"</span><span style="color: #88C0D0;">)</span>
+  <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">console_log</span>=$<span style="color: #88C0D0;">(</span><span style="color: #fa8072;">openstack</span> console log show --lines=$<span style="color: #81A1C1;">{</span><span style="color: #D8DEE9;">console_lines</span><span style="color: #81A1C1;">}</span> <span style="color: #A3BE8C;">"${vm}"</span><span style="color: #88C0D0;">)</span>
 
   <span style="color: #616e88;"># </span><span style="color: #616e88;">Do not wrap long lines</span>
   tput rmam
@@ -1245,7 +1249,7 @@ boot has finished.
 
       <span style="color: #616e88;"># </span><span style="color: #616e88;">Compute the new console log before clearing</span>
       <span style="color: #616e88;"># </span><span style="color: #616e88;">the screen is it does not remain blank for two long.</span>
-      <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">new_console_log</span>=$<span style="color: #88C0D0;">(</span>openstack console log show --lines=$<span style="color: #81A1C1;">{</span><span style="color: #D8DEE9;">console_lines</span><span style="color: #81A1C1;">}</span> <span style="color: #A3BE8C;">"${vm}"</span><span style="color: #88C0D0;">)</span>
+      <span style="color: #81A1C1;">local</span> <span style="color: #D8DEE9;">new_console_log</span>=$<span style="color: #88C0D0;">(</span><span style="color: #fa8072;">openstack</span> console log show --lines=$<span style="color: #81A1C1;">{</span><span style="color: #D8DEE9;">console_lines</span><span style="color: #81A1C1;">}</span> <span style="color: #A3BE8C;">"${vm}"</span><span style="color: #88C0D0;">)</span>
 
       <span style="color: #616e88;"># </span><span style="color: #616e88;">Clear the screen (`cuu1` move cursor up by one line, `el`</span>
       <span style="color: #616e88;"># </span><span style="color: #616e88;">clear the line)</span>
@@ -1282,7 +1286,7 @@ Then, attach it a floating IP.
 <div class="org-src-container">
 <pre class="src src-bash">openstack server add floating ip <span style="color: #A3BE8C;">\</span>
   art-vm <span style="color: #A3BE8C;">\</span>
-  $<span style="color: #8FBCBB;">(</span>openstack floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
+  $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
 </pre>
 </div>
 
@@ -1305,27 +1309,27 @@ debian@art-vm:~$ figlet "The Art of Contextualizing a VM" | lolcat
 </div>
 </div>
 
-<div id="outline-container-org3f37524" class="outline-3">
-<h3 id="org3f37524"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
+<div id="outline-container-orgc060c14" class="outline-3">
+<h3 id="orgc060c14"><span class="section-number-3">2.5</span> Run VMs at (near-)native speed</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every time you do an <code>openstack server create ...</code>, your request hits,
-at some point, the <code>nova</code> services. It starts by the <code>nova-api</code> that
-processes the REST request. The API, in turns, calls the
+at some point, the <code>nova</code> services.  It starts by the <code>nova-api</code> that
+processes the REST request.  The API, in turns, calls the
 <code>nova-conductor</code> that orchestrates the boot: performs some checks,
 finds eligible computes and chooses one to transmit the boot order to
-its <code>nova-compute</code>. Finally, the <code>nova-compute</code> asks to the underlying
-hypervisor to start the VM.
+its <code>nova-compute</code>.  Finally, the <code>nova-compute</code> asks to the
+underlying hypervisor to start the VM.
 </p>
 
 <p>
 In your current setup, the hypervisor of your <code>nova-compute</code> runs
-<a href="https://en.wikipedia.org/wiki/QEMU">QEMU</a>. QEMU is a free emulator for hardware virtualization. It supports
-a large variety of guest operating systems, but the emulation is a bit
-slow. Fortunately, QEMU can be used with <a href="http://www.linux-kvm.org/">KVM</a> to run virtual machines
-at near-native speed. KVM (Kernel-based Virtual Machine) is a free
-full virtualization solution for Linux that takes advantage of x86
-hardware extensions (Intel VT or AMD-V).
+<a href="https://en.wikipedia.org/wiki/QEMU">QEMU</a>.  QEMU is a free emulator for hardware virtualization.  It
+supports a large variety of guest operating systems, but the emulation
+is a bit slow.  Fortunately, QEMU can be used with <a href="http://www.linux-kvm.org/">KVM</a> to run virtual
+machines at near-native speed.  KVM (Kernel-based Virtual Machine) is
+a free full virtualization solution for Linux that takes advantage of
+x86 hardware extensions (Intel VT or AMD-V).
 </p>
 
 <p>
@@ -1386,8 +1390,8 @@ to support KVM and restart it.
 <div class="solution">
 <pre class="example">
 NOVA_HYPERV_CONF=/var/snap/microstack/common/etc/nova/nova.conf.d/hypervisor.conf
-sudo sed -i 's|virt_type.\+|virt_type = kvm|' $NOVA_HYPERV_CONF
-sudo sed -i 's|cpu_mode.\+|cpu_mode = host-passthrough|' $NOVA_HYPERV_CONF
+sudo crudini --set $NOVA_HYPERV_CONF libvirt virt_type "kvm"
+sudo crudini --set $NOVA_HYPERV_CONF libvirt cpu_mode  "host-passthrough"
 sudo snap restart microstack.nova-compute
 </pre>
 
@@ -1405,7 +1409,7 @@ Contextualizing a VM with KVM" | lolcat</code> command.
 </div>
 </div>
 
-<div id="outline-container-org2f2fc17" class="outline-2">
+<div id="outline-container-orge94cc71" class="outline-2">
 <h2 id="sec:wp-devops"><span class="section-number-2">3</span> Deploy a WordPress as a Service (as a DevOps)</h2>
 <div class="outline-text-2" id="text-sec:wp-devops">
 <p>
@@ -1461,14 +1465,14 @@ project named <code>os-owph</code>.</li>
 
 <p>
 The <code>rsc</code> directory provides bash scripts to deploy the MariaDB
-database and web server of WordPress (also in <a href="#org42a3bd5">Appendix</a>). Review it
+database and web server of WordPress (also in <a href="#org2cc3e64">Appendix</a>). Review it
 before going any further (spot the <b>TODO</b>).  And ask yourself
 questions such as: Does the <code>wordpress-db</code> VM needs a floating IP in
 order to be reached by the <code>wordpress-app</code> VM?
 </p>
 
 <p>
-Also, remind to <a href="#orga172041">clean your environment</a>.
+Also, remind to <a href="#orgb6e5fe8">clean your environment</a>.
 </p>
 
 <div class="solution">
@@ -1518,7 +1522,7 @@ running it.
 Set the script with IP address of <code>wordpress-db</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash">sed -i <span style="color: #A3BE8C;">'13s|.*|DB_HOST="'</span>$<span style="color: #8FBCBB;">(</span>openstack server show wordpress-db -c addresses -f value | sed -Er <span style="color: #A3BE8C;">"s/test=//g"</span><span style="color: #8FBCBB;">)</span><span style="color: #A3BE8C;">'"|'</span> ./rsc/install-wp.sh
+<pre class="src src-bash">sed -i <span style="color: #A3BE8C;">'13s|.*|DB_HOST="'</span>$<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> server show wordpress-db -c addresses -f value | sed -Er <span style="color: #A3BE8C;">"s/test=//g"</span><span style="color: #8FBCBB;">)</span><span style="color: #A3BE8C;">'"|'</span> ./rsc/install-wp.sh
 </pre>
 </div>
 
@@ -1540,7 +1544,7 @@ wait_contextualization wordpress-app
 Get a floating ip for the VM.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #D8DEE9;">WP_APP_FIP</span>=$<span style="color: #8FBCBB;">(</span>openstack floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
+<pre class="src src-bash"><span style="color: #D8DEE9;">WP_APP_FIP</span>=$<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
 </pre>
 </div>
 
@@ -1575,7 +1579,7 @@ ssh -NL 8080:&lt;floating-ip&gt;:80 -l root &lt;ip-of-your-lab-machine&gt;
 
 
 <p>
-Then, reach WordPress on <a href="http://localhost:8080/wp">http://localhost:8080/wp</a>.
+And reach WordPress on <a href="http://localhost:8080/wp">http://localhost:8080/wp</a>.
 </p>
 
 </div>
@@ -1586,32 +1590,31 @@ Then, reach WordPress on <a href="http://localhost:8080/wp">http://localhost:808
 </div>
 </div>
 
-<div id="outline-container-orga70791e" class="outline-2">
+<div id="outline-container-orge9c70b5" class="outline-2">
 <h2 id="sec:heat"><span class="section-number-2">4</span> Automatize the Deployment with Heat</h2>
 <div class="outline-text-2" id="text-sec:heat">
 <p>
 <a href="https://docs.openstack.org/heat/ussuri/">Heat</a> is the OpenStack orchestrator: it eats templates (called HOT for
 Heat Orchestration Template - which are files written in YAML)
 describing the OpenStack infrastructure you want to deploy (e.g. VMs,
-networks, storages) as well as software configurations. Then the Heat
+networks, storages) as well as software configurations.  Then the Heat
 engine is in charge of sending the appropriate requests to OpenStack
 to deploy the system described in your template (deployments are
-called <code>stacks</code> in Heat). This section manipulates Heat to understand
-how to deploy applications on OpenStack. Template snippets in the
-following are available under the <code>rsc/heat-templates/</code> directory. You
-may also find interesting examples in the <a href="https://docs.openstack.org/heat/ussuri/template_guide/basic_resources.html">Heat documentation</a>, or on
-the <a href="https://github.com/openstack/heat-templates">heat-templates repository</a>.
+called <code>stacks</code> in Heat).  This section manipulates Heat to understand
+how to deploy applications on OpenStack.  Templates in the following
+are available under the <code>rsc/heat-templates/</code> directory.  You may also
+find interesting examples in the <a href="https://docs.openstack.org/heat/ussuri/template_guide/basic_resources.html">Heat documentation</a>, or on the
+<a href="https://github.com/openstack/heat-templates">heat-templates repository</a>.
 </p>
 </div>
 
-
-<div id="outline-container-orgf6ccf05" class="outline-3">
-<h3 id="orgf6ccf05"><span class="section-number-3">4.1</span> Preamble</h3>
+<div id="outline-container-orgc5e349a" class="outline-3">
+<h3 id="orgc5e349a"><span class="section-number-3">4.1</span> Preamble</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 In this last part, the teacher has setup an OpenStack in a DataCenter
 (here, on top of Grid&rsquo;5000) and created member account and project for
-each of you (not admin). As a preamble, you should:
+each of you (not admin).  As a preamble, you should:
 </p>
 <ul class="org-ul">
 <li>Connect to the Grid&rsquo;5000 VPN (Sec.&nbsp;<a href="#sec:assign-lab">1.2</a>).</li>
@@ -1619,17 +1622,16 @@ each of you (not admin). As a preamble, you should:
 &ldquo;OpenStack RC File V3&rdquo; (Sec.&nbsp;<a href="#sec:os-cli">2.2</a>) on your own machine.
 <ul class="org-ul">
 <li>user name: your Grid&rsquo;5000 login</li>
-<li>password: <code>os-imt</code></li>
+<li>password: <code>lab-os</code></li>
 </ul></li>
 <li><a href="https://github.com/openstack/python-openstackclient/tree/stable/rocky#getting-started">Install the OpenStack CLI</a> and <a href="https://github.com/openstack/python-heatclient/tree/stable/rocky">Heat CLI</a> on your own machine.</li>
 <li>Source the &ldquo;OpenStack RC File V3&rdquo;.</li>
 <li>Reimport (or maybe recreate) your admin SSH key
 (Sec.&nbsp;<a href="#sec:enc-trust">2.3</a>).</li>
-<li>Download the last version of the Lab resources (Sec.&nbsp;<a href="#sec:rscs-lab">1.3</a>).</li>
 </ul>
 
 <p>
-Resource names change a bit from previously. Do not hesitate to run
+Resource names change a bit from previously.  Do not hesitate to run
 some commands such as the following to know about new names.
 </p>
 <ul class="org-ul">
@@ -1641,8 +1643,8 @@ some commands such as the following to know about new names.
 </div>
 </div>
 
-<div id="outline-container-org72c0a08" class="outline-3">
-<h3 id="org72c0a08"><span class="section-number-3">4.2</span> Boot a VM</h3>
+<div id="outline-container-orgf124ff3" class="outline-3">
+<h3 id="orgf124ff3"><span class="section-number-3">4.2</span> Boot a VM</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 The simplest HOT template you can declare describes how to boot a VM.
@@ -1664,9 +1666,9 @@ The simplest HOT template you can declare describes how to boot a VM.
     <span style="color: #D8DEE9;">type</span>: <span style="color: #A3BE8C;">"OS::Nova::Server"</span>
     <span style="color: #D8DEE9;">properties</span>:
       <span style="color: #D8DEE9;">name</span>: hello_world      <span style="color: #616e88;"># </span><span style="color: #616e88;">Name of the VM</span>
-      <span style="color: #D8DEE9;">image</span>: debian-10       <span style="color: #616e88;"># </span><span style="color: #616e88;">Its image of the VM (must be available in Glance)</span>
+      <span style="color: #D8DEE9;">image</span>: debian-10       <span style="color: #616e88;"># </span><span style="color: #616e88;">Its image (must be available in Glance)</span>
       <span style="color: #D8DEE9;">flavor</span>: m1.mini        <span style="color: #616e88;"># </span><span style="color: #616e88;">Its flavor (must exist in Nova)</span>
-      <span style="color: #D8DEE9;">key_name</span>: admin        <span style="color: #616e88;"># </span><span style="color: #616e88;">Name of the SSH Key (must exist in Nova)</span>
+      <span style="color: #D8DEE9;">key_name</span>: admin        <span style="color: #616e88;"># </span><span style="color: #616e88;">Name of its SSH Key (must exist in Nova)</span>
       <span style="color: #D8DEE9;">networks</span>:              <span style="color: #616e88;"># </span><span style="color: #616e88;">List of networks to connect to</span>
         - {<span style="color: #D8DEE9;">network</span>: private}
 </pre>
@@ -1674,18 +1676,19 @@ The simplest HOT template you can declare describes how to boot a VM.
 
 <p>
 As depicted in this example, the different OpenStack resources can be
-declared using types. OpenStack resource types are listed in the
+declared using types.  OpenStack resource types are listed in the
 <a href="https://docs.openstack.org/heat/ussuri/template_guide/openstack.html">documentation</a>, browsing this page, you can see that resources exist
 for most OpenStack services (e.g. Nova, Neutron, Glance, Cinder,
-Heat). Here, we declare a new resource called <code>heat-vm</code> which is
+Heat).  Here, we declare a new resource called <code>heat-vm</code> which is
 defined by the type <code>OS::Nova::Server</code> to declare a new virtual
-machine. A type specifies different properties (some are mandatory,
-some are optional, <a href="https://docs.openstack.org/heat/ussuri/template_guide/openstack.html">see the documentation</a> for more details). The
+machine.  A type specifies different properties (some are mandatory,
+some are optional, <a href="https://docs.openstack.org/heat/ussuri/template_guide/openstack.html">see the documentation</a> for more details).  The
 <code>OS::Nova::Server</code> properties should be familiar to you since it is
 the classical properties Nova requires to boot a VM (i.e. name, image,
-flavor, key name). Once you have written this template in a file, you
+flavor, key name).  Once you have written this template in a file, you
 can now deploy the stack as following:
 </p>
+
 <div class="org-src-container">
 <pre class="src src-bash">openstack stack create -t ./rsc/heat-templates/1_boot_vm.yaml hw1
 openstack stack list
@@ -1696,18 +1699,18 @@ openstack stack delete --wait --yes hw1
 </div>
 
 <p>
-This simple template is enough to run a virtual machine. However, it
-is very static. In the next subsection, we are going to manipulate
+This simple template is enough to run a virtual machine.  However, it
+is very static.  In the next subsection, we are going to manipulate
 parameters to add flexibility.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4beda9c" class="outline-3">
+<div id="outline-container-orgefe4494" class="outline-3">
 <h3 id="sec:heat-params"><span class="section-number-3">4.3</span> Need more flexibility: let&rsquo;s add parameters</h3>
 <div class="outline-text-3" id="text-sec:heat-params">
 <p>
-Templates can be more flexible with parameters. To that end you can:
+Templates can be more flexible with parameters.  To that end you can:
 </p>
 <ul class="org-ul">
 <li>Declare a set of parameters to provide to your template.</li>
@@ -1716,13 +1719,14 @@ your resource declarations.</li>
 </ul>
 
 <p>
-The next template is an example with four parameters. The first one is
-related to the VM name and must be provided during the stack creation.
-The second one is the name of the VM image with a <code>debian-10</code> as
-default value. The third argument corresponds to the flavor and
-defaults to <code>m1.small</code>. Finally, the last one defines the SSH key to
-use and defaults to <code>admin</code>.
+The next template is an example with four parameters.  The first one
+is related to the VM name and must be provided during the stack
+creation.  The second one is the name of the VM image with a
+<code>debian-10</code> as default value.  The third argument corresponds to the
+flavor and defaults to <code>m1.small</code>.  Finally, the last one defines the
+SSH key to use and defaults to <code>admin</code>.
 </p>
+
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
 
@@ -1763,8 +1767,8 @@ use and defaults to <code>admin</code>.
 </div>
 
 <p>
-To deploy this stack, run the next command. It deploys the VM by
-overriding the default flavor value <code>m1.mini</code> with <code>m1.small</code>. This
+To deploy this stack, run the next command.  It deploys the VM by
+overriding the default flavor value <code>m1.mini</code> with <code>m1.small</code>.  This
 can be checked in <code>openstack server list</code>.
 </p>
 <div class="org-src-container">
@@ -1779,7 +1783,7 @@ openstack stack delete --wait --yes hw2
 
 <p>
 The parameter <code>the_vm_name</code> is required as no default value is
-provided. If you try to create a stack without providing this
+provided.  If you try to create a stack without providing this
 parameter, you end with an error.
 </p>
 <div class="org-src-container">
@@ -1792,20 +1796,21 @@ ERROR: The Parameter <span style="color: #8FBCBB;">(</span>the_vm_name<span styl
 </div>
 
 <p>
-Parameters are the inputs of templates. The next subsection, focuses
-on declaring outputs, so that a stack can return a set of
-attributes (e.g., the IP address of a deployed VM).
+Parameters are the inputs of templates.  The next subsection, focuses
+on declaring outputs, so that a stack can return a set of attributes
+(e.g., the IP address of a deployed VM).
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc5c38e9" class="outline-3">
-<h3 id="sec:heat-outputs"><span class="section-number-3">4.4</span> Need to return values: let&rsquo;s use outputs!</h3>
+<div id="outline-container-org16d2f3b" class="outline-3">
+<h3 id="sec:heat-outputs"><span class="section-number-3">4.4</span> Need to return values: let&rsquo;s use outputs</h3>
 <div class="outline-text-3" id="text-sec:heat-outputs">
 <p>
-Templates can declare a set of attributes to return. For instance, you
-might need to know the IP address of a resource at runtime. To that
-end, you can declare attributes in a new section called <code>outputs</code>:
+Templates can declare a set of attributes to return.  For instance,
+you might need to know the IP address of a resource at runtime.  To
+that end, you can declare attributes in a new section called
+<code>outputs</code>:
 </p>
 
 <div class="org-src-container">
@@ -1850,9 +1855,9 @@ end, you can declare attributes in a new section called <code>outputs</code>:
 
 <p>
 The template declares an output attribute called <code>HOSTIP</code> which stores
-the IP address of the VM resource. To find the IP address, it uses
-another <a href="https://docs.openstack.org/heat/ussuri/template_guide/hot_spec.html#get-attr">intrinsic function</a>: <code>get_attr</code>. Same with the <code>HOSTNAME</code>
-output. Output attributes can be exploited in two ways: they can be
+the IP address of the VM resource.  To find the IP address, it uses
+another <a href="https://docs.openstack.org/heat/ussuri/template_guide/hot_spec.html#get-attr">intrinsic function</a>: <code>get_attr</code>.  Same with the <code>HOSTNAME</code>
+output.  Output attributes can be exploited in two ways: they can be
 displayed from the CLI, or they can be fetched by other stack
 templates (we will see this last case latter):
 </p>
@@ -1867,7 +1872,7 @@ openstack stack output show hw3 HOSTIP
 <div class="note">
 <p>
 Once again, the Heat documentation is your friend to find out
-<a href="https://docs.openstack.org/heat/ussuri/template_guide/openstack.html#OS::Nova::Server-attrs">attributes</a>. As such, you can reference the IP address with the
+<a href="https://docs.openstack.org/heat/ussuri/template_guide/openstack.html#OS::Nova::Server-attrs">attributes</a>.  As such, you can reference the IP address with the
 <code>network</code> attribute.
 </p>
 <pre class="example">
@@ -1881,7 +1886,6 @@ the IP address such as <code>first_address</code>, but that one is deprecated
 though.
 </p>
 <pre class="example">
-get_attr: [heat-vm, networks, private, 0]
 get_attr: [heat-vm, first_address]
 </pre>
 
@@ -1922,13 +1926,14 @@ openstack stack delete --wait --yes hw3
 </div>
 </div>
 
-<div id="outline-container-org6fa5e6f" class="outline-3">
-<h3 id="org6fa5e6f"><span class="section-number-3">4.5</span> Integrate <code>cloud-init</code></h3>
+<div id="outline-container-org0610ee8" class="outline-3">
+<h3 id="org0610ee8"><span class="section-number-3">4.5</span> Integrate <code>cloud-init</code></h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 It is possible to declare a post-installation script in the template
 with the <code>user_data</code> property.
 </p>
+
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
 
@@ -1968,14 +1973,14 @@ openstack stack create -t ./rsc/heat-templates/4_boot_vm_with_user-data.yaml hw4
 
 <p>
 Associating a floating IP is a bit tricky with Heat, so let&rsquo;s do it
-manually for now. Then, wait for <code>cloud-init</code> to finish and finally,
+manually for now.  Then, wait for <code>cloud-init</code> to finish and finally,
 SSH on the VM (the <code>wait_contextualization</code> function comes from
 section <a href="#sec:cloud-init">2.4.2</a>).
 </p>
 
 <div class="org-src-container">
 <pre class="src src-bash">openstack server add floating ip hello_cloud_init <span style="color: #A3BE8C;">\</span>
-  $<span style="color: #8FBCBB;">(</span>openstack floating ip create -c floating_ip_address -f value public<span style="color: #8FBCBB;">)</span>
+  $<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> floating ip create -c floating_ip_address -f value public<span style="color: #8FBCBB;">)</span>
 wait_contextualization hello_cloud_init
 openstack server ssh --login debian --identity ./admin.pem hello_cloud_init
 openstack stack delete --wait --yes hw4
@@ -1985,8 +1990,8 @@ openstack stack delete --wait --yes hw4
 <div class="note">
 <p>
 Find the <code>user_data</code> file executed on the VM by cloud-init at
-<code>/var/lib/heat-cfntools/cfn-userdata</code>. This path comes from the log of
-the VM boot (using <code>openstack console log show hello_cloud_init</code>)
+<code>/var/lib/heat-cfntools/cfn-userdata</code>.  This path comes from the log
+of the VM boot (using <code>openstack console log show hello_cloud_init</code>)
 right after the log <code>Cloud-init v. ... running</code>.
 </p>
 
@@ -1994,12 +1999,12 @@ right after the log <code>Cloud-init v. ... running</code>.
 </div>
 </div>
 
-<div id="outline-container-org4fab2c7" class="outline-3">
-<h3 id="org4fab2c7"><span class="section-number-3">4.6</span> Dynamic configuration with <code>cloud-init</code> and parameters</h3>
+<div id="outline-container-org3c1fb3a" class="outline-3">
+<h3 id="org3c1fb3a"><span class="section-number-3">4.6</span> Dynamic configuration with <code>cloud-init</code> and parameters</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Let&rsquo;s mix parameters and cloud-init to write a template with a
-flexible post-installation script. With Heat, it is possible to
+flexible post-installation script.  With Heat, it is possible to
 provide a parameter to your user-data at run-time by using a new
 <a href="https://docs.openstack.org/heat/ussuri/template_guide/hot_spec.html#str-replace">intrinsic function</a>: <code>str_replace</code>.
 </p>
@@ -2041,9 +2046,9 @@ provide a parameter to your user-data at run-time by using a new
 
 <p>
 The template uses <code>str_replace</code> to instantiate variables in the
-template. In this example, the parameter should be a string containing
-a set of packages to install in the VM. You can deploy the stack as
-follow:
+template.  In this example, the parameter should be a string
+containing a set of packages to install in the VM. You can deploy the
+stack as follow:
 </p>
 <div class="org-src-container">
 <pre class="src src-bash">openstack stack create <span style="color: #A3BE8C;">\</span>
@@ -2056,24 +2061,24 @@ openstack stack delete --wait --yes hw5
 
 <p>
 This mechanism is crucial to dynamically configure our services during
-the deployment. For instance, <code>service-A</code> might require an IP address
+the deployment.  For instance, <code>service-A</code> might require an IP address
 in its configuration file to access <code>service-B</code>, which runs on another
-VM. This IP address is only known at run-time, so it must be
-represented by a variable managed in Heat templates. In the next
+VM.  This IP address is only known at run-time, so it must be
+represented by a variable managed in Heat templates.  In the next
 subsections, we are going to study how to declare such variable, so
 that Heat resources can exchange information.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9e87f3a" class="outline-3">
+<div id="outline-container-orgd24fa6e" class="outline-3">
 <h3 id="sec:data-deps-rscs"><span class="section-number-3">4.7</span> Data dependency between resources</h3>
 <div class="outline-text-3" id="text-sec:data-deps-rscs">
 <p>
-Let&rsquo;s declare a template with two VMs: <code>user</code> and <code>provider</code>. The idea
-is to configure <code>user</code>&rsquo;s static lookup table for hostnames (more
+Let&rsquo;s declare a template with two VMs: <code>user</code> and <code>provider</code>.  The
+idea is to configure <code>user</code>&rsquo;s static lookup table for hostnames (more
 information can be found by typing: <code>man hosts</code>), so that user can
-target <code>provider</code> from its hostname rather than its IP address. To
+target <code>provider</code> from its hostname rather than its IP address.  To
 that end, the template uses the <code>user_data</code> property together with the
 <code>get_attr</code> function to edit the <code>/etc/hosts</code> file on <code>user</code>, and map
 the IP address of <code>provider</code> with its hostname.
@@ -2120,7 +2125,7 @@ the IP address of <code>provider</code> with its hostname.
 <p>
 In this example, <code>user</code> requires the IP address of <code>provider</code> to boot.
 The Heat engine is in charge of managing dependencies between
-resources. Take a look during the deployment, and check that
+resources.  Take a look during the deployment, and check that
 <code>provider</code> is deployed prior to <code>user</code>.
 </p>
 
@@ -2141,14 +2146,14 @@ openstack stack delete --wait --yes hw6
 </div>
 </div>
 
-<div id="outline-container-org709cc7c" class="outline-3">
-<h3 id="org709cc7c"><span class="section-number-3">4.8</span> Nested templates</h3>
+<div id="outline-container-org16f5512" class="outline-3">
+<h3 id="org16f5512"><span class="section-number-3">4.8</span> Nested templates</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 Heat is able to compose templates to keep human-readable files, using
-nested templates. For instance, we can use a first template that
+nested templates.  For instance, we can use a first template that
 describes a virtual machine, and a second template which deploys
-multiple VMs by referencing the first one. Rather than creating the
+multiple VMs by referencing the first one.  Rather than creating the
 first template, we can re-use the one from section <a href="#sec:heat-params">4.3</a>.
 </p>
 
@@ -2177,8 +2182,9 @@ first template, we can re-use the one from section <a href="#sec:heat-params">4.
 
 <p>
 To compose template, a new resource can be defined by specifying its
-type as the target of the desired template. A set of properties can be
-provided to the nested template and will be interpreted as parameters.
+type as the target of the desired template.  A set of properties can
+be provided to the nested template and will be interpreted as
+parameters.
 </p>
 
 <div class="org-src-container">
@@ -2190,14 +2196,14 @@ openstack stack delete --wait --yes hw7
 
 <p>
 Nested templates are very convenient to keep your code clean and
-re-usable. Next section extends nested templates with data
+re-usable.  Next section extends nested templates with data
 dependency.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org94cb28a" class="outline-3">
-<h3 id="org94cb28a"><span class="section-number-3">4.9</span> Nested templates with data dependency</h3>
+<div id="outline-container-org2f76c51" class="outline-3">
+<h3 id="org2f76c51"><span class="section-number-3">4.9</span> Nested templates with data dependency</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 Let&rsquo;s describe the same deployment as in section <a href="#sec:data-deps-rscs">4.7</a>
@@ -2254,6 +2260,7 @@ We can now declare the main template. While it defines three VMs, this
 template is easy to read since it points to the template created
 previously and template in section <a href="#sec:heat-outputs">4.4</a>.
 </p>
+
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
 
@@ -2290,8 +2297,8 @@ openstack stack delete --wait --yes hw8
 </div>
 </div>
 
-<div id="outline-container-orgc61bf31" class="outline-3">
-<h3 id="orgc61bf31"><span class="section-number-3">4.10</span> Other type of resources: floating IP</h3>
+<div id="outline-container-org1859fec" class="outline-3">
+<h3 id="org1859fec"><span class="section-number-3">4.10</span> Other type of resources: floating IP</h3>
 <div class="outline-text-3" id="text-4-10">
 <p>
 It&rsquo;s Floating IP time!
@@ -2343,7 +2350,7 @@ openstack server list
 Or by asking Heat about attributes of the <code>floating-ip</code> resource.
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #D8DEE9;">FIP_RSC_ATTRIBUTES</span>=$<span style="color: #8FBCBB;">(</span>openstack stack resource show -c attributes -f value hw9 floating-ip<span style="color: #8FBCBB;">)</span>
+<pre class="src src-bash"><span style="color: #D8DEE9;">FIP_RSC_ATTRIBUTES</span>=$<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> stack resource show -c attributes -f value hw9 floating-ip<span style="color: #8FBCBB;">)</span>
 python -c <span style="color: #A3BE8C;">"print('floating ip is %s' % ${FIP_RSC_ATTRIBUTES}['floating_ip_address'])"</span>
 </pre>
 </div>
@@ -2358,7 +2365,7 @@ openstack stack delete --wait --yes hw9
 </div>
 </div>
 
-<div id="outline-container-orgac8f8e2" class="outline-2">
+<div id="outline-container-orgf59e258" class="outline-2">
 <h2 id="sec:wp-heat"><span class="section-number-2">5</span> Deploy a WordPress as a Service (as a Heat DevOps)</h2>
 <div class="outline-text-2" id="text-sec:wp-heat">
 <p>
@@ -2384,13 +2391,13 @@ Create three HOT files:
 <dl class="org-dl">
 <dt><code>db-vm.yaml</code> </dt><dd>Contains the description of the VM running MariaDB.</dd>
 <dt><code>wp-vm.yaml</code> </dt><dd>Contains the description of the VM running the Web
-server and serving Wordpress ;</dd>
+server and serving WordPress.</dd>
 <dt><code>wp-app.yaml</code></dt><dd>Contains the description of the WordPress
 application (glues the <code>db-vm.yaml</code> and <code>web-vm.yaml</code> together).</dd>
 </dl>
 
 <p>
-Once it is deployed, you should be able to reach the wordpress service by
+Once it is deployed, you should be able to reach the WordPress service by
 going on <a href="http://&lt;web-server-fip-address&gt;/wp">http://&lt;web-server-fip-address&gt;/wp</a>.
 </p>
 
@@ -2404,192 +2411,14 @@ the tarball and in the following subsections.
 
 </div>
 </div>
-
-<div id="outline-container-org473c86d" class="outline-3">
-<h3 id="org473c86d"><span class="section-number-3">5.1</span> Database VM template</h3>
-<div class="outline-text-3" id="text-5-1">
-<div class="org-src-container">
-<pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
-
-<span style="color: #D8DEE9;">description</span>: &gt;
-  <span style="color: #A3BE8C;">Deploy an MariaDB server, outputs its IP address.</span>
-
-<span style="color: #D8DEE9;">parameters</span>:
-  <span style="color: #D8DEE9;">ServerKeyName</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the SSH key to provide to cloud-init
-    <span style="color: #D8DEE9;">type</span>: string
-    <span style="color: #D8DEE9;">default</span>: admin
-
-  <span style="color: #616e88;"># </span><span style="color: #616e88;">Parameters used in the cloud-init script to install &amp; configure</span>
-  <span style="color: #616e88;"># </span><span style="color: #616e88;">MariaDB.</span>
-  <span style="color: #D8DEE9;">DBRootPassword</span>:
-    <span style="color: #D8DEE9;">label</span>: Value of the password to manage the database
-    <span style="color: #D8DEE9;">type</span>: string
-  <span style="color: #D8DEE9;">DBName</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the database to create
-    <span style="color: #D8DEE9;">type</span>: string
-  <span style="color: #D8DEE9;">DBUser</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the database user
-    <span style="color: #D8DEE9;">type</span>: string
-  <span style="color: #D8DEE9;">DBPassword</span>:
-    <span style="color: #D8DEE9;">label</span>: Password to access the database
-    <span style="color: #D8DEE9;">type</span>: string
-
-<span style="color: #D8DEE9;">resources</span>:
-  <span style="color: #D8DEE9;">db-vm</span>:
-    <span style="color: #D8DEE9;">type</span>: OS::Nova::Server
-    <span style="color: #D8DEE9;">properties</span>:
-      <span style="color: #D8DEE9;">key_name</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
-      <span style="color: #D8DEE9;">image</span>: debian-10
-      <span style="color: #D8DEE9;">flavor</span>: m1.mini
-      <span style="color: #D8DEE9;">networks</span>:
-        - {<span style="color: #D8DEE9;">network</span>: private}
-      <span style="color: #D8DEE9;">user_data</span>:
-        <span style="color: #D8DEE9;">str_replace</span>:
-          <span style="color: #D8DEE9;">template</span>: { <span style="color: #D8DEE9;">get_file</span>: ../../install-mariadb.sh }
-          <span style="color: #D8DEE9;">params</span>:
-            <span style="color: #D8DEE9;">${DB_ROOTPASSWORD}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBRootPassword }
-            <span style="color: #D8DEE9;">${DB_NAME}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBName }
-            <span style="color: #D8DEE9;">${DB_USER}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBUser }
-            <span style="color: #D8DEE9;">${DB_PASSWORD}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
-<span style="color: #D8DEE9;">outputs</span>:
-  <span style="color: #D8DEE9;">DBHost</span>:
-    <span style="color: #D8DEE9;">description</span>: IP address of the created instance running MariaDB
-    <span style="color: #D8DEE9;">value</span>: { <span style="color: #D8DEE9;">get_attr</span>: [db-vm, networks, private, 0] }
-</pre>
-</div>
-</div>
 </div>
 
-<div id="outline-container-org611b188" class="outline-3">
-<h3 id="org611b188"><span class="section-number-3">5.2</span> Web VM template</h3>
-<div class="outline-text-3" id="text-5-2">
-<div class="org-src-container">
-<pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
-
-<span style="color: #D8DEE9;">description</span>: &gt;
-  <span style="color: #A3BE8C;">Deploy an HTTP server that serves WordPress. Requires an SQL</span>
-<span style="color: #A3BE8C;">  database, whose IP address must be provided as a parameter.</span>
-
-<span style="color: #D8DEE9;">parameters</span>:
-  <span style="color: #D8DEE9;">ServerKeyName</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the SSH key to provide to cloud-init
-    <span style="color: #D8DEE9;">type</span>: string
-    <span style="color: #D8DEE9;">default</span>: admin
-
-  <span style="color: #616e88;"># </span><span style="color: #616e88;">Parameters used in the cloud-init script to install &amp; configure</span>
-  <span style="color: #616e88;"># </span><span style="color: #616e88;">the WordPress app.</span>
-  <span style="color: #D8DEE9;">DBName</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the database to use
-    <span style="color: #D8DEE9;">type</span>: string
-  <span style="color: #D8DEE9;">DBUser</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the database user
-    <span style="color: #D8DEE9;">type</span>: string
-  <span style="color: #D8DEE9;">DBPassword</span>:
-    <span style="color: #D8DEE9;">label</span>: Password to access the database
-    <span style="color: #D8DEE9;">type</span>: string
-  <span style="color: #D8DEE9;">DBHost</span>:
-    <span style="color: #D8DEE9;">label</span>: IP address of the SQL server
-    <span style="color: #D8DEE9;">type</span>: string
-
-<span style="color: #D8DEE9;">resources</span>:
-  <span style="color: #D8DEE9;">wp-vm</span>:
-    <span style="color: #D8DEE9;">type</span>: OS::Nova::Server
-    <span style="color: #D8DEE9;">properties</span>:
-      <span style="color: #D8DEE9;">key_name</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
-      <span style="color: #D8DEE9;">image</span>: debian-10
-      <span style="color: #D8DEE9;">flavor</span>: m1.mini
-      <span style="color: #D8DEE9;">networks</span>:
-        - {<span style="color: #D8DEE9;">network</span>: private}
-      <span style="color: #D8DEE9;">user_data</span>:
-        <span style="color: #D8DEE9;">str_replace</span>:
-          <span style="color: #D8DEE9;">template</span>: { <span style="color: #D8DEE9;">get_file</span>: ../../install-wp.sh }
-          <span style="color: #D8DEE9;">params</span>:
-            <span style="color: #D8DEE9;">${DB_NAME}</span>:     { <span style="color: #D8DEE9;">get_param</span>: DBName }
-            <span style="color: #D8DEE9;">${DB_USER}</span>:     { <span style="color: #D8DEE9;">get_param</span>: DBUser }
-            <span style="color: #D8DEE9;">${DB_PASSWORD}</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
-            <span style="color: #D8DEE9;">${DB_HOST}</span>:     { <span style="color: #D8DEE9;">get_param</span>: DBHost }
-
-  <span style="color: #D8DEE9;">floating-ip</span>:
-    <span style="color: #D8DEE9;">type</span>: OS::Neutron::FloatingIP
-    <span style="color: #D8DEE9;">properties</span>:
-      <span style="color: #D8DEE9;">floating_network</span>: public
-
-  <span style="color: #D8DEE9;">association</span>:
-    <span style="color: #D8DEE9;">type</span>: OS::Neutron::FloatingIPAssociation
-    <span style="color: #D8DEE9;">properties</span>:
-      <span style="color: #D8DEE9;">floatingip_id</span>: { <span style="color: #D8DEE9;">get_resource</span>: floating-ip }
-      <span style="color: #D8DEE9;">port_id</span>: { <span style="color: #D8DEE9;">get_attr</span>: [wp-vm, addresses, private, 0, port]}
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgfaca1fd" class="outline-3">
-<h3 id="orgfaca1fd"><span class="section-number-3">5.3</span> Wordpress application template</h3>
-<div class="outline-text-3" id="text-5-3">
-<div class="org-src-container">
-<pre class="src src-yaml"><span style="color: #D8DEE9;">heat_template_version</span>: 2017-09-01
-
-<span style="color: #D8DEE9;">description</span>: &gt;
-  <span style="color: #A3BE8C;">Deploy a WordPress application, composed of an SQL</span>
-<span style="color: #A3BE8C;">  instance and an HTTP instance that serves WordPress.</span>
-
-
-<span style="color: #D8DEE9;">parameters</span>:
-  <span style="color: #D8DEE9;">ServerKeyName</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the SSH key to provide to cloud-init
-    <span style="color: #D8DEE9;">type</span>: string
-    <span style="color: #D8DEE9;">default</span>: admin
-
-  <span style="color: #616e88;"># </span><span style="color: #616e88;">Parameters used in the cloud-init script to install &amp; configure</span>
-  <span style="color: #616e88;"># </span><span style="color: #616e88;">MariaDB</span>
-  <span style="color: #D8DEE9;">DBRootPassword</span>:
-    <span style="color: #D8DEE9;">label</span>: Value of the password to manage the database
-    <span style="color: #D8DEE9;">type</span>: string
-    <span style="color: #D8DEE9;">default</span>: 0p3nSt4cK
-  <span style="color: #D8DEE9;">DBName</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the database to create
-    <span style="color: #D8DEE9;">type</span>: string
-    <span style="color: #D8DEE9;">default</span>: wordpress
-  <span style="color: #D8DEE9;">DBUser</span>:
-    <span style="color: #D8DEE9;">label</span>: Name of the database user
-    <span style="color: #D8DEE9;">type</span>: string
-    <span style="color: #D8DEE9;">default</span>: donatello
-  <span style="color: #D8DEE9;">DBPassword</span>:
-    <span style="color: #D8DEE9;">label</span>: Password to access the database
-    <span style="color: #D8DEE9;">type</span>: string
-    <span style="color: #D8DEE9;">default</span>: leonardo
-
-<span style="color: #D8DEE9;">resources</span>:
-  <span style="color: #D8DEE9;">database</span>:
-    <span style="color: #D8DEE9;">type</span>: ./db-vm.yaml
-    <span style="color: #D8DEE9;">properties</span>:
-      <span style="color: #D8DEE9;">ServerKeyName</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
-      <span style="color: #D8DEE9;">DBRootPassword</span>: { <span style="color: #D8DEE9;">get_param</span>: DBRootPassword }
-      <span style="color: #D8DEE9;">DBName</span>: { <span style="color: #D8DEE9;">get_param</span>: DBName }
-      <span style="color: #D8DEE9;">DBUser</span>: { <span style="color: #D8DEE9;">get_param</span>: DBUser }
-      <span style="color: #D8DEE9;">DBPassword</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
-  <span style="color: #D8DEE9;">wordpress</span>:
-    <span style="color: #D8DEE9;">type</span>: ./wp-vm.yaml
-    <span style="color: #D8DEE9;">properties</span>:
-      <span style="color: #D8DEE9;">ServerKeyName</span>: { <span style="color: #D8DEE9;">get_param</span>: ServerKeyName }
-      <span style="color: #D8DEE9;">DBName</span>: { <span style="color: #D8DEE9;">get_param</span>: DBName }
-      <span style="color: #D8DEE9;">DBUser</span>: { <span style="color: #D8DEE9;">get_param</span>: DBUser }
-      <span style="color: #D8DEE9;">DBPassword</span>: { <span style="color: #D8DEE9;">get_param</span>: DBPassword }
-      <span style="color: #D8DEE9;">DBHost</span>: { <span style="color: #D8DEE9;">get_attr</span>: [database, DBHost] }
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org42a3bd5" class="outline-2">
-<h2 id="org42a3bd5"><span class="section-number-2">6</span> Appendix</h2>
+<div id="outline-container-org2cc3e64" class="outline-2">
+<h2 id="org2cc3e64"><span class="section-number-2">6</span> Appendix</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orga32d3cb" class="outline-3">
-<h3 id="orga32d3cb"><span class="section-number-3">6.1</span> Install MariaDB on Debian 10</h3>
+<div id="outline-container-org0398455" class="outline-3">
+<h3 id="org0398455"><span class="section-number-3">6.1</span> Install MariaDB on Debian 10</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -2634,8 +2463,8 @@ cat &lt;&lt; EOSQL | mysql -u root --password=$<span style="color: #8FBCBB;">{</
 </div>
 </div>
 
-<div id="outline-container-orgf7737cf" class="outline-3">
-<h3 id="orgf7737cf"><span class="section-number-3">6.2</span> Install Wordpress application on Debian 10</h3>
+<div id="outline-container-orga337b60" class="outline-3">
+<h3 id="orga337b60"><span class="section-number-3">6.2</span> Install Wordpress application on Debian 10</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
@@ -2688,8 +2517,8 @@ cat &lt;&lt; EOF &gt; /etc/wordpress/config-default.php
 </div>
 </div>
 
-<div id="outline-container-org0f07b55" class="outline-3">
-<h3 id="org0f07b55"><span class="section-number-3">6.3</span> VM Live migration</h3>
+<div id="outline-container-orgf29149f" class="outline-3">
+<h3 id="orgf29149f"><span class="section-number-3">6.3</span> VM Live migration</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 First start a VM with mpv and libcaca to output videos in the
@@ -2702,7 +2531,7 @@ on a loop with <code>mpv --vo caca --no-audio --loop vid.mp4</code> after SSH on
           --image debian-10 <span style="color: #A3BE8C;">\</span>
           --key-name ronana <span style="color: #A3BE8C;">\</span>
           --user-data ./rsc/live-migrate-do-it.sh
-<span style="color: #D8DEE9;">ALLOCATED_FIP</span>=$<span style="color: #8FBCBB;">(</span>openstack floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
+<span style="color: #D8DEE9;">ALLOCATED_FIP</span>=$<span style="color: #8FBCBB;">(</span><span style="color: #fa8072;">openstack</span> floating ip create -c floating_ip_address -f value external<span style="color: #8FBCBB;">)</span>
 openstack server add floating ip migrate-vm <span style="color: #A3BE8C;">"${ALLOCATED_FIP}"</span>
 <span style="color: #81A1C1;">echo</span> <span style="color: #A3BE8C;">"${ALLOCATED_FIP}"</span>
 </pre>
@@ -2715,7 +2544,7 @@ Here is the script to setup the VM.
 <pre class="src src-bash"><span style="color: #616e88;">#</span><span style="color: #616e88;">!/usr/bin/</span><span style="color: #81A1C1;">env</span><span style="color: #616e88;"> bash</span>
 apt update; apt install -y python3-pip mpv libcaca-dev
 pip3 install --upgrade youtube_dl
-<span style="color: #616e88;"># </span><span style="color: #616e88;">Choose a video under creative commons</span>
+<span style="color: #616e88;"># </span><span style="color: #616e88;">Pick a video under creative commons</span>
 youtube-dl --recode-video mp4 --verbose <span style="color: #A3BE8C;">\</span>
            --user-agent <span style="color: #A3BE8C;">"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"</span> <span style="color: #A3BE8C;">\</span>
            --output vid.mp4 <span style="color: #A3BE8C;">\</span>
@@ -2752,7 +2581,7 @@ is a bit annoying.
 <p class="email">Email: <a href="mailto:{firstname.lastname}@inria.fr">{firstname.lastname}@inria.fr</a></p>
 <p class="github">Find a typo, wanna make a proposition:
  <a href="https://github.com/BeyondTheClouds/lectures/issues/new?title=[os-imt]">open an issue</a></p>
-<p class="date">Last modification: 2020-11-10 Tue 16:00</p>
+<p class="date">Last modification: 2021-03-02 Tue 18:51</p>
 <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3.8) – <a href="http://gongzhitaao.org/orgcss">Zhitao Gong</a> customized theme</p>
 </div>
